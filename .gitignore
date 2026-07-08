@@ -1,6 +1,12 @@
 # Predložak za podstranice — ne objavljivati
 _template.html
 
+# Node / Astro build
+node_modules/
+dist/
+.astro/
+.vercel
+
 # OS
 .DS_Store
 Thumbs.db
