@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--
+  IRFHP website — Plan (Inventura + Strategija) kao kompaktna checklista
+  Izvor: docs/Rotary_web_inventura_i_strategija.xlsx
+  Zadnja izmjena: 2026-07-09 | Autor: Claude + nbakic
+-->
+<html lang="hr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IRFHP Website — Plan (inventura + strategija)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --azure:#0A62B4;--blue:#134A8E;--blue-dark:#0D2E5E;--navy:#0A1E40;
+    --gold:#F4A81C;--gold-soft:#FCECC9;--ink:#12233E;--muted:#5A6B85;
+    --bg:#F5F8FC;--cloud:#E9F1FA;--card:#fff;--line:#DCE6F2;
+    --ok:#1a8f5a;--ok-bg:#e2f5ec;--wip:#b7791f;--wip-bg:#fcefcf;--todo:#7a5bd6;--todo-bg:#efe9fd;
+    --sans:'Libre Franklin',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:'Cascadia Code','Consolas',ui-monospace,monospace;
+    --radius:12px;--shadow:0 6px 20px rgba(13,46,94,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.5;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+  a{color:var(--azure)}
+  code{font-family:var(--mono);font-size:.85em;background:var(--cloud);padding:1px 5px;border-radius:5px;color:var(--blue-dark)}
+
+  .masthead{background:linear-gradient(115deg,var(--navy),var(--blue) 70%,var(--azure) 135%);color:#fff;padding:30px 0 26px}
+  .masthead .eyebrow{color:var(--gold);font-weight:800;letter-spacing:.15em;text-transform:uppercase;font-size:.68rem}
+  .masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em;margin:8px 0 4px}
+  .masthead p{color:#cfe0f4;max-width:70ch;font-size:.92rem}
+
+  main{padding:20px 0 60px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);margin-bottom:16px}
+  .card h2{font-size:1.1rem;font-weight:800;color:var(--blue-dark);margin-bottom:8px}
+
+  /* progress + legend */
+  .prog{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .bar{flex:1;min-width:180px;height:9px;background:var(--cloud);border-radius:999px;overflow:hidden}
+  .bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--ok),#28b56f);width:0;transition:width .35s}
+  .prog .cnt{font-weight:800;color:var(--blue-dark);font-size:.9rem;white-space:nowrap}
+  .legend{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;font-size:.7rem}
+  .pill{display:inline-block;font-size:.66rem;font-weight:800;padding:2px 8px;border-radius:999px;white-space:nowrap}
+  .p-ok{background:var(--ok-bg);color:var(--ok)}
+  .p-wip{background:var(--wip-bg);color:var(--wip)}
+  .p-todo{background:var(--todo-bg);color:var(--todo)}
+  .legend .tip{color:var(--muted);align-self:center;margin-left:4px}
+
+  /* collapsible note */
+  details{border:1px solid var(--line);border-radius:10px;padding:2px 14px;margin-top:12px;background:#fbfdff}
+  details summary{cursor:pointer;font-weight:700;color:var(--blue-dark);padding:9px 0;font-size:.9rem;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸ ";color:var(--azure)}
+  details[open] summary::before{content:"▾ "}
+  details .in{padding:0 0 12px;font-size:.86rem;color:#37455f}
+  details .in ul{margin:6px 0 6px 18px}
+  details .in li{margin:3px 0}
+
+  /* tables */
+  .tbl-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:.86rem}
+  th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--cloud);color:var(--blue-dark);font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.03em}
+
+  /* inventura: 2 col compact */
+  .inv td:first-child{font-weight:700;color:var(--blue-dark);width:34%;white-space:nowrap}
+
+  /* checklist */
+  .cl th.c1{width:30px}
+  .cl th.c3,.cl th.c4{white-space:nowrap;width:1%}
+  .phrow td{background:linear-gradient(90deg,var(--cloud),#f3f8fd);color:var(--blue-dark);font-weight:800;font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;padding:8px 9px}
+  tr.item td{border-bottom:1px solid var(--line)}
+  tr.item .t{font-weight:700;color:var(--ink)}
+  tr.item.done .t{color:var(--muted);text-decoration:line-through;text-decoration-color:#c3d0e2}
+  tr.item .k{display:block;font-size:.76rem;color:var(--muted);margin-top:1px}
+  tr.item .n{display:block;font-size:.73rem;color:#8595ac;margin-top:2px;font-style:italic}
+  tr.item td.own{font-size:.78rem;color:#42506a;white-space:nowrap}
+  tr.item td.st{white-space:nowrap}
+  td.cb{text-align:center}
+  input[type=checkbox]{appearance:none;-webkit-appearance:none;width:19px;height:19px;border:2px solid #b9c8dc;border-radius:5px;background:#fff;cursor:pointer;position:relative;vertical-align:middle;transition:.15s}
+  input[type=checkbox]:hover{border-color:var(--azure)}
+  input[type=checkbox]:checked{background:var(--ok);border-color:var(--ok)}
+  input[type=checkbox]:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+
+  .foot{max-width:960px;margin:0 auto;padding:16px 20px 40px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<header class="masthead"><div class="wrap">
+  <div class="eyebrow">Plan projekta · checklista</div>
+  <h1>IRFHP Website — inventura, strategija i status</h1>
+  <p>Cijeli radni tijek (ne samo izrada sajta). Kvačice pokazuju što je gotovo — možeš ih sam mijenjati (pamti se u pregledniku).</p>
+</div></header>
+
+<div class="wrap"><main>
+
+  <!-- NAPREDAK -->
+  <section class="card">
+    <div class="prog">
+      <div class="bar"><span id="progFill"></span></div>
+      <div class="cnt"><span id="progDone">0</span> / <span id="progTotal">0</span> gotovo</div>
+    </div>
+    <div class="legend">
+      <span class="pill p-ok">Gotovo</span>
+      <span class="pill p-wip">Djelomično / u tijeku</span>
+      <span class="pill p-todo">Za napraviti</span>
+      <span class="tip">„Kasnije" stavke odrađuju Roko + Karla.</span>
+    </div>
+    <details>
+      <summary>Zašto Vercel + Keystatic (a ne GitHub Pages kako je izvorno planirano)</summary>
+      <div class="in">
+        <ul>
+          <li>GitHub Pages je samo statični hosting → <strong>ne može pokretati Keystatic admin</strong> (server-funkcija); moralo bi se natrag na slabije održavani Decap CMS.</li>
+          <li>Svakodnevni rad je <strong>isti</strong>: Drago i Karla uređuju kroz GitHub login; Vercel im je nevidljiv i samo automatski rebuilda.</li>
+          <li>Kod i sadržaj su u GitHub organizaciji udruge → nema zaključavanja; <strong>Vercel se lako prebaci na drugi / udrugin račun</strong> ili drugi hosting.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- INVENTURA -->
+  <section class="card">
+    <h2>Inventura — <code>rotaryhealthcareprofessionals.org</code></h2>
+    <div class="tbl-wrap"><table class="inv">
+      <tr><td>Domena</td><td><code>rotaryhealthcareprofessionals.org</code> · registrar 123 Reg (Drago Paušek), ističe 9/2026, auto-renewal on</td></tr>
+      <tr><td>Pravni subjekt</td><td>Međunarodna NGO — mreža Rotary zdravstvenih profesionalaca</td></tr>
+      <tr><td>Stari hosting</td><td>Bluehost (US) · WordPress — gasi se nakon preseljenja (glavni problem: sporo)</td></tr>
+      <tr><td>Mail / kontakt</td><td>Preko Gmail adrese (nema mail na domeni)</td></tr>
+      <tr><td>Funkcionalnosti</td><td>Donacije, kontakt obrazac, poveznica na MemberMojo (članstvo)</td></tr>
+      <tr><td>Osobni podaci</td><td>DA (donacije + obrazac) → GDPR: privacy policy + privola</td></tr>
+      <tr><td>Odabrano rješenje</td><td>Statični web + headless CMS. <strong>Izvedba: Astro + Keystatic na Vercelu</strong> (izvorno zamišljeno kao GitHub Pages + Decap)</td></tr>
+    </table></div>
+  </section>
+
+  <!-- STRATEGIJA / CHECKLISTA -->
+  <section class="card">
+    <h2>Strategija — radni tijek</h2>
+    <div class="tbl-wrap"><table class="cl">
+      <thead>
+        <tr><th class="c1"></th><th>Zadatak</th><th class="c3">Nositelj</th><th class="c4">Status</th></tr>
+      </thead>
+
+      <tbody>
+        <tr class="phrow"><td colspan="4">Faza 1 — Priprema</td></tr>
+        <tr class="item" data-id="f1-1">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Backup starog WordPress weba (sadržaj, slike, baza) izvan Bluehosta</span><span class="k">Kriterij: backup na Drive/Dropbox</span><span class="n">Sadržaj i slike migrirani u repo; formalni backup baze — kasnije.</span></td>
+          <td class="own">Roko + Karla</td><td class="st"><span class="pill p-wip">Djelomično</span></td>
+        </tr>
+        <tr class="item" data-id="f1-2">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Popisati sadržaj „prenosi se / briše se"</span><span class="k">Kriterij: potvrđen popis</span><span class="n">Migrirano 23 stranice + 17 vijesti; formalni popis kasnije.</span></td>
+          <td class="own">Roko + Karla</td><td class="st"><span class="pill p-todo">Kasnije</span></td>
+        </tr>
+        <tr class="item" data-id="f1-3">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Potvrditi 3 kritične stavke: kontakt obrazac, donacije, MemberMojo</span><span class="k">Kriterij: dogovoreno rješenje (s Nenadom)</span></td>
+          <td class="own">Roko + Karla</td><td class="st"><span class="pill p-todo">Kasnije</span></td>
+        </tr>
+
+        <tr class="phrow"><td colspan="4">Faza 2 — Računi i pristup</td></tr>
+        <tr class="item" data-id="f2-drago">
+          <td class="cb"><input type="checkbox" checked></td>
+          <td><span class="t">Drago: GitHub račun + 2FA</span><span class="n">Dodan.</span></td>
+          <td class="own">Drago</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
+        </tr>
+        <tr class="item" data-id="f2-karla">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Karla: GitHub račun + 2FA</span></td>
+          <td class="own">Karla</td><td class="st"><span class="pill p-todo">Za napraviti</span></td>
+        </tr>
+        <tr class="item" data-id="f2-org">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">GitHub organizacija + Drago i Karla kao vlasnici (Owner)</span><span class="k">Kriterij: web pripada udruzi; 3 vlasnika</span><span class="n">Org kreirana, Drago dodan; Karla čeka.</span></td>
+          <td class="own">Nenad</td><td class="st"><span class="pill p-wip">Djelomično</span></td>
+        </tr>
+        <tr class="item" data-id="f2-repo">
+          <td class="cb"><input type="checkbox" checked></td>
+          <td><span class="t">Repozitorij weba unutar organizacije</span><span class="n"><code>rotary-healthcare-professionals/website</code>; hosting = Vercel.</span></td>
+          <td class="own">Nenad</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
+        </tr>
+
+        <tr class="phrow"><td colspan="4">Faza 3 — Izrada (Nenad)</td></tr>
+        <tr class="item" data-id="f3-site">
+          <td class="cb"><input type="checkbox" checked></td>
+          <td><span class="t">Statična stranica: sadržaj + slike + novi izgled (Rotary brending)</span><span class="k">Kriterij: radna verzija na privremenoj adresi</span><span class="n">Astro, 23 stranice, redizajn, hero slideshow; živi na <code>*.vercel.app</code>.</span></td>
+          <td class="own">Nenad</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
+        </tr>
+        <tr class="item" data-id="f3-cms">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">CMS: uređivanje (naslov/tekst/slika/objavi) + prijava za Dragu i Karlu</span><span class="k">Kriterij: objave testne vijesti bez pomoći</span><span class="n">Keystatic radi lokalno; uživo = idući korak (GitHub storage + App + env).</span></td>
+          <td class="own">Nenad</td><td class="st"><span class="pill p-wip">U tijeku</span></td>
+        </tr>
+        <tr class="item" data-id="f3-form">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Kontakt obrazac preko vanjskog servisa (Formspree/Tally) + spam zaštita</span><span class="k">Kriterij: testna poruka stiže na Gmail</span></td>
+          <td class="own">Roko + Karla</td><td class="st"><span class="pill p-todo">Kasnije</span></td>
+        </tr>
+        <tr class="item" data-id="f3-donate">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Donacije i MemberMojo: gumbi/poveznice provjereni</span><span class="k">Kriterij: testna donacija i prijava prolaze</span></td>
+          <td class="own">Roko + Karla</td><td class="st"><span class="pill p-todo">Kasnije</span></td>
+        </tr>
+        <tr class="item" data-id="f3-gdpr">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">GDPR: Privacy Policy + cookie obavijest + privola na obrascu</span><span class="k">Kriterij: objavljena politika privatnosti</span></td>
+          <td class="own">Roko + Karla</td><td class="st"><span class="pill p-todo">Kasnije</span></td>
+        </tr>
+        <tr class="item" data-id="f3-basics">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Osnove: responzivnost, alt-tekstovi, kontrast, brzina</span><span class="k">Kriterij: PageSpeed bolji od starog</span><span class="n">Responzivno i brzo; alt-tekstovi / kontrast za provjeru.</span></td>
+          <td class="own">Nenad</td><td class="st"><span class="pill p-wip">Djelomično</span></td>
+        </tr>
+
+        <tr class="phrow"><td colspan="4">Faza 4 — Učenje</td></tr>
+        <tr class="item" data-id="f4-learn">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Drago i Karla nauče CMS (objava, uređivanje, slike)</span><span class="k">Kriterij: svatko objavio probnu vijest</span><span class="n">Ovisi o CMS-u uživo.</span></td>
+          <td class="own">Drago / Karla</td><td class="st"><span class="pill p-todo">Za napraviti</span></td>
+        </tr>
+        <tr class="item" data-id="f4-guide">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Pisani priručnik (kako objaviti, kome se javiti, gdje su pristupi)</span><span class="k">Kriterij: priručnik 1–2 stranice</span><span class="n">Predloženo: <code>docs/admin-guide.html</code>.</span></td>
+          <td class="own">Nenad</td><td class="st"><span class="pill p-todo">Za napraviti</span></td>
+        </tr>
+
+        <tr class="phrow"><td colspan="4">Faza 5 — Prelazak</td></tr>
+        <tr class="item" data-id="f5-dns">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">DNS na 123 Reg → novi hosting + HTTPS</span><span class="k">Kriterij: domena otvara novi web s HTTPS</span><span class="n">Vercel zapisi; svjesno odgođeno.</span></td>
+          <td class="own">Nenad</td><td class="st"><span class="pill p-todo">Odgođeno</span></td>
+        </tr>
+        <tr class="item" data-id="f5-parallel">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Paralelni rad: stari web ostaje dok novi ne proradi (1–2 tjedna)</span><span class="k">Kriterij: bez grešaka u probnom razdoblju</span><span class="n">Stari WP još živ (DNS nije prebačen).</span></td>
+          <td class="own">Svi</td><td class="st"><span class="pill p-wip">U tijeku</span></td>
+        </tr>
+        <tr class="item" data-id="f5-bluehost">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Ugasiti Bluehost hosting + zadržati backup</span><span class="k">Kriterij: trošak ukinut, backup arhiviran</span></td>
+          <td class="own">Drago</td><td class="st"><span class="pill p-todo">Za napraviti</span></td>
+        </tr>
+
+        <tr class="phrow"><td colspan="4">Uvijek — trajne mjere</td></tr>
+        <tr class="item" data-id="uv-domena">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Domena 123 Reg (ističe 9/2026) — provjeriti karticu + zaštite</span><span class="k">Kriterij: obnova osigurana</span><span class="n">Auto-renewal uključen; kartica i domain-protection za provjeru.</span></td>
+          <td class="own">Drago</td><td class="st"><span class="pill p-wip">Djelomično</span></td>
+        </tr>
+        <tr class="item" data-id="uv-uptime">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Uptime monitoring (npr. UptimeRobot)</span><span class="k">Kriterij: monitoring aktivan, testna obavijest</span></td>
+          <td class="own">Nenad</td><td class="st"><span class="pill p-todo">Za napraviti</span></td>
+        </tr>
+        <tr class="item" data-id="uv-pristupi">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Popis pristupa u password manageru (123 Reg, GitHub×3, CMS, Gmail, MemberMojo, form/donate), 2FA svugdje</span><span class="k">Kriterij: ažuran popis</span><span class="n">Uključi i Vercel račun (radi „bus factora").</span></td>
+          <td class="own">Roko + Karla</td><td class="st"><span class="pill p-todo">Kasnije</span></td>
+        </tr>
+
+        <tr class="phrow"><td colspan="4">Održavanje — trajno</td></tr>
+        <tr class="item" data-id="od-tekuce">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Tekuće: objava vijesti i ažuriranje sadržaja kroz CMS</span><span class="k">Kriterij: sadržaj svjež; nema mjesečne rutine</span><span class="n">Kreće nakon CMS-a uživo.</span></td>
+          <td class="own">Drago / Karla</td><td class="st"><span class="pill p-todo">Kontinuirano</span></td>
+        </tr>
+        <tr class="item" data-id="od-godisnje">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">Godišnje: pregled sadržaja, obrasca, donacija; obnova domene prije 9. mj.</span><span class="k">Kriterij: godišnji mini-pregled</span></td>
+          <td class="own">Drago</td><td class="st"><span class="pill p-todo">Kontinuirano</span></td>
+        </tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <p style="font-size:.82rem;color:var(--muted);margin-top:4px">Povezano: <a href="changelog.html">changelog</a> · <a href="project-overview.html">project-overview.html</a> · <a href="internal/handoff.html">handoff.html</a> · izvorni Excel <code>Rotary_web_inventura_i_strategija.xlsx</code></p>
+
+</main></div>
+
+<div class="foot">
+  IRFHP Website — plan (inventura + strategija). Stanje kvačica pamti se lokalno u pregledniku.
+  <br><em>Zadnja izmjena: 2026-07-09 | Autor: Claude + nbakic</em>
+</div>
+
+<script>
+(function(){
+  var KEY = 'irfhp-plan-v2';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ saved = {}; }
+  var rows = Array.prototype.slice.call(document.querySelectorAll('tr.item'));
+
+  rows.forEach(function(row){
+    var id = row.getAttribute('data-id');
+    var box = row.querySelector('input[type=checkbox]');
+    var state = (id in saved) ? saved[id] : box.defaultChecked;
+    box.checked = state;
+    row.classList.toggle('done', state);
+    box.addEventListener('change', function(){
+      row.classList.toggle('done', box.checked);
+      saved[id] = box.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e){}
+      updateProgress();
+    });
+  });
+
+  function updateProgress(){
+    var total = rows.length;
+    var done = rows.filter(function(r){ return r.querySelector('input').checked; }).length;
+    document.getElementById('progTotal').textContent = total;
+    document.getElementById('progDone').textContent = done;
+    document.getElementById('progFill').style.width = (total ? Math.round(done/total*100) : 0) + '%';
+  }
+  updateProgress();
+})();
+</script>
+
+</body>
+</html>

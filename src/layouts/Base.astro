@@ -1,0 +1,107 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = '' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+<link rel="icon" href="/images/2025/02/RFHP_Logofinal_round-105x83.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/">
+      <img src="/images/2025/02/RFHP_Logofinal_round-105x83.png" alt="IRFHP logo" />
+      <span>International Rotary Fellowship<br />of Healthcare Professionals</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.main-nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav">
+      <div><a href="/">Home</a></div>
+      <div>
+        <a href="/projects">Service projects ▾</a>
+        <div class="dropdown">
+          <a href="/kmc">Kangaroo Mother Care (KMC)</a>
+          <a href="/cervical-cancer">Cervical cancer</a>
+          <a href="/ukraine">Ukraine</a>
+          <a href="/helping-babies-ukraine">Helping babies in Ukraine</a>
+          <a href="/hub">Hats for Ukrainian Babies (HUB)</a>
+          <a href="/babies-of-war">Babies of the Ukrainian war</a>
+          <a href="/education">Educational Activities</a>
+          <a href="/networking">Networking</a>
+          <a href="/quality-safety">Quality and Safety in Healthcare</a>
+          <a href="/equipment-environment">Equipment &amp; the Environment</a>
+          <a href="/tanzania">Tanzania: transforming lives</a>
+        </div>
+      </div>
+      <div><a href="/news">News</a></div>
+      <div>
+        <a href="/about">About us ▾</a>
+        <div class="dropdown">
+          <a href="/our-journey">Our journey</a>
+          <a href="/heritage">Our Heritage</a>
+          <a href="/board">Our Board and accounts</a>
+          <a href="/directory">A Directory of Health Programmes</a>
+          <a href="/conventions">Rotary International Conventions</a>
+        </div>
+      </div>
+      <div>
+        <a href="/membership">Membership ▾</a>
+        <div class="dropdown">
+          <a href="/partners">Our partners</a>
+        </div>
+      </div>
+      <div><a href="/contact">Contact</a></div>
+      <div style="margin-left:8px"><a class="btn btn-primary" href="/donate">Donate</a></div>
+    </nav>
+  </div>
+</header>
+
+<slot />
+
+<footer class="site-footer">
+  <div class="container top">
+    <div>
+      <img src="/images/2025/02/RFHP_Logofinal_round-300x238.png" alt="IRFHP logo" />
+      <p>Highfield House, Red Shute Hill, Thatcham, RG18 9QH<br />United Kingdom</p>
+      <p>E-mail: <a href="mailto:rotaryhealthprofessionals@gmail.com">rotaryhealthprofessionals@gmail.com</a></p>
+      <p><a href="https://www.facebook.com/people/Fellowship-of-Healthcare-Professionals/100080617180613/" target="_blank" rel="noopener">Facebook</a></p>
+    </div>
+    <div class="links">
+      <h4>Quick links</h4>
+      <a href="/projects">Service projects</a>
+      <a href="/news">News</a>
+      <a href="/about">About us</a>
+      <a href="/membership">Membership</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div class="links">
+      <h4>Get involved</h4>
+      <a href="/donate">Donate</a>
+      <a href="https://membermojo.co.uk/irfhp" target="_blank" rel="noopener">Members area</a>
+      <a href="https://form.jotform.com/232014525247852" target="_blank" rel="noopener">Register a health programme</a>
+      <a href="/partners">Our partners</a>
+    </div>
+  </div>
+  <div class="container bottom">
+    <span>Copyright © <span id="god"></span> International Rotary Fellowship of Healthcare Professionals</span>
+    <span>This fellowship is not an agency of, or controlled by, Rotary International.</span>
+  </div>
+</footer>
+
+<script is:inline>document.getElementById('god').textContent = new Date().getFullYear();</script>
+</body>
+</html>

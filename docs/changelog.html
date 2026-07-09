@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+  IRFHP website — Changelog (dnevnik promjena)
+  Zadnja izmjena: 2026-07-09 | Autor: Claude + nbakic
+-->
+<html lang="hr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IRFHP Website — Changelog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --azure:#0A62B4;--blue:#134A8E;--blue-dark:#0D2E5E;--navy:#0A1E40;
+    --gold:#F4A81C;--gold-soft:#FCECC9;--ink:#12233E;--muted:#5A6B85;
+    --bg:#F5F8FC;--cloud:#E9F1FA;--card:#fff;--line:#DCE6F2;
+    --feat:#1a8f5a;--feat-bg:#e2f5ec;--doc:#0a7ea4;--doc-bg:#e0f3f9;--fix:#b7791f;--fix-bg:#fcefcf;--chore:#7a5bd6;--chore-bg:#efe9fd;
+    --sans:'Libre Franklin',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:'Cascadia Code','Consolas',ui-monospace,monospace;
+    --radius:12px;--shadow:0 6px 20px rgba(13,46,94,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.55;font-size:15px}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  a{color:var(--azure)}
+  code{font-family:var(--mono);font-size:.84em;background:var(--cloud);padding:1px 5px;border-radius:5px;color:var(--blue-dark)}
+
+  .masthead{background:linear-gradient(115deg,var(--navy),var(--blue) 70%,var(--azure) 135%);color:#fff;padding:30px 0 26px}
+  .masthead .eyebrow{color:var(--gold);font-weight:800;letter-spacing:.15em;text-transform:uppercase;font-size:.68rem}
+  .masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em;margin:8px 0 4px}
+  .masthead p{color:#cfe0f4;max-width:70ch;font-size:.92rem}
+
+  main{padding:22px 0 60px}
+  .rel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px 18px;box-shadow:var(--shadow);margin-bottom:16px}
+  .rel h2{font-size:1.05rem;font-weight:800;color:var(--blue-dark);display:flex;align-items:baseline;gap:10px}
+  .rel h2 .d{font-family:var(--mono);font-size:.82rem;color:var(--azure);font-weight:700}
+  .rel h2 .sub{font-size:.78rem;font-weight:600;color:var(--muted)}
+  ul.log{list-style:none;margin:12px 0 0}
+  ul.log li{display:flex;gap:9px;align-items:baseline;padding:5px 0;border-top:1px solid var(--line)}
+  ul.log li:first-child{border-top:none}
+  ul.log .txt{flex:1}
+  ul.log .hash{font-family:var(--mono);font-size:.72rem;color:var(--muted);white-space:nowrap}
+  .tag{flex:0 0 auto;font-size:.62rem;font-weight:800;padding:2px 7px;border-radius:999px;text-transform:uppercase;letter-spacing:.03em;min-width:62px;text-align:center}
+  .t-feat{background:var(--feat-bg);color:var(--feat)}
+  .t-doc{background:var(--doc-bg);color:var(--doc)}
+  .t-fix{background:var(--fix-bg);color:var(--fix)}
+  .t-chore{background:var(--chore-bg);color:var(--chore)}
+
+  .intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 20px;box-shadow:var(--shadow);margin-bottom:16px;font-size:.9rem;color:#37455f}
+  .foot{max-width:820px;margin:0 auto;padding:16px 20px 40px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<header class="masthead"><div class="wrap">
+  <div class="eyebrow">Dnevnik promjena</div>
+  <h1>IRFHP Website — Changelog</h1>
+  <p>Kronološki pregled promjena na projektu (novije gore). Oznake: <strong>Značajka</strong> · <strong>Ispravak</strong> · <strong>Dokumentacija</strong> · <strong>Održavanje</strong>.</p>
+</div></header>
+
+<div class="wrap"><main>
+
+  <div class="intro">
+    Legenda oznaka:
+    <span class="tag t-feat">Značajka</span> nova funkcionalnost ·
+    <span class="tag t-fix">Ispravak</span> popravak ·
+    <span class="tag t-doc">Dok.</span> dokumentacija ·
+    <span class="tag t-chore">Održav.</span> tehnička/infra promjena.
+    Hash <code>abc1234</code> vodi na git commit. Nova verzija ide na vrh.
+  </div>
+
+  <section class="rel">
+    <h2><span class="d">2026-07-09</span> <span class="sub">Dokumentacija + redizajn naslovnice</span></h2>
+    <ul class="log">
+      <li><span class="tag t-doc">Dok.</span><span class="txt">Uveden ovaj <strong>changelog</strong> (dnevnik promjena).</span><span class="hash">—</span></li>
+      <li><span class="tag t-doc">Dok.</span><span class="txt">Dodan <code>plan-inventura-strategija.html</code> — kompaktna checklista cijelog workflowa (iz Excela); GitHub zadatak razdvojen na Dragu (gotovo) i Karlu.</span><span class="hash">—</span></li>
+      <li><span class="tag t-doc">Dok.</span><span class="txt"><code>project-overview.html</code>: dodan odjeljak „Vidljivost preview verzija (Vercel Authentication)".</span><span class="hash">—</span></li>
+      <li><span class="tag t-feat">Značajka</span><span class="txt">Naslovnica: hero <strong>slideshow</strong> (5 fotografija, CSS crossfade ~3s, poštuje reduce-motion).</span><span class="hash">87edb43</span></li>
+      <li><span class="tag t-feat">Značajka</span><span class="txt"><strong>Redizajn</strong> „Smjer 1 — Institucionalni Rotary" (nova paleta, Libre Franklin, impact traka, latest news).</span><span class="hash">915dba8</span></li>
+      <li><span class="tag t-fix">Ispravak</span><span class="txt">Vijesti: čitljiv slug za post bez naslova (<code>5922-2</code> → <code>for-every-generation-vaccines-save</code>).</span><span class="hash">abce762</span></li>
+      <li><span class="tag t-feat">Značajka</span><span class="txt">Vijesti: pravi sadržaj + slike iz WordPressa (<strong>17 vijesti</strong>, HTML→Markdown, lokalizirane slike).</span><span class="hash">407342e</span></li>
+    </ul>
+  </section>
+
+  <section class="rel">
+    <h2><span class="d">2026-07-08</span> <span class="sub">Novi repo, Astro + Keystatic</span></h2>
+    <ul class="log">
+      <li><span class="tag t-feat">Značajka</span><span class="txt"><strong>Astro + Keystatic CMS</strong> za vijesti (Faza 1) — kolekcija <code>news</code>, rute <code>/news</code>, admin <code>/keystatic</code>.</span><span class="hash">a0c2ed4</span></li>
+      <li><span class="tag t-chore">Održav.</span><span class="txt">Vercel produkcijski deploy iz novog repoa (projekt <code>rotary-fhp</code>).</span><span class="hash">71675bb</span></li>
+      <li><span class="tag t-chore">Održav.</span><span class="txt">Inicijalni commit: statični HTML izdvojen iz <code>Vallis/rotary-novi</code> u vlastiti repo <code>rotary-healthcare-professionals/website</code>.</span><span class="hash">ece7ff6</span></li>
+    </ul>
+  </section>
+
+  <p style="font-size:.82rem;color:var(--muted)">Povezano: <a href="plan-inventura-strategija.html">plan (checklista)</a> · <a href="project-overview.html">project-overview.html</a> · <a href="internal/handoff.html">handoff.html</a></p>
+
+</main></div>
+
+<div class="foot">
+  IRFHP Website — changelog.
+  <br><em>Zadnja izmjena: 2026-07-09 | Autor: Claude + nbakic</em>
+</div>
+
+</body>
+</html>
