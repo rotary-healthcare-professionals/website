@@ -55,8 +55,15 @@ async function download(url, dest) {
   } catch (e) { console.log('  ! greška', url, e.message); }
 }
 
-function makeSlug(p) {
+function slugify(s = '') {
+  return (
+    s.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 70).replace(/-[^-]*$/, '') || 'vijest'
+  );
+}
+function makeSlug(p, title) {
   let s = p.slug || '';
+  if (!s || /^\d+(-\d+)?$/.test(s)) s = slugify(title); // WP slug prazan ili samo broj -> iz naslova
   if (s.length > 70) s = s.slice(0, 70).replace(/-[^-]*$/, '');
   return s;
 }
@@ -73,8 +80,8 @@ for (const f of readdirSync('src/content/news')) if (f.endsWith('.mdoc')) rmSync
 
 let n = 0;
 for (const p of posts) {
-  const slug = makeSlug(p);
   const title = makeTitle(p);
+  const slug = makeSlug(p, title);
   const date = p.date.slice(0, 10);
   let summary = stripTags(p.excerpt.rendered).replace(/\s*\[…\]\s*$/, '').replace(/Continue reading.*$/i, '').trim();
   if (summary.length > 220) summary = summary.slice(0, 217).trimEnd() + '…';
