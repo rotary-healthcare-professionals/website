@@ -16,7 +16,7 @@
 <body>
 <header><div class="wrap">
   <h1>IRFHP Website — pregled projekta</h1>
-  <p>Aktualna tehnička i operativna slika websitea nakon pripreme migracije s Vercela i Keystatica na GitHub Pages i Pages CMS.</p>
+  <p>Aktualna tehnička i operativna slika websitea nakon pripreme migracije na GitHub Pages i Pages CMS.</p>
   <div class="meta"><span>Repo: rotary-healthcare-professionals/website</span><span>Produkcijska grana: main</span><span>Status: migracija pripremljena</span></div>
 </div></header>
 <div class="wrap"><main>
@@ -27,8 +27,7 @@
       <tr><td>Frontend</td><td>Astro 7 + Markdoc 2, potpuno statički build</td></tr>
       <tr><td>CMS</td><td>Pages CMS, konfiguracija <code>.pages.yml</code></td></tr>
       <tr><td>Ciljni hosting</td><td>GitHub Pages preko GitHub Actionsa</td></tr>
-      <tr><td>Privatni repo</td><td>GitHub Free trenutačno; čeka GitHub Team for Nonprofits</td></tr>
-      <tr><td>Privremeni/fallback hosting</td><td>Vercel projekt <code>rotary-fhp</code> ostaje do uspješnog DNS cutovera</td></tr>
+      <tr><td>GitHub plan</td><td>GitHub Free; Pages je besplatan ako repo postane javan, dok privatni repo zahtijeva Team plan</td></tr>
       <tr><td>Javna domena</td><td><code>rotaryhealthprofessionals.org</code>; DNS još pokazuje na stari Bluehost WordPress</td></tr>
       <tr><td>Sadržaj</td><td>23 stranice i 17 vijesti, slike lokalno u repozitoriju</td></tr>
     </tbody></table>
@@ -88,24 +87,24 @@ npm run preview   # pregled produkcijskog builda</code></pre>
       <tr><td>Pages CMS konfiguracija</td><td><span class="pill ok">gotovo</span></td></tr>
       <tr><td>GitHub Pages workflow</td><td><span class="pill ok">pripremljeno</span></td></tr>
       <tr><td>Uredničke i deploy upute</td><td><span class="pill ok">gotovo</span></td></tr>
-      <tr><td>GitHub Team for Nonprofits</td><td><span class="pill todo">vanjsko odobrenje</span></td></tr>
+      <tr><td>Odluka: javni repo ili Team plan</td><td><span class="pill todo">potrebna potvrda vlasnika</span></td></tr>
       <tr><td>Pages CMS GitHub App i Karlin test</td><td><span class="pill todo">nakon mergea</span></td></tr>
-      <tr><td>Aktivacija workflowa</td><td><span class="pill todo">nakon Team odobrenja</span></td></tr>
+      <tr><td>Aktivacija workflowa</td><td><span class="pill todo">nakon odluke o vidljivosti/planu</span></td></tr>
       <tr><td>DNS cutover i HTTPS</td><td><span class="pill todo">nakon zelenog deploya</span></td></tr>
-      <tr><td>Uklanjanje Vercela/Bluehosta</td><td><span class="pill todo">48 h nakon cutovera</span></td></tr>
+      <tr><td>Gašenje starog Bluehost hostinga</td><td><span class="pill todo">48 h nakon cutovera</span></td></tr>
     </tbody></table>
   </section>
 
   <section class="card">
     <h2>7. Preostali vanjski koraci</h2>
     <ol>
-      <li>GitHub organizaciju prijaviti za besplatni Team for Nonprofits.</li>
+      <li>Odlučiti hoće li repo biti javan na GitHub Free planu ili ostati privatan uz Team plan; registrirana neprofitna organizacija može zatražiti besplatni Team.</li>
       <li>Instalirati Pages CMS GitHub App samo na <code>website</code> repo.</li>
       <li>Karla mora dodati i spremiti probnu vijest.</li>
       <li>U GitHub Pages postavkama dodati custom domenu i uključiti workflow varijablu.</li>
       <li>Prema <a href="deployment-guide.html">deployment vodiču</a> promijeniti DNS i uključiti HTTPS.</li>
     </ol>
-    <div class="warn"><strong>Ne gasiti Vercel ni Bluehost prije uspješnog Pages deploya, CMS testa i najmanje 48 sati stabilnog rada domene.</strong></div>
+    <div class="warn"><strong>Ne gasiti Bluehost prije uspješnog Pages deploya, CMS testa i najmanje 48 sati stabilnog rada domene.</strong></div>
   </section>
 
   <section class="card">

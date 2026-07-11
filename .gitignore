@@ -5,8 +5,6 @@ _template.html
 node_modules/
 dist/
 .astro/
-.vercel
-
 # OS
 .DS_Store
 Thumbs.db

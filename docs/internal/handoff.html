@@ -23,7 +23,7 @@
       <li>Repo: <code>rotary-healthcare-professionals/website</code>; produkcijska grana <code>main</code>.</li>
       <li>Pročitaj <code>docs/project-overview.html</code> i <code>docs/deployment-guide.html</code>.</li>
       <li>Pokreni <code>npm install</code>, zatim <code>npm run build</code>.</li>
-      <li>Ne mijenjaj DNS i ne uklanjaj Vercel dok GitHub Pages nije aktivan i provjeren.</li>
+      <li>Ne mijenjaj DNS dok GitHub Pages nije aktivan i provjeren.</li>
     </ol>
   </section>
   <section class="card">
@@ -31,7 +31,7 @@
     <p><strong>Pages CMS → GitHub → GitHub Actions → GitHub Pages.</strong></p>
     <ul>
       <li>Astro + Markdoc ostaju; projekt je čisti statički build.</li>
-      <li>Keystatic, React runtime i Vercel adapter uklonjeni su.</li>
+      <li>Keystatic, React runtime i serverski adapter uklonjeni su.</li>
       <li>CMS konfiguracija: <code>.pages.yml</code>.</li>
       <li>Deploy workflow: <code>.github/workflows/deploy-pages.yml</code>.</li>
       <li>Workflow je isključen dok <code>ENABLE_GITHUB_PAGES</code> nije <code>true</code>.</li>
@@ -65,17 +65,17 @@ gh pr create --fill</code></pre>
   <section class="card">
     <h2>Što još zahtijeva vanjski pristup</h2>
     <ol>
-      <li>GitHub Team for Nonprofits za privatni repo.</li>
+      <li>Odluka vlasnika: javni repo na GitHub Free planu ili privatni repo uz Team plan; nonprofit program može besplatno pokriti Team.</li>
       <li>Pages CMS GitHub App instalacija samo na <code>website</code>.</li>
       <li>Karla i Drago kao GitHub Owneri; Karlin probni CMS unos.</li>
       <li>GitHub Pages aktivacija, custom domena i <code>ENABLE_GITHUB_PAGES=true</code>.</li>
       <li>DNS cutover prema <code>docs/deployment-guide.html</code>.</li>
-      <li>Uklanjanje Vercela i starog hostinga tek nakon 48 sati stabilnosti.</li>
+      <li>Uklanjanje starog hostinga tek nakon 48 sati stabilnosti.</li>
     </ol>
   </section>
   <section class="card">
     <h2>Trenutačna produkcija i rollback</h2>
-    <div class="note">Vercel projekt <code>Projekti_B/rotary-fhp</code> ostaje privremeni fallback. Njegov build i dalje radi i bez Vercel adaptera jer je website statički.</div>
+    <div class="note">Stari WordPress na Bluehostu ostaje privremeni fallback sve dok GitHub Pages nije aktivan, provjeren i spreman za DNS cutover.</div>
     <div class="warn"><strong>Javna domena još pokazuje na Bluehost IP <code>50.87.253.47</code>.</strong> Prije DNS promjene zabilježi sve postojeće zapise. Ako cutover ne uspije, vrati prethodne zapise.</div>
   </section>
   <section class="card">

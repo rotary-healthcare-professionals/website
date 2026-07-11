@@ -20,10 +20,10 @@
   <section class="card">
     <h2>Preduvjeti</h2>
     <ul>
-      <li>GitHub Team mora biti aktivan za privatni repozitorij; preporuka je besplatni GitHub Team for Nonprofits.</li>
+      <li>Repo mora biti javan na GitHub Free planu ili organizacija mora imati Team plan za privatni repozitorij.</li>
       <li>Workflow <code>.github/workflows/deploy-pages.yml</code> mora biti na <code>main</code> grani.</li>
       <li><code>npm run build</code> mora završiti bez greške.</li>
-      <li>Postojeći Vercel deployment ostaje aktivan do završne provjere.</li>
+      <li>Stari WordPress na Bluehostu ostaje javno dostupan do završne provjere i DNS cutovera.</li>
     </ul>
   </section>
   <section class="card">
@@ -63,7 +63,7 @@
   </section>
   <section class="card">
     <h2>Rollback</h2>
-    <p>Ako kritična funkcionalnost ne radi, vrati prethodne DNS zapise, uključujući apex <code>50.87.253.47</code>, i pričekaj propagaciju. Ne uklanjaj Vercel projekt ni stari hosting najmanje 48 sati nakon uspješnog cutovera.</p>
+    <p>Ako kritična funkcionalnost ne radi, vrati prethodne DNS zapise, uključujući apex <code>50.87.253.47</code>, i pričekaj propagaciju. Ne uklanjaj stari hosting najmanje 48 sati nakon uspješnog cutovera.</p>
   </section>
   <p><small>Zadnja izmjena: 2026-07-11 · Autor: AI agent + nbakic</small></p>
 </main>
