@@ -34,7 +34,7 @@
       <li>Keystatic, React runtime i serverski adapter uklonjeni su.</li>
       <li>CMS konfiguracija: <code>.pages.yml</code>.</li>
       <li>Deploy workflow: <code>.github/workflows/deploy-pages.yml</code>.</li>
-      <li>Workflow je isključen dok <code>ENABLE_GITHUB_PAGES</code> nije <code>true</code>.</li>
+      <li>Workflow je aktivan; <code>ENABLE_GITHUB_PAGES=true</code>.</li>
       <li><code>PAGES_BASE_PATH</code> i <code>PAGES_SITE_URL</code> određuju koristi li build projektnu GitHub Pages adresu ili završnu custom domenu.</li>
     </ul>
   </section>
@@ -66,10 +66,9 @@ gh pr create --fill</code></pre>
   <section class="card">
     <h2>Što još zahtijeva vanjski pristup</h2>
     <ol>
-      <li>Odluka vlasnika: javni repo na GitHub Free planu ili privatni repo uz Team plan; nonprofit program može besplatno pokriti Team.</li>
       <li>Pages CMS GitHub App instalacija samo na <code>website</code>.</li>
-      <li>Karla i Drago kao GitHub Owneri; Karlin probni CMS unos.</li>
-      <li>GitHub Pages aktivacija, custom domena i <code>ENABLE_GITHUB_PAGES=true</code>.</li>
+      <li>Karla i Drago kao GitHub Owneri; prijava vlastitim GitHub računima i probni CMS unos, uređivanje i brisanje.</li>
+      <li>GitHub Pages custom domena; Pages i workflow već su aktivni.</li>
       <li>DNS cutover prema <code>docs/deployment-guide.html</code>.</li>
       <li>Uklanjanje starog hostinga tek nakon 48 sati stabilnosti.</li>
     </ol>
@@ -81,7 +80,7 @@ gh pr create --fill</code></pre>
   </section>
   <section class="card">
     <h2>Ownership pravilo</h2>
-    <p>Repo, GitHub App, domena i DNS moraju pripadati organizaciji. Ne ostavljati produkciju ovisnu o osobnom računu developera. Pages CMS pristup ograničiti samo na potrebne korisnike i ovaj repo.</p>
+    <p>Repo, GitHub App, domena i DNS moraju pripadati organizaciji. Ne ostavljati produkciju ovisnu o osobnom računu developera. Karla i Drago ulaze u Pages CMS svojim GitHub računima; pristup ograničiti samo na potrebne korisnike i repo <code>website</code>.</p>
   </section>
 </main>
 <div class="foot">IRFHP Website — interni handoff · Zadnja izmjena: 2026-07-11 · Autor: AI agent</div>

@@ -20,20 +20,19 @@
   <section class="card">
     <h2>Preduvjeti</h2>
     <ul>
-      <li>Repo mora biti javan na GitHub Free planu ili organizacija mora imati Team plan za privatni repozitorij.</li>
+      <li>Repo je javan na GitHub Free planu, a GitHub Pages i workflow već su aktivni.</li>
       <li>Workflow <code>.github/workflows/deploy-pages.yml</code> mora biti na <code>main</code> grani.</li>
       <li><code>npm run build</code> mora završiti bez greške.</li>
       <li>Stari WordPress na Bluehostu ostaje javno dostupan do završne provjere i DNS cutovera.</li>
     </ul>
   </section>
   <section class="card">
-    <h2>Aktivacija GitHub Pagesa</h2>
+    <h2>Aktivno stanje i prelazak na custom domenu</h2>
     <ol>
-      <li>Repo → <strong>Settings → Pages</strong> → Source: <strong>GitHub Actions</strong>.</li>
+      <li>Trenutačna nova verzija radi na <a href="https://rotary-healthcare-professionals.github.io/website/">rotary-healthcare-professionals.github.io/website/</a>.</li>
       <li>U Pages postavkama dodaj custom domenu <code>rotaryhealthprofessionals.org</code>.</li>
       <li>Repo → <strong>Settings → Secrets and variables → Actions → Variables</strong>.</li>
-      <li>Postavi <code>ENABLE_GITHUB_PAGES=true</code>.</li>
-      <li>Dok se koristi projektna adresa, postavi <code>PAGES_BASE_PATH=/website</code> i <code>PAGES_SITE_URL=https://rotary-healthcare-professionals.github.io/website</code>. Pri prelasku na custom domenu postavi base path na <code>/</code>, a site URL na javnu domenu.</li>
+      <li>Pri prelasku na custom domenu postavi <code>PAGES_BASE_PATH=/</code> i <code>PAGES_SITE_URL=https://rotaryhealthprofessionals.org</code>. <code>ENABLE_GITHUB_PAGES</code> ostaje <code>true</code>.</li>
       <li>Actions → <strong>Deploy to GitHub Pages</strong> → <strong>Run workflow</strong>.</li>
       <li>Provjeri da su build i deploy zeleni prije DNS izmjene.</li>
     </ol>
