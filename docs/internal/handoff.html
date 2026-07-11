@@ -1,187 +1,89 @@
 <!DOCTYPE html>
-<!--
-  IRFHP website — HANDOFF (za nastavak rada / novu sesiju AI agenta)
-  Zadnja izmjena: 2026-07-11 | Autor: AI agent
--->
+<!-- IRFHP Website — HANDOFF | Zadnja izmjena: 2026-07-11 | Autor: AI agent -->
 <html lang="hr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IRFHP Website — Handoff</title>
 <style>
-  :root{
-    --azure:#0A62B4;--blue:#134A8E;--blue-dark:#0D2E5E;--navy:#0A1E40;
-    --gold:#F4A81C;--gold-soft:#FCECC9;--ink:#12233E;--muted:#5A6B85;
-    --bg:#F5F8FC;--cloud:#E9F1FA;--card:#fff;--line:#DCE6F2;
-    --ok:#1a8f5a;--ok-bg:#e2f5ec;--wip:#b7791f;--wip-bg:#fcefcf;--todo:#8a5cf6;--todo-bg:#efe9fd;
-    --sans:'Libre Franklin',system-ui,-apple-system,'Segoe UI',sans-serif;
-    --mono:'Cascadia Code','Consolas',ui-monospace,monospace;
-    --radius:14px;--shadow:0 8px 26px rgba(13,46,94,.09);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.66;font-size:16px}
-  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
-  a{color:var(--azure)}
-  code{font-family:var(--mono);font-size:.86em;background:var(--cloud);padding:2px 6px;border-radius:6px;color:var(--blue-dark);white-space:nowrap}
-  pre{background:var(--navy);color:#dce8f7;padding:16px 18px;border-radius:12px;overflow-x:auto;margin:12px 0;font-size:.84rem;line-height:1.55;font-family:var(--mono)}
-  pre code{background:none;color:inherit;padding:0;white-space:pre}
-  h1,h2,h3{letter-spacing:-.01em}
-  .masthead{background:linear-gradient(115deg,var(--navy),var(--blue) 70%,var(--azure) 135%);color:#fff;padding:44px 0 40px;position:relative;overflow:hidden}
-  .masthead::after{content:"";position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(244,168,28,.18),transparent 62%)}
-  .masthead .tag{color:var(--gold);font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem}
-  .masthead h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:10px 0 6px}
-  .masthead p{color:#cfe0f4;max-width:70ch}
-  main{padding:28px 0 70px}
-  .blk{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 30px;box-shadow:var(--shadow);margin-bottom:20px}
-  .blk h2{font-size:1.3rem;font-weight:800;color:var(--blue-dark);margin-bottom:6px}
-  .blk h3{font-size:1.02rem;font-weight:800;color:var(--blue-dark);margin:18px 0 6px}
-  .blk p{margin:9px 0;color:#37455f}
-  .blk ul,.blk ol{margin:9px 0 9px 22px}
-  .blk li{margin:5px 0;color:#37455f}
-  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
-  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{background:var(--cloud);color:var(--blue-dark);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
-  .tbl-wrap{overflow-x:auto}
-  .pill{display:inline-block;font-size:.7rem;font-weight:800;padding:3px 9px;border-radius:999px}
-  .p-ok{background:var(--ok-bg);color:var(--ok)}.p-wip{background:var(--wip-bg);color:var(--wip)}.p-todo{background:var(--todo-bg);color:var(--todo)}
-  .note{border-left:4px solid var(--gold);background:var(--gold-soft);padding:13px 17px;border-radius:0 10px 10px 0;margin:14px 0;color:#5a4409}
-  .warn{border-left:4px solid #d9534f;background:#fdecec;padding:13px 17px;border-radius:0 10px 10px 0;margin:14px 0;color:#7a1f1c}
-  .start{border-left:4px solid var(--azure);background:var(--cloud);padding:16px 18px;border-radius:0 10px 10px 0;margin:14px 0}
-  .foot{max-width:960px;margin:0 auto;padding:20px 24px 50px;color:var(--muted);font-size:.82rem;border-top:1px solid var(--line)}
+  :root{--blue:#134a8e;--navy:#0a1e40;--gold:#f4a81c;--ink:#12233e;--muted:#5a6b85;--bg:#f5f8fc;--line:#dce6f2;--card:#fff;--cloud:#e9f1fa}
+  *{box-sizing:border-box}body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}.wrap{max-width:900px;margin:auto;padding:0 24px}
+  header{background:linear-gradient(115deg,var(--navy),var(--blue));color:#fff;padding:42px 0}header p{color:#d5e4f5;max-width:70ch}main{padding:28px 0 60px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:18px}h2{color:var(--navy)}code{background:var(--cloud);padding:2px 6px;border-radius:5px}pre{background:var(--navy);color:#deebfa;padding:15px;border-radius:9px;overflow:auto}.note{border-left:4px solid var(--gold);background:#fcecc9;padding:12px 16px;border-radius:0 8px 8px 0}.warn{border-left:4px solid #c33;background:#fdecec;padding:12px 16px;border-radius:0 8px 8px 0}a{color:#0a62b4}.foot{color:var(--muted);font-size:.82rem;padding:18px 0 45px}
 </style>
 </head>
 <body>
-<header class="masthead"><div class="wrap">
-  <div class="tag">Handoff · interno</div>
+<header><div class="wrap">
   <h1>IRFHP Website — Handoff</h1>
-  <p>Sažetak stanja za nastavak rada (ili za novu sesiju AI agenta otvorenu u <code style="color:#fff;background:rgba(255,255,255,.14)">C:\dev\Apps\rotary-website</code>). Za dublji tehnički pregled vidi <a href="../project-overview.html" style="color:#ffd77a">project-overview.html</a>.</p>
+  <p>Sažetak za developera ili AI agenta koji nastavlja rad u <code>C:\dev\Apps\rotary-website</code>.</p>
 </div></header>
-
 <div class="wrap"><main>
-
-  <section class="blk">
-    <h2>▶ Ako si novi AI agent — počni ovdje</h2>
-    <div class="start">
-      <ol>
-        <li>Radni folder je <code>C:\dev\Apps\rotary-website</code> (git repo <code>rotary-healthcare-professionals/website</code>). <strong>NE</strong> <code>C:\dev\Apps\Vallis\rotary-novi</code> (stari statični folder) ni <code>C:\dev\Apps\Vallis</code> (stari monorepo).</li>
-        <li>Aktivna grana: <code>cms-news</code> (5 commita ispred <code>main</code>, sve pushano). Redizajn + CMS žive ovdje; <code>main</code> je još stara verzija.</li>
-        <li>Pročitaj i <code>docs/project-overview.html</code> za punu sliku.</li>
-        <li>Pokretanje: <code>npm run dev</code> → <code>http://127.0.0.1:4321</code> (admin na <code>/keystatic</code>).</li>
-      </ol>
-    </div>
-    <div class="note"><strong>Napomena o memoriji:</strong> memorije iz prethodne sesije spremljene su pod ključem starog foldera (<code>C--dev-Apps-Vallis-rotary-novi</code>) i <strong>neće</strong> se automatski učitati u sesiji otvorenoj u <code>rotary-website</code>. Zato ovaj handoff.</div>
-  </section>
-
-  <section class="blk">
-    <h2>Ključne činjenice</h2>
-    <div class="tbl-wrap"><table>
-      <tr><th>Stavka</th><th>Vrijednost</th></tr>
-      <tr><td>Aktivni repo</td><td><code>rotary-healthcare-professionals/website</code> (private)</td></tr>
-      <tr><td>Lokalni folder</td><td><code>C:\dev\Apps\rotary-website</code></td></tr>
-      <tr><td>Aktivna grana</td><td><code>cms-news</code> (produkcija je <code>main</code>)</td></tr>
-      <tr><td>Vercel projekt</td><td><code>rotary-fhp</code> · id <code>prj_Qu8XrAcFh13Kxv8GqmLBoA1dkKdq</code></td></tr>
-      <tr><td>Vercel tim</td><td>Projekti_B · id <code>team_Yw2NApoFN6n2kWMzXGMDcPGp</code></td></tr>
-      <tr><td>Preview (cms-news)</td><td><code>rotary-fhp-git-cms-news-projekti-b.vercel.app</code> (iza Vercel auth zida)</td></tr>
-      <tr><td>Ciljna domena</td><td><code>rotaryhealthprofessionals.org</code> (DNS još NIJE na Vercelu)</td></tr>
-      <tr><td>Stack</td><td>Astro 6.4.8 · Keystatic · React 19 · Markdoc · Vercel adapter · Libre Franklin</td></tr>
-    </table></div>
-  </section>
-
-  <section class="blk">
-    <h2>Što je napravljeno <span class="pill p-ok">gotovo</span></h2>
-    <ul>
-      <li>Migracija starog statičnog sajta u <strong>Astro</strong> (zajednički <code>Base.astro</code>, 23 podstranice, rute <code>/x</code>).</li>
-      <li><strong>Keystatic CMS</strong> za vijesti: kolekcija <code>news</code> → <code>src/content/news/*.mdoc</code>, popis <code>/news</code>, pojedina <code>/news/&lt;slug&gt;</code>, admin <code>/keystatic</code>.</li>
-      <li><strong>17 vijesti</strong> uvezeno iz WordPress REST API-ja s punim tekstom + slikama (lokalizirane u <code>public/images</code>).</li>
-      <li><strong>Redizajn „Smjer 1 — Institucionalni Rotary"</strong>: novi <code>public/style.css</code>, Libre Franklin, hero <strong>slideshow</strong> (5 slika, ~3s crossfade), impact traka, dinamička „Latest news" sekcija.</li>
-      <li>Dokumentacija: <code>docs/project-overview.html</code>, <code>docs/internal/handoff.html</code> (ovaj).</li>
-    </ul>
-    <h3>Commiti na <code>cms-news</code> (od <code>main</code>)</h3>
-    <pre><code>87edb43  Naslovnica: hero slideshow (5 fotografija, CSS crossfade ~3s)
-915dba8  Redizajn (Smjer 1 — Institucionalni Rotary)
-abce762  Vijesti: čitljiv slug za post bez naslova
-407342e  Vijesti: pravi sadržaj + slike iz WordPressa (17 vijesti)
-a0c2ed4  Astro + Keystatic CMS za vijesti (Faza 1)</code></pre>
-    <p><em>(<code>docs/</code> je zasad neispraćen — commitati kad se dogovori.)</em></p>
-  </section>
-
-  <section class="blk">
-    <h2>Otvoreni zadaci (što slijedi)</h2>
-    <h3>Faza 2 — CMS uživo (GitHub login) <span class="pill p-todo">TODO</span></h3>
+  <section class="card">
+    <h2>Počni ovdje</h2>
     <ol>
-      <li>U <code>keystatic.config.ts</code> promijeni storage:
-        <pre><code>storage: {
-  kind: 'github',
-  repo: { owner: 'rotary-healthcare-professionals', name: 'website' },
-}</code></pre></li>
-      <li>Kroz <code>/keystatic</code> (na deployanom sajtu) pokreni Keystatic setup → napravi <strong>GitHub App</strong>.</li>
-      <li>Upiši env varijable u Vercel (Settings → Environment Variables):
-        <ul>
-          <li><code>KEYSTATIC_GITHUB_CLIENT_ID</code></li>
-          <li><code>KEYSTATIC_GITHUB_CLIENT_SECRET</code></li>
-          <li><code>KEYSTATIC_SECRET</code></li>
-          <li><code>PUBLIC_KEYSTATIC_GITHUB_APP_SLUG</code></li>
-        </ul></li>
-      <li>Dodaj prave administratore kao <strong>suradnike (write)</strong> na repo.</li>
+      <li>Repo: <code>rotary-healthcare-professionals/website</code>; produkcijska grana <code>main</code>.</li>
+      <li>Pročitaj <code>docs/project-overview.html</code> i <code>docs/deployment-guide.html</code>.</li>
+      <li>Pokreni <code>npm install</code>, zatim <code>npm run build</code>.</li>
+      <li>Ne mijenjaj DNS i ne uklanjaj Vercel dok GitHub Pages nije aktivan i provjeren.</li>
     </ol>
-    <h3>Faza 3 — uputa adminima <span class="pill p-todo">TODO</span></h3>
-    <p>Kratki vodič „kako dodati/urediti vijest" (po mogućnosti EN, org je međunarodna). Predloženo: <code>docs/admin-guide.html</code>.</p>
-    <h3>Završno</h3>
+  </section>
+  <section class="card">
+    <h2>Ciljna arhitektura</h2>
+    <p><strong>Pages CMS → GitHub → GitHub Actions → GitHub Pages.</strong></p>
     <ul>
-      <li>Nakon pregleda: <strong>merge <code>cms-news</code> → <code>main</code></strong> (produkcijski deploy). <span class="pill p-wip">čeka pregled</span></li>
-      <li><strong>DNS cutover</strong> (odgođeno): kod DNS providera apex → <code>76.76.21.21</code>, <code>www</code> → <code>cname.vercel-dns.com</code>.</li>
-      <li>Moguća fina ugađanja dizajna po želji korisnika (ton boja, hero fotke, brzina slideshowa).</li>
+      <li>Astro + Markdoc ostaju; projekt je čisti statički build.</li>
+      <li>Keystatic, React runtime i Vercel adapter uklonjeni su.</li>
+      <li>CMS konfiguracija: <code>.pages.yml</code>.</li>
+      <li>Deploy workflow: <code>.github/workflows/deploy-pages.yml</code>.</li>
+      <li>Workflow je isključen dok <code>ENABLE_GITHUB_PAGES</code> nije <code>true</code>.</li>
     </ul>
   </section>
-
-  <section class="blk">
-    <h2>Važne napomene / zamke</h2>
-    <div class="warn"><strong>DNS nije na Vercelu:</strong> <code>rotaryhealthprofessionals.org</code> (+ www) i dalje pokazuje na stari WordPress hosting (<code>50.87.253.47</code>). Nova verzija živi samo na <code>*.vercel.app</code>. Cutover je svjesno odgođen.</div>
-    <ul>
-      <li><strong>Astro ostaje 6.x</strong> — Keystatic još ne podržava Astro 7. Ne diži major bez provjere Keystatic podrške.</li>
-      <li><strong>Keystatic storage je <code>local</code></strong> (radi samo u <code>npm run dev</code>). Uređivanje uživo dolazi tek u Fazi 2 (github storage).</li>
-      <li><strong>Preview je iza Vercel auth zida</strong> — anonimni <code>curl</code> vraća Vercel login. Za dohvat sadržaja koristi Vercel MCP alat <code>web_fetch_vercel_url</code> ili korisnikov browser.</li>
-      <li>Nakon izmjene <code>keystatic.config.ts</code> / <code>astro.config.mjs</code> <strong>restartaj dev server</strong> (rute se ponovno registriraju).</li>
-      <li><strong>Brand „← Web" u adminu</strong> (<code>src/keystatic/Brand.tsx</code>) — logo linka na <code>/</code>. Korisnik treba potvrditi da klik radi; ako Keystatic omota brand u vlastiti link, prebaciti na otvaranje u novom tabu.</li>
-      <li><strong>Slugovi vijesti</strong>: iz WP slug-a; ako je prazan/broj, generira se iz naslova (vidi <code>scripts/news-import.mjs</code>).</li>
-      <li>Preview URL-ovi/deploy status: koristi Vercel MCP alate (<code>list_deployments</code>, <code>get_deployment</code>, <code>get_deployment_build_logs</code>). <code>gh</code> CLI je autentikiran.</li>
-    </ul>
-  </section>
-
-  <section class="blk">
-    <h2>Ključne datoteke</h2>
-    <div class="tbl-wrap"><table>
-      <tr><th>Datoteka</th><th>Uloga</th></tr>
-      <tr><td><code>keystatic.config.ts</code></td><td>Definicija CMS-a (polja vijesti, storage). Faza 2 mijenja storage.</td></tr>
-      <tr><td><code>src/content.config.ts</code></td><td>Astro news kolekcija (glob <code>*.mdoc</code>, schema).</td></tr>
-      <tr><td><code>src/layouts/Base.astro</code></td><td>Header/nav/footer/&lt;head&gt; (Libre Franklin link).</td></tr>
-      <tr><td><code>src/pages/index.astro</code></td><td>Naslovnica: hero slideshow (<code>heroImages[]</code>), impact, latest news.</td></tr>
-      <tr><td><code>src/pages/news/index.astro</code> + <code>[slug].astro</code></td><td>Popis + pojedina vijest.</td></tr>
-      <tr><td><code>public/style.css</code></td><td>Cijeli dizajn-sistem (paleta, hero <code>@keyframes heroFade</code>, komponente).</td></tr>
-      <tr><td><code>src/keystatic/Brand.tsx</code></td><td>Logo u adminu (link na web).</td></tr>
-      <tr><td><code>astro.config.mjs</code> / <code>vercel.json</code></td><td>Integracije + adapter / <code>framework: astro</code>.</td></tr>
-      <tr><td><code>scripts/migrate.mjs</code>, <code>news-import.mjs</code></td><td>Jednokratne migracijske skripte (import re-fetcha WP).</td></tr>
-    </table></div>
-  </section>
-
-  <section class="blk">
+  <section class="card">
     <h2>Komande</h2>
-    <pre><code># razvoj
-npm install
-npm run dev            # http://127.0.0.1:4321  (+ /keystatic)
-npm run build          # provjera prije pusha
+    <pre><code>npm install
+npm run dev
+npm run build
+npm run preview
 
-# git / deploy
-git checkout -b moja-grana
-git commit -am "opis"
-git push -u origin moja-grana
-gh pr create --fill
-# merge u main → Vercel produkcijski deploy</code></pre>
+git status
+git checkout -b naziv-izmjene
+git add &lt;datoteke&gt;
+git commit -m "opis"
+git push -u origin naziv-izmjene
+gh pr create --fill</code></pre>
   </section>
-
-</main></div>
-
-<div class="foot">IRFHP Website — interni handoff.<br><em>Zadnja izmjena: 2026‑07‑11 | Autor: AI agent</em></div>
+  <section class="card">
+    <h2>Što je gotovo</h2>
+    <ul>
+      <li>23 Astro stranice, redizajn, responsive navigacija i hero slideshow.</li>
+      <li>17 vijesti u <code>src/content/news/*.mdoc</code>.</li>
+      <li>Pages CMS schema za naslov, datum, sažetak, sliku i sadržaj.</li>
+      <li>Statički build od 42 rute, uključujući 404.</li>
+      <li>GitHub Pages workflow s aktivacijskom varijablom.</li>
+      <li>Upute za urednike, deployment, DNS i rollback.</li>
+    </ul>
+  </section>
+  <section class="card">
+    <h2>Što još zahtijeva vanjski pristup</h2>
+    <ol>
+      <li>GitHub Team for Nonprofits za privatni repo.</li>
+      <li>Pages CMS GitHub App instalacija samo na <code>website</code>.</li>
+      <li>Karla i Drago kao GitHub Owneri; Karlin probni CMS unos.</li>
+      <li>GitHub Pages aktivacija, custom domena i <code>ENABLE_GITHUB_PAGES=true</code>.</li>
+      <li>DNS cutover prema <code>docs/deployment-guide.html</code>.</li>
+      <li>Uklanjanje Vercela i starog hostinga tek nakon 48 sati stabilnosti.</li>
+    </ol>
+  </section>
+  <section class="card">
+    <h2>Trenutačna produkcija i rollback</h2>
+    <div class="note">Vercel projekt <code>Projekti_B/rotary-fhp</code> ostaje privremeni fallback. Njegov build i dalje radi i bez Vercel adaptera jer je website statički.</div>
+    <div class="warn"><strong>Javna domena još pokazuje na Bluehost IP <code>50.87.253.47</code>.</strong> Prije DNS promjene zabilježi sve postojeće zapise. Ako cutover ne uspije, vrati prethodne zapise.</div>
+  </section>
+  <section class="card">
+    <h2>Ownership pravilo</h2>
+    <p>Repo, GitHub App, domena i DNS moraju pripadati organizaciji. Ne ostavljati produkciju ovisnu o osobnom računu developera. Pages CMS pristup ograničiti samo na potrebne korisnike i ovaj repo.</p>
+  </section>
+</main>
+<div class="foot">IRFHP Website — interni handoff · Zadnja izmjena: 2026-07-11 · Autor: AI agent</div>
+</div>
 </body>
 </html>

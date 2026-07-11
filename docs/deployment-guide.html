@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRFHP — GitHub Pages deploy i DNS</title>
+<style>
+  :root{--blue:#134a8e;--navy:#0a1e40;--gold:#f4a81c;--ink:#12233e;--muted:#5a6b85;--bg:#f5f8fc;--line:#dce6f2;--card:#fff;--red:#a52a2a}
+  *{box-sizing:border-box}body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+  header{background:linear-gradient(115deg,var(--navy),var(--blue));color:#fff;padding:40px 24px}header div,main{max-width:900px;margin:auto}header p{color:#d5e4f5;max-width:70ch}
+  main{padding:28px 24px 60px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:18px}h1,h2{line-height:1.25}h2{color:var(--navy);font-size:1.25rem}li{margin:7px 0}code{background:#e9f1fa;padding:2px 6px;border-radius:5px}.note{border-left:4px solid var(--gold);background:#fcecc9;padding:12px 16px;border-radius:0 8px 8px 0}.warn{border-left:4px solid var(--red);background:#fdecec;padding:12px 16px;border-radius:0 8px 8px 0}a{color:#0a62b4}table{border-collapse:collapse;width:100%}th,td{padding:9px;border-bottom:1px solid var(--line);text-align:left}
+</style>
+</head>
+<body>
+<header><div>
+  <h1>GitHub Pages deploy i DNS</h1>
+  <p>Operativna uputa za aktivaciju, provjeru, DNS cutover i rollback IRFHP websitea.</p>
+</div></header>
+<main>
+  <section class="card">
+    <h2>Preduvjeti</h2>
+    <ul>
+      <li>GitHub Team mora biti aktivan za privatni repozitorij; preporuka je besplatni GitHub Team for Nonprofits.</li>
+      <li>Workflow <code>.github/workflows/deploy-pages.yml</code> mora biti na <code>main</code> grani.</li>
+      <li><code>npm run build</code> mora završiti bez greške.</li>
+      <li>Postojeći Vercel deployment ostaje aktivan do završne provjere.</li>
+    </ul>
+  </section>
+  <section class="card">
+    <h2>Aktivacija GitHub Pagesa</h2>
+    <ol>
+      <li>Repo → <strong>Settings → Pages</strong> → Source: <strong>GitHub Actions</strong>.</li>
+      <li>U Pages postavkama dodaj custom domenu <code>rotaryhealthprofessionals.org</code>.</li>
+      <li>Repo → <strong>Settings → Secrets and variables → Actions → Variables</strong>.</li>
+      <li>Postavi <code>ENABLE_GITHUB_PAGES=true</code>.</li>
+      <li>Actions → <strong>Deploy to GitHub Pages</strong> → <strong>Run workflow</strong>.</li>
+      <li>Provjeri da su build i deploy zeleni prije DNS izmjene.</li>
+    </ol>
+  </section>
+  <section class="card">
+    <h2>DNS zapisi za cutover</h2>
+    <div class="warn"><strong>Prije promjene snimi postojeće DNS zapise.</strong> Autoritativni nameserveri trenutačno su na Bluehostu. Ne mijenjaj DNS dok GitHub Pages workflow nije uspješan.</div>
+    <table><tbody>
+      <tr><th>Host</th><th>Tip</th><th>Vrijednost</th></tr>
+      <tr><td>@</td><td>A</td><td><code>185.199.108.153</code></td></tr>
+      <tr><td>@</td><td>A</td><td><code>185.199.109.153</code></td></tr>
+      <tr><td>@</td><td>A</td><td><code>185.199.110.153</code></td></tr>
+      <tr><td>@</td><td>A</td><td><code>185.199.111.153</code></td></tr>
+      <tr><td>www</td><td>CNAME</td><td><code>rotary-healthcare-professionals.github.io</code></td></tr>
+    </tbody></table>
+    <p>Ukloni stari apex A zapis <code>50.87.253.47</code> tek pri samom cutoveru. Nakon propagacije uključi <strong>Enforce HTTPS</strong> u GitHub Pages postavkama.</p>
+    <p>Referenca: <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">GitHub — Managing a custom domain</a>.</p>
+  </section>
+  <section class="card">
+    <h2>Provjera nakon cutovera</h2>
+    <ul>
+      <li><code>https://rotaryhealthprofessionals.org</code> i <code>https://www.rotaryhealthprofessionals.org</code></li>
+      <li>HTTPS certifikat i automatski redirect</li>
+      <li>naslovnica, navigacija, slike, svih 17 vijesti i 404 stranica</li>
+      <li>PayPal, Jotform, MemberMojo i vanjske poveznice</li>
+      <li>probna CMS izmjena i novi automatski deploy</li>
+    </ul>
+  </section>
+  <section class="card">
+    <h2>Rollback</h2>
+    <p>Ako kritična funkcionalnost ne radi, vrati prethodne DNS zapise, uključujući apex <code>50.87.253.47</code>, i pričekaj propagaciju. Ne uklanjaj Vercel projekt ni stari hosting najmanje 48 sati nakon uspješnog cutovera.</p>
+  </section>
+  <p><small>Zadnja izmjena: 2026-07-11 · Autor: AI agent + nbakic</small></p>
+</main>
+</body>
+</html>

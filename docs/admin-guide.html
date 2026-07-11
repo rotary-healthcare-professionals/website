@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRFHP — Upute za uređivanje vijesti</title>
+<style>
+  :root{--blue:#134a8e;--navy:#0a1e40;--gold:#f4a81c;--ink:#12233e;--muted:#5a6b85;--bg:#f5f8fc;--line:#dce6f2;--card:#fff}
+  *{box-sizing:border-box}body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+  header{background:linear-gradient(115deg,var(--navy),var(--blue));color:#fff;padding:40px 24px}header div,main{max-width:850px;margin:auto}header p{color:#d5e4f5;max-width:65ch}
+  main{padding:28px 24px 60px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:18px}h1,h2{line-height:1.25}h2{color:var(--navy);font-size:1.25rem}li{margin:7px 0}code{background:#e9f1fa;padding:2px 6px;border-radius:5px}.note{border-left:4px solid var(--gold);background:#fcecc9;padding:12px 16px;border-radius:0 8px 8px 0}a{color:#0a62b4}
+</style>
+</head>
+<body>
+<header><div>
+  <h1>Uređivanje vijesti</h1>
+  <p>Kratke upute za Karlu, Dragu i druge ovlaštene urednike IRFHP websitea.</p>
+</div></header>
+<main>
+  <section class="card">
+    <h2>Prijava</h2>
+    <ol>
+      <li>Otvori <a href="https://app.pagescms.org/">app.pagescms.org</a>.</li>
+      <li>Prijavi se GitHub računom ili pozivnicom koju je poslao administrator.</li>
+      <li>Odaberi <code>rotary-healthcare-professionals/website</code>.</li>
+      <li>U lijevom izborniku odaberi <strong>Vijesti</strong>.</li>
+    </ol>
+  </section>
+  <section class="card">
+    <h2>Dodavanje vijesti</h2>
+    <ol>
+      <li>Klikni <strong>New</strong> ili <strong>Create</strong>.</li>
+      <li>Upiši naslov, datum i kratak sažetak.</li>
+      <li>Po želji odaberi naslovnu sliku.</li>
+      <li>U polje <strong>Sadržaj</strong> unesi tekst, poveznice i slike.</li>
+      <li>Pregledaj sadržaj i klikni <strong>Save</strong>.</li>
+    </ol>
+    <div class="note">Spremanje izrađuje promjenu u GitHub repozitoriju. Nakon uspješnog automatskog builda vijest se objavljuje na websiteu.</div>
+  </section>
+  <section class="card">
+    <h2>Uređivanje ili brisanje</h2>
+    <ol>
+      <li>Na popisu vijesti pronađi naslov.</li>
+      <li>Otvori vijest, napravi izmjene i klikni <strong>Save</strong>.</li>
+      <li>Brisanje koristi samo kada je sigurno da vijest više nije potrebna; GitHub čuva povijest pa se sadržaj može vratiti.</li>
+    </ol>
+  </section>
+  <section class="card">
+    <h2>Dobra praksa</h2>
+    <ul>
+      <li>Naslov neka bude kratak i jasan.</li>
+      <li>Sažetak neka ima jednu do dvije rečenice.</li>
+      <li>Prije uploada smanji velike fotografije; preporučena širina je do 1600 px.</li>
+      <li>Ne unosi lozinke, privatne podatke ili podatke o karticama.</li>
+      <li>Nakon objave otvori website i provjeri vijest.</li>
+    </ul>
+  </section>
+  <section class="card">
+    <h2>Ako nešto ne radi</h2>
+    <p>Nemoj ponavljati spremanje mnogo puta. Zabilježi naslov vijesti i poruku greške te se javi developeru ili administratoru GitHub organizacije.</p>
+  </section>
+  <p><small>Zadnja izmjena: 2026-07-11 · Autor: AI agent + nbakic</small></p>
+</main>
+</body>
+</html>

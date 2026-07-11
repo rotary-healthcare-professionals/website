@@ -2,7 +2,7 @@
 <!--
   IRFHP website — Plan (Inventura + Strategija) kao kompaktna checklista
   Izvor: docs/Rotary_web_inventura_i_strategija.xlsx
-  Zadnja izmjena: 2026-07-09 | Autor: Claude + nbakic
+  Zadnja izmjena: 2026-07-11 | Autor: AI agent + nbakic
 -->
 <html lang="hr">
 <head>
@@ -111,12 +111,12 @@
       <span class="tip">„Kasnije" stavke odrađuju Roko + Karla.</span>
     </div>
     <details>
-      <summary>Zašto Vercel + Keystatic (a ne GitHub Pages kako je izvorno planirano)</summary>
+      <summary>Zašto GitHub Pages + Pages CMS</summary>
       <div class="in">
         <ul>
-          <li>GitHub Pages je samo statični hosting → <strong>ne može pokretati Keystatic admin</strong> (server-funkcija); moralo bi se natrag na slabije održavani Decap CMS.</li>
-          <li>Svakodnevni rad je <strong>isti</strong>: Drago i Karla uređuju kroz GitHub login; Vercel im je nevidljiv i samo automatski rebuilda.</li>
-          <li>Kod i sadržaj su u GitHub organizaciji udruge → nema zaključavanja; <strong>Vercel se lako prebaci na drugi / udrugin račun</strong> ili drugi hosting.</li>
+          <li>Website je potpuno statički, pa GitHub Pages uklanja trošak hostinga i plaćenih deployment sjedala.</li>
+          <li><strong>Pages CMS</strong> uređuje sadržaj izravno u GitHub repozitoriju i ne treba vlastiti Node server.</li>
+          <li>Kod, sadržaj i deployment ostaju u GitHub organizaciji udruge, bez ovisnosti o osobnom računu developera.</li>
         </ul>
       </div>
     </details>
@@ -132,7 +132,7 @@
       <tr><td>Mail / kontakt</td><td>Preko Gmail adrese (nema mail na domeni)</td></tr>
       <tr><td>Funkcionalnosti</td><td>Donacije, kontakt obrazac, poveznica na MemberMojo (članstvo)</td></tr>
       <tr><td>Osobni podaci</td><td>DA (donacije + obrazac) → GDPR: privacy policy + privola</td></tr>
-      <tr><td>Odabrano rješenje</td><td>Statični web + headless CMS. <strong>Izvedba: Astro + Keystatic na Vercelu</strong> (izvorno zamišljeno kao GitHub Pages + Decap)</td></tr>
+      <tr><td>Odabrano rješenje</td><td><strong>Astro + Markdoc + Pages CMS + GitHub Pages</strong>. Vercel ostaje privremeni fallback do uspješnog DNS cutovera.</td></tr>
     </table></div>
   </section>
 
@@ -180,19 +180,24 @@
         </tr>
         <tr class="item" data-id="f2-repo">
           <td class="cb"><input type="checkbox" checked></td>
-          <td><span class="t">Repozitorij weba unutar organizacije</span><span class="n"><code>rotary-healthcare-professionals/website</code>; hosting = Vercel.</span></td>
+          <td><span class="t">Repozitorij weba unutar organizacije</span><span class="n"><code>rotary-healthcare-professionals/website</code>; ciljni hosting = GitHub Pages.</span></td>
           <td class="own">Nenad</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
+        </tr>
+        <tr class="item" data-id="f2-nonprofit">
+          <td class="cb"><input type="checkbox"></td>
+          <td><span class="t">GitHub Team for Nonprofits</span><span class="k">Kriterij: privatni repo može koristiti GitHub Pages bez naknade</span><span class="n">Potrebna prijava i GitHubovo vanjsko odobrenje.</span></td>
+          <td class="own">Karla + Drago</td><td class="st"><span class="pill p-todo">Za napraviti</span></td>
         </tr>
 
         <tr class="phrow"><td colspan="4">Faza 3 — Izrada (Nenad)</td></tr>
         <tr class="item" data-id="f3-site">
           <td class="cb"><input type="checkbox" checked></td>
-          <td><span class="t">Statična stranica: sadržaj + slike + novi izgled (Rotary brending)</span><span class="k">Kriterij: radna verzija na privremenoj adresi</span><span class="n">Astro, 23 stranice, redizajn, hero slideshow; živi na <code>*.vercel.app</code>.</span></td>
+          <td><span class="t">Statična stranica: sadržaj + slike + novi izgled (Rotary brending)</span><span class="k">Kriterij: radna verzija na privremenoj adresi</span><span class="n">Astro, 23 stranice, 17 vijesti, redizajn i hero slideshow; Vercel privremeni fallback.</span></td>
           <td class="own">Nenad</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
         </tr>
         <tr class="item" data-id="f3-cms">
           <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">CMS: uređivanje (naslov/tekst/slika/objavi) + prijava za Dragu i Karlu</span><span class="k">Kriterij: objave testne vijesti bez pomoći</span><span class="n">Keystatic radi lokalno; uživo = idući korak (GitHub storage + App + env).</span></td>
+          <td><span class="t">CMS: uređivanje (naslov/tekst/slika/objavi) + prijava za Dragu i Karlu</span><span class="k">Kriterij: objava testne vijesti bez pomoći</span><span class="n">Pages CMS konfiguriran; čeka GitHub App instalaciju i Karlin acceptance test.</span></td>
           <td class="own">Nenad</td><td class="st"><span class="pill p-wip">U tijeku</span></td>
         </tr>
         <tr class="item" data-id="f3-form">
@@ -223,15 +228,15 @@
           <td class="own">Drago / Karla</td><td class="st"><span class="pill p-todo">Za napraviti</span></td>
         </tr>
         <tr class="item" data-id="f4-guide">
-          <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">Pisani priručnik (kako objaviti, kome se javiti, gdje su pristupi)</span><span class="k">Kriterij: priručnik 1–2 stranice</span><span class="n">Predloženo: <code>docs/admin-guide.html</code>.</span></td>
-          <td class="own">Nenad</td><td class="st"><span class="pill p-todo">Za napraviti</span></td>
+          <td class="cb"><input type="checkbox" checked></td>
+          <td><span class="t">Pisani priručnik (kako objaviti, kome se javiti, gdje su pristupi)</span><span class="k">Kriterij: priručnik 1–2 stranice</span><span class="n"><code>docs/admin-guide.html</code> i <code>docs/deployment-guide.html</code>.</span></td>
+          <td class="own">Nenad</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
         </tr>
 
         <tr class="phrow"><td colspan="4">Faza 5 — Prelazak</td></tr>
         <tr class="item" data-id="f5-dns">
           <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">DNS na 123 Reg → novi hosting + HTTPS</span><span class="k">Kriterij: domena otvara novi web s HTTPS</span><span class="n">Vercel zapisi; svjesno odgođeno.</span></td>
+          <td><span class="t">DNS → GitHub Pages + HTTPS</span><span class="k">Kriterij: domena otvara novi web s HTTPS</span><span class="n">Zapisi i rollback dokumentirani; čeka zeleni Pages deploy. Autoritativni DNS trenutačno je na Bluehostu.</span></td>
           <td class="own">Nenad</td><td class="st"><span class="pill p-todo">Odgođeno</span></td>
         </tr>
         <tr class="item" data-id="f5-parallel">
@@ -258,7 +263,7 @@
         </tr>
         <tr class="item" data-id="uv-pristupi">
           <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">Popis pristupa u password manageru (123 Reg, GitHub×3, CMS, Gmail, MemberMojo, form/donate), 2FA svugdje</span><span class="k">Kriterij: ažuran popis</span><span class="n">Uključi i Vercel račun (radi „bus factora").</span></td>
+          <td><span class="t">Popis pristupa u password manageru (123 Reg, GitHub×3, CMS, Gmail, MemberMojo, form/donate), 2FA svugdje</span><span class="k">Kriterij: ažuran popis</span><span class="n">Uključi GitHub organizaciju, Pages CMS App i DNS recovery podatke.</span></td>
           <td class="own">Roko + Karla</td><td class="st"><span class="pill p-todo">Kasnije</span></td>
         </tr>
 
@@ -277,13 +282,13 @@
     </table></div>
   </section>
 
-  <p style="font-size:.82rem;color:var(--muted);margin-top:4px">Povezano: <a href="changelog.html">changelog</a> · <a href="project-overview.html">project-overview.html</a> · <a href="internal/handoff.html">handoff.html</a> · izvorni Excel <code>Rotary_web_inventura_i_strategija.xlsx</code></p>
+  <p style="font-size:.82rem;color:var(--muted);margin-top:4px">Povezano: <a href="changelog.html">changelog</a> · <a href="project-overview.html">project-overview.html</a> · <a href="admin-guide.html">uputa za urednike</a> · <a href="deployment-guide.html">deploy i DNS</a> · <a href="internal/handoff.html">handoff</a></p>
 
 </main></div>
 
 <div class="foot">
   IRFHP Website — plan (inventura + strategija). Stanje kvačica pamti se lokalno u pregledniku.
-  <br><em>Zadnja izmjena: 2026-07-09 | Autor: Claude + nbakic</em>
+  <br><em>Zadnja izmjena: 2026-07-11 | Autor: AI agent + nbakic</em>
 </div>
 
 <script>

@@ -1,379 +1,125 @@
 <!DOCTYPE html>
-<!--
-  IRFHP website — Project Overview (interna dokumentacija)
-  Zadnja izmjena: 2026-07-09 | Autor: Claude + nbakic
--->
+<!-- IRFHP Website — pregled projekta | Zadnja izmjena: 2026-07-11 | Autor: AI agent + nbakic -->
 <html lang="hr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>IRFHP Website — Pregled projekta</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRFHP Website — Project Overview</title>
 <style>
-  :root{
-    --azure:#0A62B4;--blue:#134A8E;--blue-dark:#0D2E5E;--navy:#0A1E40;
-    --gold:#F4A81C;--gold-soft:#FCECC9;--ink:#12233E;--muted:#5A6B85;
-    --bg:#F5F8FC;--cloud:#E9F1FA;--card:#fff;--line:#DCE6F2;
-    --ok:#1a8f5a;--ok-bg:#e2f5ec;--wip:#b7791f;--wip-bg:#fcefcf;--todo:#8a5cf6;--todo-bg:#efe9fd;
-    --sans:'Libre Franklin',system-ui,-apple-system,'Segoe UI',sans-serif;
-    --mono:'Cascadia Code','Consolas',ui-monospace,monospace;
-    --radius:14px;--shadow:0 8px 26px rgba(13,46,94,.09);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.66;font-size:16px}
-  a{color:var(--azure)}
-  code,pre,kbd{font-family:var(--mono);font-size:.88em}
-  code{background:var(--cloud);padding:2px 6px;border-radius:6px;color:var(--blue-dark)}
-  pre{background:var(--navy);color:#dce8f7;padding:16px 18px;border-radius:12px;overflow-x:auto;margin:14px 0;font-size:.84rem;line-height:1.55}
-  pre code{background:none;color:inherit;padding:0}
-
-  /* header */
-  .masthead{background:linear-gradient(115deg,var(--navy),var(--blue) 65%,var(--azure) 130%);color:#fff;padding:54px 0 46px;position:relative;overflow:hidden}
-  .masthead::after{content:"";position:absolute;right:-90px;top:-90px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(244,168,28,.18),transparent 62%)}
-  .wrap{max-width:1200px;margin:0 auto;padding:0 26px}
-  .masthead .eyebrow{color:var(--gold);font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:.74rem}
-  .masthead h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.02em;margin:12px 0 8px;max-width:22ch}
-  .masthead p{color:#cfe0f4;max-width:70ch}
-  .masthead .meta{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;font-size:.82rem}
-  .masthead .meta span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 13px;border-radius:999px}
-
-  /* layout */
-  .shell{max-width:1200px;margin:0 auto;padding:0 26px;display:grid;grid-template-columns:230px 1fr;gap:40px;align-items:start}
-  nav.toc{position:sticky;top:20px;margin-top:30px;font-size:.9rem;max-height:calc(100vh - 40px);overflow:auto}
-  nav.toc b{display:block;text-transform:uppercase;letter-spacing:.1em;font-size:.7rem;color:var(--muted);margin:0 0 10px}
-  nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:6px 10px;border-radius:8px;border-left:2px solid transparent}
-  nav.toc a:hover{background:var(--cloud);color:var(--azure)}
-  main{padding:30px 0 80px;min-width:0}
-
-  section.blk{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 32px;box-shadow:var(--shadow);margin-bottom:24px}
-  section.blk>h2{font-size:1.5rem;font-weight:800;color:var(--blue-dark);letter-spacing:-.01em;display:flex;align-items:center;gap:12px;scroll-margin-top:20px}
-  section.blk>h2 .no{background:var(--cloud);color:var(--azure);font-size:.9rem;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:0 0 auto}
-  section.blk h3{font-size:1.08rem;font-weight:800;color:var(--blue-dark);margin:24px 0 8px}
-  section.blk p{margin:10px 0;color:#37455f}
-  section.blk ul,section.blk ol{margin:10px 0 10px 22px}
-  section.blk li{margin:5px 0;color:#37455f}
-  .lead{color:var(--muted);font-size:1.02rem}
-
-  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem}
-  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{background:var(--cloud);color:var(--blue-dark);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
-  td code{white-space:nowrap}
-  .tbl-wrap{overflow-x:auto}
-
-  .pill{display:inline-block;font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.02em}
-  .p-ok{background:var(--ok-bg);color:var(--ok)}
-  .p-wip{background:var(--wip-bg);color:var(--wip)}
-  .p-todo{background:var(--todo-bg);color:var(--todo)}
-
-  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 0}
-  .fact{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:14px 16px}
-  .fact .k{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#9fb8d8}
-  .fact .v{font-weight:800;margin-top:4px;font-size:.98rem;color:#fff;word-break:break-word}
-
-  .note{border-left:4px solid var(--gold);background:var(--gold-soft);padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;color:#5a4409}
-  .warn{border-left:4px solid #d9534f;background:#fdecec;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;color:#7a1f1c}
-  .tree{background:var(--navy);color:#dce8f7;border-radius:12px;padding:18px 20px;font-family:var(--mono);font-size:.82rem;line-height:1.7;overflow-x:auto;white-space:pre;margin:14px 0}
-  .foot{max-width:1200px;margin:0 auto;padding:24px 26px 60px;color:var(--muted);font-size:.82rem;border-top:1px solid var(--line)}
-  @media(max-width:900px){.shell{grid-template-columns:1fr}nav.toc{display:none}.facts{grid-template-columns:1fr 1fr}}
+  :root{--azure:#0a62b4;--blue:#134a8e;--navy:#0a1e40;--gold:#f4a81c;--ink:#12233e;--muted:#5a6b85;--bg:#f5f8fc;--cloud:#e9f1fa;--card:#fff;--line:#dce6f2;--ok:#1a8f5a;--ok-bg:#e2f5ec;--todo:#8a5cf6;--todo-bg:#efe9fd;--wip:#a66a12;--wip-bg:#fcefcf}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+  .wrap{max-width:1000px;margin:auto;padding:0 24px}header{background:linear-gradient(115deg,var(--navy),var(--blue) 70%,var(--azure));color:#fff;padding:42px 0}header p{color:#d5e4f5;max-width:72ch}.meta{display:flex;gap:12px;flex-wrap:wrap;font-size:.85rem;color:#d5e4f5}
+  main{padding:28px 0 70px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:25px 29px;margin-bottom:18px;box-shadow:0 8px 26px rgba(13,46,94,.07)}h1,h2,h3{line-height:1.25}h2{color:var(--navy)}h3{color:var(--blue);margin-top:22px}a{color:var(--azure)}code{background:var(--cloud);padding:2px 6px;border-radius:5px}.pill{display:inline-block;border-radius:999px;padding:3px 9px;font-size:.72rem;font-weight:700}.ok{background:var(--ok-bg);color:var(--ok)}.todo{background:var(--todo-bg);color:var(--todo)}.wip{background:var(--wip-bg);color:var(--wip)}
+  table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--cloud);color:var(--navy)}pre{background:var(--navy);color:#deebfa;padding:16px;border-radius:10px;overflow:auto}.note{border-left:4px solid var(--gold);background:#fcecc9;padding:13px 16px;border-radius:0 9px 9px 0}.warn{border-left:4px solid #c33;background:#fdecec;padding:13px 16px;border-radius:0 9px 9px 0}.flow{font-weight:700;text-align:center;background:var(--cloud);padding:17px;border-radius:10px}.foot{color:var(--muted);font-size:.82rem;padding:20px 0 45px}
 </style>
 </head>
 <body>
+<header><div class="wrap">
+  <h1>IRFHP Website — pregled projekta</h1>
+  <p>Aktualna tehnička i operativna slika websitea nakon pripreme migracije s Vercela i Keystatica na GitHub Pages i Pages CMS.</p>
+  <div class="meta"><span>Repo: rotary-healthcare-professionals/website</span><span>Produkcijska grana: main</span><span>Status: migracija pripremljena</span></div>
+</div></header>
+<div class="wrap"><main>
+  <section class="card">
+    <h2>1. Sažetak</h2>
+    <table><tbody>
+      <tr><th>Stavka</th><th>Aktualno stanje</th></tr>
+      <tr><td>Frontend</td><td>Astro 7 + Markdoc 2, potpuno statički build</td></tr>
+      <tr><td>CMS</td><td>Pages CMS, konfiguracija <code>.pages.yml</code></td></tr>
+      <tr><td>Ciljni hosting</td><td>GitHub Pages preko GitHub Actionsa</td></tr>
+      <tr><td>Privatni repo</td><td>GitHub Free trenutačno; čeka GitHub Team for Nonprofits</td></tr>
+      <tr><td>Privremeni/fallback hosting</td><td>Vercel projekt <code>rotary-fhp</code> ostaje do uspješnog DNS cutovera</td></tr>
+      <tr><td>Javna domena</td><td><code>rotaryhealthprofessionals.org</code>; DNS još pokazuje na stari Bluehost WordPress</td></tr>
+      <tr><td>Sadržaj</td><td>23 stranice i 17 vijesti, slike lokalno u repozitoriju</td></tr>
+    </tbody></table>
+  </section>
 
-<header class="masthead">
-  <div class="wrap">
-    <div class="eyebrow">Interna dokumentacija · projekt</div>
-    <h1>IRFHP Website — pregled projekta</h1>
-    <p>Kompletan tehnički i organizacijski pregled web sajta International Rotary Fellowship of Healthcare Professionals: repozitoriji, hosting, tehnologija, CMS za vijesti, dizajn, radni tijek i što još slijedi.</p>
-    <div class="facts">
-      <div class="fact"><div class="k">Aktivni repo</div><div class="v">rotary-healthcare-professionals/website</div></div>
-      <div class="fact"><div class="k">Hosting</div><div class="v">Vercel · projekt rotary-fhp</div></div>
-      <div class="fact"><div class="k">Tehnologija</div><div class="v">Astro 6 + Keystatic CMS</div></div>
-      <div class="fact"><div class="k">Domena (cilj)</div><div class="v">rotaryhealthprofessionals.org</div></div>
-    </div>
-    <div class="meta"><span>Zadnja izmjena: 2026‑07‑09</span><span>Autor: Claude</span><span>Status: u razvoju (grana <code style="color:#fff;background:rgba(255,255,255,.14)">cms-news</code>)</span></div>
-  </div>
-</header>
+  <section class="card">
+    <h2>2. Arhitektura</h2>
+    <div class="flow">Pages CMS → GitHub repo → GitHub Actions → GitHub Pages</div>
+    <ul>
+      <li>Pages CMS uređuje Markdoc datoteke i slike izravno u GitHub repozitoriju.</li>
+      <li>Promjena na <code>main</code> pokreće <code>.github/workflows/deploy-pages.yml</code>.</li>
+      <li>Astro generira statički <code>dist/</code>; nema baze, servera ni dugotrajnih tajni.</li>
+      <li>PayPal, Jotform i MemberMojo ostaju vanjske usluge.</li>
+    </ul>
+  </section>
 
-<div class="shell">
-  <nav class="toc">
-    <b>Sadržaj</b>
-    <a href="#o-projektu">1 · O projektu</a>
-    <a href="#povijest">2 · Povijest</a>
-    <a href="#repozitoriji">3 · Repozitoriji</a>
-    <a href="#hosting">4 · Hosting i domene</a>
-    <a href="#stack">5 · Tehnološki stack</a>
-    <a href="#struktura">6 · Struktura projekta</a>
-    <a href="#cms">7 · CMS — vijesti</a>
-    <a href="#dizajn">8 · Dizajn</a>
-    <a href="#sadrzaj">9 · Sadržaj</a>
-    <a href="#tijek">10 · Razvoj i deploy</a>
-    <a href="#stanje">11 · Trenutno stanje</a>
-    <a href="#roadmap">12 · Što slijedi</a>
-    <a href="#cheat">13 · Brzi podsjetnik</a>
-    <a href="#pojmovnik">14 · Pojmovnik</a>
-  </nav>
+  <section class="card">
+    <h2>3. Ključne datoteke</h2>
+    <table><tbody>
+      <tr><th>Datoteka</th><th>Uloga</th></tr>
+      <tr><td><code>.pages.yml</code></td><td>CMS polja, kolekcija vijesti i media direktorij</td></tr>
+      <tr><td><code>.github/workflows/deploy-pages.yml</code></td><td>GitHub Pages build i deploy</td></tr>
+      <tr><td><code>astro.config.mjs</code></td><td>Statički Astro + Markdoc, canonical site URL</td></tr>
+      <tr><td><code>src/content/news/*.mdoc</code></td><td>Sadržaj vijesti</td></tr>
+      <tr><td><code>public/images/news/</code></td><td>Nove CMS slike</td></tr>
+      <tr><td><code>src/pages/</code></td><td>Rute i stranice, uključujući <code>404.astro</code></td></tr>
+      <tr><td><code>docs/admin-guide.html</code></td><td>Uputa za Karlu i druge urednike</td></tr>
+      <tr><td><code>docs/deployment-guide.html</code></td><td>Aktivacija, DNS i rollback</td></tr>
+    </tbody></table>
+  </section>
 
-  <main>
+  <section class="card">
+    <h2>4. Razvoj i provjera</h2>
+    <pre><code>npm install
+npm run dev       # http://127.0.0.1:4321
+npm run build     # mora generirati sve statičke rute
+npm run preview   # pregled produkcijskog builda</code></pre>
+    <p>Rad ide kroz branch i Pull Request. Merge na <code>main</code> objavljuje website kada je repozitorijska varijabla <code>ENABLE_GITHUB_PAGES=true</code>.</p>
+  </section>
 
-    <section class="blk" id="o-projektu">
-      <h2><span class="no">1</span> O projektu</h2>
-      <p class="lead">Web sajt organizacije <strong>International Rotary Fellowship of Healthcare Professionals (IRFHP)</strong> — svjetske mreže liječnika, medicinskih sestara i volontera unutar Rotaryja koji provode humanitarne zdravstvene projekte (neonatalna skrb, prevencija raka vrata maternice, kirurške misije, Ukrajina, sigurnost pacijenata i dr.).</p>
-      <p>Sajt je <strong>statični web</strong> (brz, siguran, jeftin) izgrađen alatom Astro, s <strong>CMS-om za vijesti</strong> (Keystatic) tako da administratori mogu sami dodavati novosti bez programiranja. Cilj: moderan, kredibilan sajt uz jednostavno održavanje.</p>
-    </section>
+  <section class="card">
+    <h2>5. CMS tijek</h2>
+    <ol>
+      <li>Urednik otvara <a href="https://app.pagescms.org/">app.pagescms.org</a>.</li>
+      <li>Odabire repo i kolekciju <strong>Vijesti</strong>.</li>
+      <li>Uređuje naslov, datum, sažetak, naslovnu sliku i sadržaj.</li>
+      <li>Save izrađuje GitHub commit; deploy se pokreće automatski.</li>
+      <li>Urednik nakon objave provjerava vijest na javnoj domeni.</li>
+    </ol>
+    <div class="note">Pages CMS GitHub App treba ograničiti samo na repo <code>website</code>. Karla i Drago ostaju vlasnici organizacije; drugi urednici mogu se pozvati kao CMS suradnici.</div>
+  </section>
 
-    <section class="blk" id="povijest">
-      <h2><span class="no">2</span> Kratka povijest</h2>
-      <div class="tbl-wrap"><table>
-        <tr><th>Faza</th><th>Što se dogodilo</th></tr>
-        <tr><td><strong>Ishodište</strong></td><td>Original je bio <strong>WordPress</strong> sajt (Elementor) na <code>rotaryhealthprofessionals.org</code>, na dijeljenom hostingu.</td></tr>
-        <tr><td><strong>Pretvorba</strong></td><td>Sadržaj i slike preuzeti s WordPressa i presloženi u <strong>čisti statični HTML</strong> (10.06.2026.). Slike spremljene lokalno — bez ovisnosti o starom hostingu.</td></tr>
-        <tr><td><strong>Prvi repo</strong></td><td>Ubačeno u privatni monorepo <code>nbakic/Vallis</code> (drži 4 sajta) i spojeno na Vercel.</td></tr>
-        <tr><td><strong>Izdvajanje</strong></td><td>Rotary sajt izdvojen u vlastiti repo <code>rotary-healthcare-professionals/website</code> (08.07.2026.), flat struktura.</td></tr>
-        <tr><td><strong>CMS</strong></td><td>Migracija na <strong>Astro + Keystatic</strong>; 17 vijesti uvezeno iz WordPressa s punim tekstom i slikama.</td></tr>
-        <tr><td><strong>Redizajn</strong></td><td>Novi dizajn-sistem „Institucionalni Rotary" (09.07.2026.) — hero slideshow, impact traka, dinamičke vijesti.</td></tr>
-      </table></div>
-      <div class="note"><strong>Zašto ne natrag na WordPress?</strong> Statični sajt + headless CMS daje bolju brzinu, sigurnost i niže troškove, a admini i dalje dobiju jednostavan formular za unos vijesti.</div>
-    </section>
+  <section class="card">
+    <h2>6. Status migracije</h2>
+    <table><tbody>
+      <tr><td>Statički Astro build</td><td><span class="pill ok">gotovo</span></td></tr>
+      <tr><td>Pages CMS konfiguracija</td><td><span class="pill ok">gotovo</span></td></tr>
+      <tr><td>GitHub Pages workflow</td><td><span class="pill ok">pripremljeno</span></td></tr>
+      <tr><td>Uredničke i deploy upute</td><td><span class="pill ok">gotovo</span></td></tr>
+      <tr><td>GitHub Team for Nonprofits</td><td><span class="pill todo">vanjsko odobrenje</span></td></tr>
+      <tr><td>Pages CMS GitHub App i Karlin test</td><td><span class="pill todo">nakon mergea</span></td></tr>
+      <tr><td>Aktivacija workflowa</td><td><span class="pill todo">nakon Team odobrenja</span></td></tr>
+      <tr><td>DNS cutover i HTTPS</td><td><span class="pill todo">nakon zelenog deploya</span></td></tr>
+      <tr><td>Uklanjanje Vercela/Bluehosta</td><td><span class="pill todo">48 h nakon cutovera</span></td></tr>
+    </tbody></table>
+  </section>
 
-    <section class="blk" id="repozitoriji">
-      <h2><span class="no">3</span> Repozitoriji i lokalni folderi</h2>
-      <div class="tbl-wrap"><table>
-        <tr><th>Repo</th><th>Uloga</th><th>Lokalni folder</th></tr>
-        <tr><td><code>rotary-healthcare-professionals/website</code> <span class="pill p-ok">aktivan</span></td><td>Rotary sajt (Astro + CMS). Ovdje se radi razvoj.</td><td><code>C:\dev\Apps\rotary-website</code></td></tr>
-        <tr><td><code>nbakic/Vallis</code> <span class="pill p-wip">stari</span></td><td>Monorepo s 4 sajta (audio-novi, hdsp-novi, rotary-novi, vallismedica-novi). Rotary dio je preteča novog repoa.</td><td><code>C:\dev\Apps\Vallis</code></td></tr>
-      </table></div>
-      <p>Oba su <strong>privatna</strong> na GitHubu. Vlasnik/admin: <code>nbakic</code>. Autentikacija lokalnog gita ide preko <code>gh</code> (GitHub CLI).</p>
-      <h3>Grane u aktivnom repou</h3>
-      <ul>
-        <li><code>main</code> — produkcijska grana (Vercel produkcija deploja odavde).</li>
-        <li><code>cms-news</code> <span class="pill p-wip">u tijeku</span> — sav rad na CMS-u i redizajnu; čeka pregled pa spajanje u <code>main</code>.</li>
-      </ul>
-    </section>
+  <section class="card">
+    <h2>7. Preostali vanjski koraci</h2>
+    <ol>
+      <li>GitHub organizaciju prijaviti za besplatni Team for Nonprofits.</li>
+      <li>Instalirati Pages CMS GitHub App samo na <code>website</code> repo.</li>
+      <li>Karla mora dodati i spremiti probnu vijest.</li>
+      <li>U GitHub Pages postavkama dodati custom domenu i uključiti workflow varijablu.</li>
+      <li>Prema <a href="deployment-guide.html">deployment vodiču</a> promijeniti DNS i uključiti HTTPS.</li>
+    </ol>
+    <div class="warn"><strong>Ne gasiti Vercel ni Bluehost prije uspješnog Pages deploya, CMS testa i najmanje 48 sati stabilnog rada domene.</strong></div>
+  </section>
 
-    <section class="blk" id="hosting">
-      <h2><span class="no">4</span> Hosting, Vercel i domene</h2>
-      <div class="tbl-wrap"><table>
-        <tr><th>Stavka</th><th>Vrijednost</th></tr>
-        <tr><td>Vercel projekt</td><td><code>rotary-fhp</code> (tim <strong>Projekti_B</strong>)</td></tr>
-        <tr><td>Project ID</td><td><code>prj_Qu8XrAcFh13Kxv8GqmLBoA1dkKdq</code></td></tr>
-        <tr><td>Team ID</td><td><code>team_Yw2NApoFN6n2kWMzXGMDcPGp</code></td></tr>
-        <tr><td>Spojeni repo</td><td><code>rotary-healthcare-professionals/website</code>, grana <code>main</code></td></tr>
-        <tr><td>Root Directory</td><td><code>.</code> (korijen — flat repo)</td></tr>
-        <tr><td>Framework</td><td>Astro (<code>vercel.json → framework: astro</code>)</td></tr>
-        <tr><td>Vercel domene</td><td><code>rotary-fhp.vercel.app</code>, preview: <code>rotary-fhp-git-cms-news-projekti-b.vercel.app</code></td></tr>
-        <tr><td>Ciljna domena</td><td><code>rotaryhealthprofessionals.org</code> + <code>www</code></td></tr>
-      </table></div>
-      <p><strong>Deploy je automatski:</strong> svaki <em>push</em> na <code>main</code> → produkcija; push na drugu granu → <em>preview</em> deploy (zaseban URL, iza Vercel login zida).</p>
-      <div class="warn"><strong>DNS još nije prebačen na Vercel.</strong> Domena <code>rotaryhealthprofessionals.org</code> (i <code>www</code>) DNS-om i dalje pokazuje na <strong>stari WordPress hosting</strong> (IP <code>50.87.253.47</code>), a ne na Vercel (<code>76.76.21.21</code>). Zato javna domena trenutno prikazuje stari WP sajt, dok nova verzija živi na <code>*.vercel.app</code>. Prebacivanje DNS-a je zaseban, odgođen korak.</div>
-
-      <h3>Vidljivost preview verzija (Vercel Authentication)</h3>
-      <p>Vercel po defaultu štiti deploye postavkom <strong>Deployment Protection → Vercel Authentication</strong>. Kod ovog projekta uključena je za:</p>
-      <ul>
-        <li><strong>sve preview deploye</strong> (svaka grana osim produkcijske — npr. <code>cms-news</code>), i</li>
-        <li>generirani <strong>produkcijski <code>*.vercel.app</code> URL</strong>.</li>
-      </ul>
-      <p>Tko otvori takav link, a <strong>nije ulogiran</strong> u Vercel tim <code>Projekti_B</code>, dobije Vercel login stranicu. Zato vanjski ljudi (npr. Rotary odbor) <strong>ne mogu</strong> vidjeti preview dok im se ne podijeli na jedan od načina niže. <strong>Nije povezano s DNS-om</strong> — to je sigurnosna postavka Vercela, ne stvar domene; vrijedi i prije i poslije DNS cutovera.</p>
-      <div class="tbl-wrap"><table>
-        <tr><th>Način dijeljenja</th><th>Kako</th><th>Napomena</th></tr>
-        <tr><td><strong>Shareable Link</strong> <span class="pill p-ok">preporučeno</span></td><td>Na konkretnom deployu u Vercelu → generiraj „shareable link"</td><td>Primatelj <strong>ne treba</strong> Vercel račun; link vrijedi za tu verziju</td></tr>
-        <tr><td>Isključiti zaštitu</td><td>Project → Settings → <code>Deployment Protection</code> → Vercel Authentication → isključi (ili „ne štiti preview")</td><td>Preview URL postaje javan svima s linkom; uklanja zaštitu</td></tr>
-        <tr><td>Password Protection</td><td>Ista postavka, zaštita zajedničkom lozinkom</td><td>Samo na plaćenim planovima</td></tr>
-      </table></div>
-      <div class="note"><strong>Produkcija na custom domeni je javna.</strong> Kad se DNS prebaci na Vercel, <code>rotaryhealthprofessionals.org</code> će biti vidljiv <strong>svima bez logina</strong> (custom produkcijske domene nisu iza zida). Zid se odnosi samo na <em>preview</em> grane i generirane <code>*.vercel.app</code> URL-ove — bitno dok se verzija dijeli na pregled prije spajanja u <code>main</code>.</div>
-    </section>
-
-    <section class="blk" id="stack">
-      <h2><span class="no">5</span> Tehnološki stack</h2>
-      <div class="tbl-wrap"><table>
-        <tr><th>Komponenta</th><th>Verzija</th><th>Uloga</th></tr>
-        <tr><td>Astro</td><td><code>6.4.8</code></td><td>Statični site generator (build HTML iz komponenti)</td></tr>
-        <tr><td>@astrojs/react</td><td><code>5.0.7</code></td><td>React integracija (za Keystatic UI)</td></tr>
-        <tr><td>@astrojs/markdoc</td><td><code>1.0.6</code></td><td>Renderiranje <code>.mdoc</code> sadržaja vijesti</td></tr>
-        <tr><td>@astrojs/vercel</td><td><code>10.0.8</code></td><td>Adapter za deploy na Vercel (server rute za admin)</td></tr>
-        <tr><td>@keystatic/core + astro</td><td><code>0.5.x</code> / <code>5.1.0</code></td><td>Headless CMS (uređivanje vijesti)</td></tr>
-        <tr><td>React / React‑DOM</td><td><code>19</code></td><td>Runtime za Keystatic admin</td></tr>
-        <tr><td>Libre Franklin</td><td>Google Fonts</td><td>Tipografija sajta</td></tr>
-      </table></div>
-      <div class="note"><strong>Zašto Astro 6, a ne najnoviji?</strong> Keystatic (CMS) zasad podržava Astro do verzije 6. Kad Keystatic doda podršku za Astro 7, može se nadograditi.</div>
-      <p>Lokalno: Node <code>22.x</code>. Na Vercelu: Node <code>24.x</code>. Build tip: <em>LAMBDAS</em> (statične stranice + jedna server-funkcija za Keystatic admin).</p>
-    </section>
-
-    <section class="blk" id="struktura">
-      <h2><span class="no">6</span> Struktura projekta</h2>
-      <div class="tree">rotary-website/
-├─ public/                    ← statični resursi (serviraju se s korijena /)
-│  ├─ images/…                ← sve slike (mirror WP uploads: /images/GGGG/MM/…)
-│  └─ style.css               ← cijeli dizajn-sistem (CSS)
-├─ src/
-│  ├─ layouts/Base.astro      ← zajednički header, nav, footer, &lt;head&gt;
-│  ├─ pages/
-│  │  ├─ index.astro          ← naslovnica (hero slideshow, impact, latest news)
-│  │  ├─ about.astro, kmc.astro, … (23 podstranice)
-│  │  └─ news/
-│  │     ├─ index.astro       ← popis vijesti (/news)
-│  │     └─ [slug].astro      ← pojedina vijest (/news/&lt;slug&gt;)
-│  ├─ content/news/*.mdoc     ← 17 vijesti (frontmatter + tekst)
-│  ├─ content.config.ts       ← definicija news kolekcije (Astro)
-│  └─ keystatic/Brand.tsx     ← logo u adminu (link natrag na web)
-├─ keystatic.config.ts        ← definicija CMS-a (polja vijesti, storage)
-├─ astro.config.mjs           ← Astro + integracije + Vercel adapter
-├─ vercel.json                ← framework: astro
-├─ scripts/                   ← jednokratne migracijske skripte
-│  ├─ migrate.mjs             ← stari HTML → Astro stranice
-│  └─ news-import.mjs         ← uvoz vijesti iz WordPress API-ja
-└─ docs/project-overview.html ← ovaj dokument</div>
-      <h3>Kako radi routing</h3>
-      <ul>
-        <li>Svaka datoteka u <code>src/pages/</code> postaje ruta: <code>about.astro → /about</code>, <code>index.astro → /</code>.</li>
-        <li><code>news/[slug].astro</code> je <strong>dinamička ruta</strong> — Astro pri buildu generira po jednu stranicu za svaku vijest iz kolekcije.</li>
-        <li>Zajednički izgled (header/footer) dolazi iz <code>Base.astro</code> — mijenja se na jednom mjestu.</li>
-        <li><code>public/</code> se servira s korijena: <code>public/style.css → /style.css</code>, <code>public/images/x.jpg → /images/x.jpg</code>.</li>
-      </ul>
-    </section>
-
-    <section class="blk" id="cms">
-      <h2><span class="no">7</span> CMS — vijesti (Keystatic)</h2>
-      <p>Vijesti se uređuju kroz <strong>Keystatic</strong> admin na ruti <code>/keystatic</code>. Svaka vijest je jedna datoteka <code>src/content/news/&lt;slug&gt;.mdoc</code> — versionirana u gitu (nema baze podataka).</p>
-      <h3>Polja vijesti</h3>
-      <div class="tbl-wrap"><table>
-        <tr><th>Polje</th><th>Tip</th><th>Opis</th></tr>
-        <tr><td>Naslov</td><td>tekst (slug)</td><td>Naslov + iz njega URL vijesti</td></tr>
-        <tr><td>Datum</td><td>datum</td><td>Za sortiranje i prikaz</td></tr>
-        <tr><td>Sažetak</td><td>tekst</td><td>Kratki opis na popisu</td></tr>
-        <tr><td>Naslovna slika</td><td>slika</td><td>Thumbnail + cover (opcionalno)</td></tr>
-        <tr><td>Tekst</td><td>markdoc</td><td>Bogati tekst (bold, linkovi, liste, slike)</td></tr>
-      </table></div>
-      <h3>Kako admin doda vijest</h3>
-      <ol>
-        <li>Otvori <code>/keystatic</code> → <strong>Vijesti (News)</strong> → <strong>Create</strong>.</li>
-        <li>Ispuni polja, klikni <strong>Save</strong>.</li>
-        <li>Izmjena se sprema kao commit u repo → Vercel automatski rebuilda → za ~1 min vijest je gore.</li>
-      </ol>
-      <div class="warn"><strong>Trenutno stanje CMS-a:</strong> <code>storage: local</code> — admin radi samo lokalno (<code>npm run dev</code>). Da admini uređuju uživo preko GitHub logina, potrebna je <strong>Faza 2</strong> (vidi <a href="#roadmap">Što slijedi</a>).</div>
-    </section>
-
-    <section class="blk" id="dizajn">
-      <h2><span class="no">8</span> Dizajn-sistem</h2>
-      <p>Odabran smjer <strong>„Institucionalni Rotary"</strong> (od 3 ponuđena). Sve boje i tipografija definirane su kao varijable u <code>public/style.css</code>.</p>
-      <h3>Paleta</h3>
-      <div class="tbl-wrap"><table>
-        <tr><th>Boja</th><th>HEX</th><th>Upotreba</th></tr>
-        <tr><td>Azure</td><td><code>#0A62B4</code></td><td>Primarna plava (linkovi, gumbi)</td></tr>
-        <tr><td>Blue / Navy</td><td><code>#134A8E</code> / <code>#0A1E40</code></td><td>Naslovi, tamne pozadine, footer</td></tr>
-        <tr><td>Gold</td><td><code>#F4A81C</code></td><td>Akcent (Donate, istaknuto)</td></tr>
-      </table></div>
-      <h3>Tipografija</h3>
-      <p><strong>Libre Franklin</strong> (grotesk, institucionalni ton) — za naslove i tekst, s različitim debljinama.</p>
-      <h3>Ključne komponente</h3>
-      <ul>
-        <li><strong>Hero slideshow</strong> — 5 fotografija koje se izmjenjuju svake ~3 s uz meki crossfade (čisto CSS; poštuje „reduce motion").</li>
-        <li><strong>Impact traka</strong> — brojke učinka ($2M grant, 9 djece, 30+ zemalja, 17 programa).</li>
-        <li><strong>Latest news</strong> — 3 najnovije vijesti automatski iz CMS-a na naslovnici.</li>
-        <li>Kartice, „page hero" za podstranice, „prose" stil za tekst vijesti, footer.</li>
-      </ul>
-    </section>
-
-    <section class="blk" id="sadrzaj">
-      <h2><span class="no">9</span> Sadržaj</h2>
-      <ul>
-        <li><strong>23 podstranice</strong> migrirane iz starog sajta u Astro (About, Service projects, KMC, Ukraine, Membership, Contact…).</li>
-        <li><strong>17 vijesti</strong> uvezeno iz WordPressa preko REST API-ja (<code>/wp-json/wp/v2/posts?categories=2&amp;_embed</code>): puni tekst (HTML→Markdown), datumi, sažeci, istaknute slike.</li>
-        <li>Sve slike <strong>lokalizirane</strong> u <code>public/images</code> — bez ovisnosti o starom sajtu.</li>
-        <li><code>_template.html</code> je predložak za podstranice i namjerno se ne objavljuje (u <code>.gitignore</code>).</li>
-      </ul>
-    </section>
-
-    <section class="blk" id="tijek">
-      <h2><span class="no">10</span> Razvojni tijek i deploy</h2>
-      <h3>Uređivanje (za razvoj)</h3>
-      <pre><code># u folderu C:\dev\Apps\rotary-website
-npm run dev            # lokalni preview na http://127.0.0.1:4321
-git checkout -b naziv-izmjene
-# ... izmjene ...
-git commit -am "opis"
-git push -u origin naziv-izmjene
-gh pr create --fill    # otvori Pull Request na GitHubu</code></pre>
-      <h3>Deploy (Vercel, automatski)</h3>
-      <ul>
-        <li>Push na bilo koju granu → <strong>preview</strong> deploy (zaseban URL).</li>
-        <li>Merge Pull Requesta u <code>main</code> → <strong>produkcijski</strong> deploy.</li>
-        <li>Preview URL-ovi su iza Vercel login zida (vidi ih samo ulogirani vlasnik).</li>
-      </ul>
-    </section>
-
-    <section class="blk" id="stanje">
-      <h2><span class="no">11</span> Trenutno stanje</h2>
-      <div class="tbl-wrap"><table>
-        <tr><th>Stavka</th><th>Status</th></tr>
-        <tr><td>Statični sajt + sve podstranice</td><td><span class="pill p-ok">gotovo</span></td></tr>
-        <tr><td>Vijesti (17) s punim tekstom i slikama</td><td><span class="pill p-ok">gotovo</span></td></tr>
-        <tr><td>CMS admin (<code>/keystatic</code>) — lokalno</td><td><span class="pill p-ok">radi</span></td></tr>
-        <tr><td>Redizajn (Smjer 1) + hero slideshow</td><td><span class="pill p-ok">gotovo</span></td></tr>
-        <tr><td>CMS uživo (GitHub login za admine)</td><td><span class="pill p-todo">Faza 2</span></td></tr>
-        <tr><td>Uputa adminima „kako dodati vijest"</td><td><span class="pill p-todo">Faza 3</span></td></tr>
-        <tr><td>Spajanje <code>cms-news</code> → <code>main</code></td><td><span class="pill p-wip">čeka pregled</span></td></tr>
-        <tr><td>DNS prebacivanje na Vercel</td><td><span class="pill p-todo">odgođeno</span></td></tr>
-      </table></div>
-    </section>
-
-    <section class="blk" id="roadmap">
-      <h2><span class="no">12</span> Što slijedi</h2>
-      <h3>Faza 2 — CMS uživo (GitHub login)</h3>
-      <ol>
-        <li>Prebaciti <code>keystatic.config.ts</code> na <code>storage: { kind: 'github', repo: … }</code>.</li>
-        <li>Kroz <code>/keystatic</code> čarobnjak napraviti <strong>GitHub App</strong> za autentikaciju.</li>
-        <li>Upisati env varijable u Vercel: <code>KEYSTATIC_GITHUB_CLIENT_ID</code>, <code>KEYSTATIC_GITHUB_CLIENT_SECRET</code>, <code>KEYSTATIC_SECRET</code>, <code>PUBLIC_KEYSTATIC_GITHUB_APP_SLUG</code>.</li>
-        <li>Dodati prave administratore kao suradnike (write) na repo.</li>
-      </ol>
-      <h3>Faza 3 — uputa adminima</h3>
-      <p>Kratki vodič „kako dodati/urediti vijest" (najbolje i na engleskom, jer je organizacija međunarodna).</p>
-      <h3>Završno</h3>
-      <ul>
-        <li>Pregled izgleda i sadržaja → merge <code>cms-news</code> u <code>main</code>.</li>
-        <li>Kad se odluči: <strong>DNS cutover</strong> — kod DNS providera apex → <code>76.76.21.21</code>, <code>www</code> → <code>cname.vercel-dns.com</code>.</li>
-      </ul>
-    </section>
-
-    <section class="blk" id="cheat">
-      <h2><span class="no">13</span> Brzi podsjetnik (komande)</h2>
-      <pre><code># razvoj
-npm install            # jednom, instalira ovisnosti
-npm run dev            # lokalni server (uklj. /keystatic admin)
-npm run build          # produkcijski build (provjera prije pusha)
-
-# git
-git status
-git checkout -b moja-grana
-git commit -am "opis"
-git push -u origin moja-grana
-gh pr create --fill    # PR na GitHubu</code></pre>
-      <div class="note">Za produkciju je dovoljan <strong>push/merge na <code>main</code></strong> — Vercel sve ostalo radi sam.</div>
-    </section>
-
-    <section class="blk" id="pojmovnik">
-      <h2><span class="no">14</span> Pojmovnik</h2>
-      <div class="tbl-wrap"><table>
-        <tr><th>Pojam</th><th>Značenje</th></tr>
-        <tr><td>Astro</td><td>Alat koji od komponenti gradi brz statični web.</td></tr>
-        <tr><td>Headless CMS</td><td>Sustav za uređivanje sadržaja bez vlastitog „frontenda" — sadržaj se ubacuje u naš sajt.</td></tr>
-        <tr><td>Keystatic</td><td>Naš CMS; sprema vijesti kao datoteke u git repo.</td></tr>
-        <tr><td>Repo / grana / commit / PR</td><td>Git pojmovi: spremište koda / paralelna verzija / spremljena izmjena / prijedlog spajanja.</td></tr>
-        <tr><td>Deploy / preview / produkcija</td><td>Objava sajta / probna verzija na zasebnom URL-u / živa verzija.</td></tr>
-        <tr><td>DNS cutover</td><td>Preusmjeravanje domene s jednog servera (WordPress) na drugi (Vercel).</td></tr>
-      </table></div>
-    </section>
-
-  </main>
+  <section class="card">
+    <h2>8. Ownership</h2>
+    <ul>
+      <li>GitHub organizacija i repo pripadaju IRFHP-u.</li>
+      <li>Karla i Drago trebaju biti Owneri organizacije s uključenim 2FA.</li>
+      <li>Developer dobiva samo potreban repo pristup.</li>
+      <li>DNS i domena ostaju na organizacijskom računu, uz dokumentiran recovery.</li>
+      <li>Nema produkcijskih tajni u repozitoriju.</li>
+    </ul>
+  </section>
+</main>
+<div class="foot">Povezano: <a href="admin-guide.html">uputa za urednike</a> · <a href="deployment-guide.html">deploy i DNS</a> · <a href="internal/handoff.html">handoff</a> · <a href="changelog.html">changelog</a><br>Zadnja izmjena: 2026-07-11 · Autor: AI agent + nbakic</div>
 </div>
-
-<div class="foot">
-  IRFHP Website — interni pregled projekta. Povezano: <a href="plan-inventura-strategija.html">plan (checklista)</a> · <a href="changelog.html">changelog</a> · <a href="internal/handoff.html">handoff.html</a>
-  <br>
-  <em>Zadnja izmjena: 2026‑07‑09 | Autor: Claude + nbakic</em>
-</div>
-
 </body>
 </html>

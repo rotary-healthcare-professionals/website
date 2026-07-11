@@ -1,0 +1,61 @@
+media:
+  input: public/images
+  output: /images
+  categories: [image]
+  rename: safe
+
+content:
+  - name: news
+    label: Vijesti
+    type: collection
+    path: src/content/news
+    format: yaml-frontmatter
+    filename:
+      template: "{primary}.mdoc"
+      field: create
+    view:
+      fields: [title, date, summary]
+      primary: title
+      sort: [date, title]
+      search: [title, summary, body]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Naslov
+        type: string
+        required: true
+        description: Naslov vijesti koji se prikazuje na websiteu.
+      - name: date
+        label: Datum objave
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: summary
+        label: Kratki sažetak
+        type: text
+        description: Kratki opis koji se prikazuje na popisu vijesti.
+        options:
+          maxlength: 300
+      - name: coverImage
+        label: Naslovna slika
+        type: image
+        description: Opcionalna slika koja se prikazuje uz vijest.
+        options:
+          path: public/images/news
+          categories: [image]
+          extensions: [jpg, jpeg, png, webp, gif]
+          rename: safe
+      - name: body
+        label: Sadržaj
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          switcher: true
+          path: public/images/news
+          categories: [image]
+          extensions: [jpg, jpeg, png, webp, gif]
+          rename: safe
