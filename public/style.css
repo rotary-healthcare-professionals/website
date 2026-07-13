@@ -196,14 +196,14 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
 
 /* ---------- Footer ---------- */
 .site-footer{background:var(--navy);color:#c2cde0;margin-top:6px}
-.site-footer .top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:38px;padding:66px 0 46px}
+.site-footer .top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:38px;padding:66px 24px 46px}
 .site-footer h4{color:#fff;font-size:.82rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
 .site-footer p{font-size:.92rem;margin-bottom:9px}
 .site-footer .top>div:first-child a{color:var(--gold)}
 .site-footer img{width:96px;margin-bottom:16px}
 .site-footer .links a{display:block;color:#c2cde0;text-decoration:none;font-size:.92rem;padding:5px 0;transition:.15s}
 .site-footer .links a:hover{color:#fff;padding-left:4px}
-.site-footer .bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 0;font-size:.82rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#93a6c4}
+.site-footer .bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 24px;font-size:.82rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#93a6c4}
 
 /* ---------- Responsive ---------- */
 @media(max-width:980px){
