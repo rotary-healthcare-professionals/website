@@ -60,6 +60,7 @@ h1,h2,h3,h4{line-height:1.12;letter-spacing:-.018em;text-wrap:balance}
 .main-nav .btn-primary{color:var(--navy)}
 .main-nav .btn-primary:hover{background:var(--gold-2)}
 .dropdown{position:absolute;top:calc(100% + 4px);left:0;min-width:290px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);padding:10px;display:none;z-index:120}
+.dropdown::before{content:"";position:absolute;top:-8px;left:0;right:0;height:8px}
 .main-nav>div:hover .dropdown,.main-nav>div:focus-within .dropdown{display:block}
 .dropdown a{padding:10px 13px;font-size:.88rem;color:var(--ink)}
 .dropdown a:hover{color:var(--azure);background:var(--cloud)}
@@ -227,6 +228,7 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
   .has-dropdown>a{flex:1 1 auto}
   .submenu-toggle{display:flex;align-items:center;justify-content:center;align-self:stretch;min-width:54px;pointer-events:auto;font-size:1.2rem;color:var(--ink);border-bottom:1px solid var(--line)}
   .dropdown{flex-basis:100%;width:100%;position:static;box-shadow:none;border:0;min-width:0;padding:2px 0 10px 14px;display:none}
+  .dropdown::before{display:none}
   .main-nav>div:hover>.dropdown,.main-nav>div:focus-within>.dropdown{display:none}
   .main-nav .has-dropdown.expanded>.dropdown{display:block}
   .has-dropdown.expanded .caret{transform:rotate(180deg)}
