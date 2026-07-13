@@ -191,6 +191,19 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
 .news-item h3 a:hover{color:var(--azure)}
 .news-item p{color:var(--muted);font-size:.93rem}
 
+/* ---------- Partners directory ---------- */
+.partner-grid{columns:360px;column-gap:22px;margin-top:30px}
+.partner-card{break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px 20px;box-shadow:var(--shadow);overflow-wrap:break-word}
+.partner-card>header{border-bottom:1px solid var(--line);padding-bottom:14px}
+.partner-card h3{font-size:1.1rem;font-weight:800;color:var(--blue-dark);line-height:1.28}
+.partner-card .meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;margin-top:8px}
+.partner-card .meta .person{font-weight:700;color:var(--ink);font-size:.9rem}
+.partner-card .meta .dist{font-size:.72rem;font-weight:700;color:var(--azure);background:var(--cloud);padding:2px 9px;border-radius:999px;white-space:nowrap}
+.partner-card .email{display:inline-block;margin-top:8px;font-size:.88rem;font-weight:600;word-break:break-word}
+.partner-card dl{margin:0}
+.partner-card dt{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.partner-card dd{font-size:.92rem;color:#3c4a63;margin-top:3px;line-height:1.55}
+
 /* ---------- CTA band ---------- */
 .cta-band{background:linear-gradient(120deg,var(--gold) 0%,var(--gold-2) 100%);border-radius:var(--radius-lg);padding:52px 44px;text-align:center;color:var(--navy);box-shadow:var(--shadow-lg)}
 .cta-band h2{font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:800;margin-bottom:20px;letter-spacing:-.01em}
