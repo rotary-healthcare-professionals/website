@@ -1,5 +1,108 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const partners = [
+  {
+    club: "Westport Rotary Club, CT USA",
+    contact: "Joseph Carpenter, MD",
+    email: "jdcarp999@gmail.com",
+    summary: "We just completed a project at the Bwindi Community Hospital in Kanungu, Uganda. We outfitted 4 new ICU rooms and provided radiology equipment and general ward supplies. We worked with several other US Rotary clubs, the local Rotary club, ProjectCURE, Yale University, and the Catholic Medical Mission Board (NYC) for this project worth about a million US dollars.",
+    countries: "Uganda",
+    future: "A vision and dental clinic for the Bwindi Community Hospital. We are working with several organizations and other Rotary clubs to outfit the new clinic with equipment. We also hope to provide a CT scanner for the hospital.",
+    collab: "We would appreciate suggestions on where to find refurbished/affordable vision and dental equipment for this hospital caring for an underserved population. The CT scanner is obviously a big expense. The equipment needs to be serviceable locally.",
+    district: "District 7980",
+  },
+  {
+    club: "Rotary Club Chennai Meraki",
+    contact: "Tamilselvi Arjunan",
+    email: "atamilselvi@yahoo.com",
+    summary: "Cervical Cancer Prevention Project. Creating awareness for HPV vaccination. Providing sensitive HPV DNA testing in low resource settings.",
+    countries: "India",
+    future: "To expand the reach of cervical cancer screening for women between 30 to 60 years of age and to promote and provide HPV vaccination to underprivileged children below 15 years of age.",
+    collab: "Would like to know about teaching aids used for self sampling in women for cervical cancer screening. If any audio-visual aids are available to be shared, it would help in reaching out to more women.",
+    district: "District 3233",
+  },
+  {
+    club: "Rotary club of Masaka city, Uganda",
+    contact: "Mweruka Jolly",
+    email: "mwerukajolly2@gmail.com",
+    summary: "Public health dental officer.",
+    countries: "Uganda",
+    future: "To provide dental services to vulnerable people in rural areas.",
+    collab: "To partner with us in our community based organisation.",
+    district: "Uganda & Tanzania",
+  },
+  {
+    club: "Rotary club of Masaka city, Uganda",
+    contact: "Mweruka Jolly",
+    email: "mwerukajolly2@gmail.com",
+    summary: "We aim at providing dental and eye care services to vulnerable people in Uganda such as eye care and dental health education, tooth extraction, scaling and polishing, cementing, dentures, giving reading glasses and treatment of eye conditions.",
+    countries: "Uganda",
+    future: "To have a big facility which provides a wide range of dental and eye care treatment in the Masaka region.",
+    collab: "Any Rotarian or volunteer who wishes to participate in our dental and eye care outreach programme, and support us so that we may reach more areas of Uganda, can contact me by email.",
+    district: "District 9214",
+  },
+  {
+    club: "Coeur d'Alene Rotary Club",
+    contact: "Judith Pinkerton",
+    email: "judith@music4life.us",
+    summary: "Mental health fortified with an unprecedented music therapy protocol offering education, DIY tools and the Key2MEE music app to mitigate anxiety, anger, depression and sadness, while strengthening greater peace and joy to thrive through adversity.",
+    countries: "USA",
+    future: "Expand access across the USA, then outlying countries.",
+    collab: "Online on-demand training programs include DIY tools to manage moods with innovative music habits, guided by curriculum taught by trained Music4Life Specialists.",
+    district: "District 5080",
+  },
+  {
+    club: "C. Rotario Juárez Sur, México",
+    contact: "Lucy Figueroa",
+    email: "drafigueroarestrepo@hotmail.com",
+    summary: "Llevamos servicio de salud a colonias marginadas de Cd. Juárez y poblados cercanos. Consultas por médico general, especialista en medicina física y rehabilitación, pediatría, ginecología, optometrista, dentistas, psicología, apoyo espiritual, medicamentos, artículos de higiene personal y donación de arbolitos.",
+    countries: "Norte y Sur de México — Cd. Juárez, Chihuahua, frontera con USA (Texas, El Paso, Nuevo México)",
+    future: "Continuar realizando mínimo 1 feria de salud por mes.",
+    collab: "",
+    district: "District 4110",
+  },
+  {
+    club: "Guanipa, Venezuela",
+    contact: "Bárbaro Giraldo",
+    email: "barbarog84@gmail.com",
+    summary: "Médico internista y diabetólogo con ejercicio profesional privado. Director médico de centro de salud privado.",
+    countries: "Venezuela",
+    future: "Mantener el ejercicio de la profesión.",
+    collab: "Pudieran enviarme mensajes.",
+    district: "District 4370",
+  },
+  {
+    club: "Rotary Club of Bangalore South",
+    contact: "Dr Prafulla Thumati",
+    email: "thumatiprafulla@gmail.com",
+    summary: "We run many oral check-up camps and treatment camps, giving more importance to oral cancer screening.",
+    countries: "India",
+    future: "We plan to screen the population for oral cancer — as much of our community eats and chews tobacco — by collaborating with dental associations like the Indian Dental Association.",
+    collab: "By providing financial support for procuring the instruments and equipment used for diagnosing these oral lesions.",
+    district: "District 3191",
+  },
+  {
+    club: "Rotary Club Sumaré, São Paulo — Brazil",
+    contact: "Fabiana Ratti",
+    email: "fabianaratti@gmail.com",
+    summary: "We are running the Café com Freud e Lacan mental health movement, a way to make mental health more accessible with the concepts of Lacanian psychoanalysis — through books, videos and lectures. We go to the clubs and institutions that the clubs contribute to.",
+    countries: "Brazil",
+    future: "Reach other countries. Translate books. Release videos in English.",
+    collab: "Take care of your mental health, and let's help each other spread these ideas.",
+    district: "District 7561",
+  },
+  {
+    club: "Rotary Club of el Tahrir",
+    contact: "Dr. Amal El Sisi",
+    email: "elsis96@yahoo.com",
+    summary: "Heart to heart.",
+    countries: "",
+    future: "",
+    collab: "",
+    district: "",
+  },
+];
 ---
 <Base title={"Our partners — International Rotary Fellowship of Healthcare Professionals"} description={"Rotary clubs and partners around the world who share their health programmes and collaborate with the International Rotary Fellowship of Healthcare Professionals."}>
 <div class="page-hero">
@@ -11,126 +114,27 @@ import Base from '../layouts/Base.astro';
 
 <section>
   <div class="container">
-    <div class="prose">
-      <p>Rotary clubs around the world have shared details of their health programmes with us. If you would like your club&rsquo;s programme to be listed, please <a href="/contact">contact us</a>.</p>
-      <div style="overflow-x:auto">
-        <table>
-          <thead>
-            <tr>
-              <th>Name of your Club and Country</th>
-              <th>Name of the Contact person</th>
-              <th>Email</th>
-              <th>Brief summary of your health programme(s)</th>
-              <th>Main countries of operation</th>
-              <th>Your plans for the future</th>
-              <th>How do you think we might collaborate/What message would you like to send to other Rotarians?</th>
-              <th>Rotary Club and District</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Westport Rotary Club, CT USA</td>
-              <td>Joseph Carpenter, MD</td>
-              <td><a href="mailto:jdcarp999@gmail.com">jdcarp999@gmail.com</a></td>
-              <td>We just completed a project at the Bwindi Community Hospital in Kanungu, Uganda. We outfitted 4 new ICU rooms and provided radiology equipment and general ward supplies. We worked with several other US Rotary clubs, the local Rotary club, ProjectCURE, Yale University, and the Catholic Medical Mission Board (NYC) for this project worth about a million US dollars.</td>
-              <td>Uganda</td>
-              <td>A vision and dental clinic for the Bwindi Community Hospital. We are working with several organizations and other Rotary clubs to outfit the new clinic with equipment. We also hope to provide a CT scanner for the hospital.</td>
-              <td>We would appreciate suggestions on where to find refurbished/affordable vision and dental equipment for this hospital caring for an underserved population. The CT scanner is obviously a big expense. The equipment needs to be serviceable locally.</td>
-              <td>Westport Rotary Club, CT, USA 7980</td>
-            </tr>
-            <tr>
-              <td>Rotary Club Chennai Meraki</td>
-              <td>Tamilselvi Arjunan</td>
-              <td><a href="mailto:atamilselvi@yahoo.com">atamilselvi@yahoo.com</a></td>
-              <td>Cervical Cancer Prevention Project. Creating awareness for HPV vaccination. Providing sensitive HPV DNA testing in low resource settings</td>
-              <td>India</td>
-              <td>To expand the reach of cervical cancer screening for women between 30 to 60 years of age and to promote and provide HPV vaccination to underprivileged children below 15 years of age.</td>
-              <td>Would like to know about teaching aids used for self sampling in women for cervical cancer screening. If any audio - visual aids are available to be shared, it would help in reaching out to more women.</td>
-              <td>Rotary Club of Chennai Meraki 3233</td>
-            </tr>
-            <tr>
-              <td>Rotary club of Masaka city Uganda</td>
-              <td>Mweruka Jolly</td>
-              <td><a href="mailto:mwerukajolly2@gmail.com">mwerukajolly2@gmail.com</a></td>
-              <td>Am a public health dental officer</td>
-              <td>Uganda</td>
-              <td>To provide dental services to volunerable in rural areas</td>
-              <td>To partner with us in our community based organisation</td>
-              <td>Rotary club of Masaka city Uganda and Tanzania</td>
-            </tr>
-            <tr>
-              <td>Rotary club of Masaka city Uganda</td>
-              <td>Mweruka Jolly</td>
-              <td><a href="mailto:mwerukajolly2@gmail.com">mwerukajolly2@gmail.com</a></td>
-              <td>We aim at providing dental and eye care services to volunerable people in Uganda such eye care and dental health education, tooth extraction, scaling and polishing, cementing, dentures, giving reading glasses and treatment eye condition.</td>
-              <td>Uganda</td>
-              <td>To have a big facility which provides a wide range of dental and eye care treatment in Masaka region</td>
-              <td>If there is any Rotarian or volunteers who wish to participate in our dental and eye care outreaches program and also support us so that we may reach to more areas of Uganda can contact me on my email address mwerukajolly2@gmail.com</td>
-              <td>Rotary club of Masaka city Uganda 9214</td>
-            </tr>
-            <tr>
-              <td>Coeur d'Alene Rotary Club</td>
-              <td>Judith Pinkerton</td>
-              <td><a href="mailto:judith@music4life.us">judith@music4life.us</a></td>
-              <td>Mental health fortified with an unprecedented music therapy protocol offering education, DIY tools and Key2MEE music app to mitigate anxiety, anger, depression and sadness, at the same time strengthening greater peace and joy to thrive through adversity.</td>
-              <td>USA</td>
-              <td>Expand access across the USA, then outlying countries.</td>
-              <td>Online on demand training programs include DIY tools to manage moods with innovative music habits guided with curriculum taught by trained Music4Life Specialists.</td>
-              <td>Coeur d'Alene Rotary Club 5080</td>
-            </tr>
-            <tr>
-              <td>C. Rotario Ju&aacute;rez Sur./ M&eacute;xico</td>
-              <td>Lucy Figueroa</td>
-              <td><a href="mailto:drafigueroarestrepo@hotmail.com">drafigueroarestrepo@hotmail.com</a></td>
-              <td>Llevamos servicio de salud a colonias marginada de Cd. Ju&aacute;rez y poblados cercanos. Consultas por medico general, especialista en medicina f&iacute;sica y rehabilitaci&oacute;n, pediatr&iacute;a, ginecolog&iacute;a, optometrista, dentistas, psicolog&iacute;a, apoyo espiritual, medicamentos, art&iacute;culos de higiene personal, donaci&oacute;n de &aacute;rbolitos</td>
-              <td>Norte y Sur de M&eacute;xico Cd. Ju&aacute;rez Chihuahua frontera inmediata con USA, Texas, El paso y Nuevo M&eacute;xico</td>
-              <td>continuar realizando m&iacute;nimo 1 feria de salud por mes</td>
-              <td></td>
-              <td>C.R, Ju&aacute;rez Sur 4110</td>
-            </tr>
-            <tr>
-              <td>Guanipa Venezuela</td>
-              <td>Barbaro Giraldo</td>
-              <td><a href="mailto:barbarog84@gmail.com">barbarog84@gmail.com</a></td>
-              <td>M&eacute;dico internista y diabetologo con ejercicio profesional privado. Director m&eacute;dico de centro de salud privado</td>
-              <td>Venezuela</td>
-              <td>Mantener el ejercicio de la profesi&oacute;n</td>
-              <td>Pudieran enviarme mensajes</td>
-              <td>GUANIPA 4370</td>
-            </tr>
-            <tr>
-              <td>Rotary Club of Bangalore South, Dist. 3191.</td>
-              <td>Dr Prafulla Thumati</td>
-              <td><a href="mailto:thumatiprafulla@gmail.com">thumatiprafulla@gmail.com</a></td>
-              <td>We do lot of Oral check up camps and treatment camps. Give more importance for Oral Cancer screening.</td>
-              <td>India</td>
-              <td>We have plan for screening the Population for Oral Cancer, as lot our community eat and chew tobacco related Projects by collaborating with Dental associations like Indian Dental Association.</td>
-              <td>By providing financial support for procuring the instruments and equipment's fused for diagnosing these Oral lesions.</td>
-              <td>Rotary Club of Bengalore South 3191</td>
-            </tr>
-            <tr>
-              <td>Rotary Club Sumar&eacute; S&atilde;o Paulo - Brazil</td>
-              <td>fabiana Ratti</td>
-              <td><a href="mailto:fabianaratti@gmail.com">fabianaratti@gmail.com</a></td>
-              <td>We are running the Caf&eacute; com Freud e Lacan mental health movement, a way to make mental health more accessible with the concepts of Lacanian psychoanalysis. Through books, videos and lectures. We go to the clubs and institutions that the clubs contribute to. Do you already have mental health projects? How can I participate in other health events?</td>
-              <td>Brazil</td>
-              <td>Reach other countries. Translate books. Release videos in English</td>
-              <td>Take care of your mental healthy and let's healping us spread this ideas</td>
-              <td>Sumar&eacute; Rotary Club 7561 BR</td>
-            </tr>
-            <tr>
-              <td>Rotary Club of el Tahrir</td>
-              <td>Dr. Amal El Sisi</td>
-              <td><a href="mailto:elsis96@yahoo.com">elsis96@yahoo.com</a></td>
-              <td>Hearth to hearth</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <p class="section-lead" style="margin-bottom:6px">Rotary clubs around the world have shared details of their health programmes with us. If you would like your club&rsquo;s programme to be listed, please <a href="/contact">contact us</a>.</p>
+
+    <div class="partner-grid">
+      {partners.map((p) => (
+        <article class="partner-card">
+          <header>
+            <h3>{p.club}</h3>
+            <div class="meta">
+              <span class="person">{p.contact}</span>
+              {p.district && <span class="dist">{p.district}</span>}
+            </div>
+            {p.email && <a class="email" href={`mailto:${p.email}`}>{p.email}</a>}
+          </header>
+          <dl>
+            {p.summary && (<><dt>Health programme</dt><dd>{p.summary}</dd></>)}
+            {p.countries && (<><dt>Countries of operation</dt><dd>{p.countries}</dd></>)}
+            {p.future && (<><dt>Plans for the future</dt><dd>{p.future}</dd></>)}
+            {p.collab && (<><dt>How we might collaborate</dt><dd>{p.collab}</dd></>)}
+          </dl>
+        </article>
+      ))}
     </div>
   </div>
 </section>

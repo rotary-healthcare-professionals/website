@@ -10,9 +10,7 @@ content:
     type: collection
     path: src/content/news
     format: yaml-frontmatter
-    filename:
-      template: "{primary}.mdoc"
-      field: create
+    filename: "{fields.title}.mdoc"
     view:
       fields: [title, date, summary]
       primary: title

@@ -26,13 +26,15 @@ const { title, description = '' } = Astro.props;
       <img src="/images/2025/02/RFHP_Logofinal_round-105x83.png" alt="IRFHP logo" />
       <span>International Rotary Fellowship<br />of Healthcare Professionals</span>
     </a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.main-nav').classList.toggle('open')">
+    <button class="nav-toggle" aria-label="Open menu" aria-controls="mainNav" aria-expanded="false" type="button">
       <span></span><span></span><span></span>
     </button>
-    <nav class="main-nav">
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-close" aria-label="Close menu" type="button">&times;</button>
       <div><a href="/">Home</a></div>
-      <div>
-        <a href="/projects">Service projects ▾</a>
+      <div class="has-dropdown">
+        <a href="/projects">Service projects</a>
+        <button class="submenu-toggle" type="button" aria-label="Toggle Service projects submenu" aria-expanded="false"><span class="caret">▾</span></button>
         <div class="dropdown">
           <a href="/kmc">Kangaroo Mother Care (KMC)</a>
           <a href="/cervical-cancer">Cervical cancer</a>
@@ -48,8 +50,9 @@ const { title, description = '' } = Astro.props;
         </div>
       </div>
       <div><a href="/news">News</a></div>
-      <div>
-        <a href="/about">About us ▾</a>
+      <div class="has-dropdown">
+        <a href="/about">About us</a>
+        <button class="submenu-toggle" type="button" aria-label="Toggle About us submenu" aria-expanded="false"><span class="caret">▾</span></button>
         <div class="dropdown">
           <a href="/our-journey">Our journey</a>
           <a href="/heritage">Our Heritage</a>
@@ -58,14 +61,15 @@ const { title, description = '' } = Astro.props;
           <a href="/conventions">Rotary International Conventions</a>
         </div>
       </div>
-      <div>
-        <a href="/membership">Membership ▾</a>
+      <div class="has-dropdown">
+        <a href="/membership">Membership</a>
+        <button class="submenu-toggle" type="button" aria-label="Toggle Membership submenu" aria-expanded="false"><span class="caret">▾</span></button>
         <div class="dropdown">
           <a href="/partners">Our partners</a>
         </div>
       </div>
       <div><a href="/contact">Contact</a></div>
-      <div style="margin-left:8px"><a class="btn btn-primary" href="/donate">Donate</a></div>
+      <div class="donate-item"><a class="btn btn-primary" href="/donate">Donate</a></div>
     </nav>
   </div>
 </header>
@@ -103,5 +107,76 @@ const { title, description = '' } = Astro.props;
 </footer>
 
 <script is:inline>document.getElementById('god').textContent = new Date().getFullYear();</script>
+<script is:inline>
+(function () {
+  var nav = document.getElementById('mainNav');
+  if (!nav) return;
+  var toggle = document.querySelector('.nav-toggle');
+  var closeBtn = nav.querySelector('.nav-close');
+
+  // otvori podizbornik koji sadrži trenutnu stranicu
+  function expandCurrent() {
+    var here = (location.pathname || '/').replace(/\/+$/, '') || '/';
+    nav.querySelectorAll('.has-dropdown').forEach(function (item) {
+      var match = [].some.call(item.querySelectorAll('a'), function (a) {
+        return (a.pathname || '').replace(/\/+$/, '') === here;
+      });
+      if (match) {
+        item.classList.add('expanded');
+        var t = item.querySelector('.submenu-toggle');
+        if (t) t.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
+  function openNav() {
+    expandCurrent();
+    nav.classList.add('open');
+    document.body.classList.add('nav-open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+  }
+  function closeNav() {
+    nav.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    nav.querySelectorAll('.has-dropdown.expanded').forEach(function (item) {
+      item.classList.remove('expanded');
+      var t = item.querySelector('.submenu-toggle');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    });
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  }
+  if (toggle) toggle.addEventListener('click', function () {
+    if (nav.classList.contains('open')) closeNav(); else openNav();
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeNav);
+
+  nav.querySelectorAll('.submenu-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var item = btn.closest('.has-dropdown');
+      if (!item) return;
+      var willOpen = !item.classList.contains('expanded');
+      // harmonika: zatvori sve druge otvorene podizbornike
+      nav.querySelectorAll('.has-dropdown.expanded').forEach(function (other) {
+        if (other !== item) {
+          other.classList.remove('expanded');
+          var ot = other.querySelector('.submenu-toggle');
+          if (ot) ot.setAttribute('aria-expanded', 'false');
+        }
+      });
+      item.classList.toggle('expanded', willOpen);
+      btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) closeNav();
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 760 && nav.classList.contains('open')) closeNav();
+  });
+})();
+</script>
 </body>
 </html>
