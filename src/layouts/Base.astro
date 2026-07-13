@@ -114,7 +114,23 @@ const { title, description = '' } = Astro.props;
   var toggle = document.querySelector('.nav-toggle');
   var closeBtn = nav.querySelector('.nav-close');
 
+  // otvori podizbornik koji sadrži trenutnu stranicu
+  function expandCurrent() {
+    var here = (location.pathname || '/').replace(/\/+$/, '') || '/';
+    nav.querySelectorAll('.has-dropdown').forEach(function (item) {
+      var match = [].some.call(item.querySelectorAll('a'), function (a) {
+        return (a.pathname || '').replace(/\/+$/, '') === here;
+      });
+      if (match) {
+        item.classList.add('expanded');
+        var t = item.querySelector('.submenu-toggle');
+        if (t) t.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
   function openNav() {
+    expandCurrent();
     nav.classList.add('open');
     document.body.classList.add('nav-open');
     if (toggle) toggle.setAttribute('aria-expanded', 'true');
