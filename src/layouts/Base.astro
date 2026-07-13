@@ -140,8 +140,17 @@ const { title, description = '' } = Astro.props;
       e.stopPropagation();
       var item = btn.closest('.has-dropdown');
       if (!item) return;
-      var open = item.classList.toggle('expanded');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      var willOpen = !item.classList.contains('expanded');
+      // harmonika: zatvori sve druge otvorene podizbornike
+      nav.querySelectorAll('.has-dropdown.expanded').forEach(function (other) {
+        if (other !== item) {
+          other.classList.remove('expanded');
+          var ot = other.querySelector('.submenu-toggle');
+          if (ot) ot.setAttribute('aria-expanded', 'false');
+        }
+      });
+      item.classList.toggle('expanded', willOpen);
+      btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
     });
   });
 

@@ -166,7 +166,7 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
 .page-hero .crumb a:hover{text-decoration:underline}
 
 /* ---------- Prose ---------- */
-.prose{max-width:70ch;overflow-wrap:break-word}
+.prose{max-width:70ch;margin-inline:auto;overflow-wrap:break-word}
 .prose>*+*{margin-top:0}
 .prose h2{font-size:1.5rem;font-weight:800;margin:40px 0 14px;color:var(--blue-dark)}
 .prose h3{font-size:1.22rem;font-weight:800;margin:30px 0 10px;color:var(--blue-dark)}
@@ -242,10 +242,15 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
   .has-dropdown>a{flex:1 1 auto}
   .has-dropdown>a::after{display:none}
   .submenu-toggle{display:flex;align-items:center;justify-content:center;align-self:stretch;min-width:54px;pointer-events:auto;font-size:1.2rem;color:var(--ink);border-bottom:1px solid var(--line)}
-  .dropdown{flex-basis:100%;width:100%;position:static;box-shadow:none;border:0;min-width:0;padding:2px 0 10px 14px;display:none}
+  .dropdown{flex-basis:100%;width:100%;position:static;box-shadow:none;border:0;min-width:0;display:block;max-height:0;overflow:hidden;padding:0 0 0 14px;transition:max-height .32s ease,padding .32s ease}
   .dropdown::before{display:none}
-  .main-nav>div:hover>.dropdown,.main-nav>div:focus-within>.dropdown{display:none}
-  .main-nav .has-dropdown.expanded>.dropdown{display:block}
+  .main-nav .has-dropdown.expanded>.dropdown{max-height:640px;padding:2px 0 10px 14px}
+  /* dodir: bez plavog bljeska i bez "lijepljivog" hovera */
+  .main-nav a,.submenu-toggle,.nav-close,.nav-toggle{-webkit-tap-highlight-color:transparent}
+  .main-nav>div>a:not(.btn):hover{background:none;color:var(--ink)}
+  .dropdown a:hover{background:none;color:var(--muted)}
+  .submenu-toggle:hover{background:none}
+  .main-nav>div>a:not(.btn):active,.dropdown a:active{background:var(--cloud)}
   .has-dropdown.expanded .caret{transform:rotate(180deg)}
   .dropdown a{padding:12px 4px;font-size:.98rem;color:var(--muted)}
   .donate-item{margin:16px 0 0}
