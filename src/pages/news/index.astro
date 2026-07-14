@@ -1,11 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import { formatDate as fmt } from '../../lib/date';
 
 const items = (await getCollection('news')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
-const fmt = (d: Date) => d.toISOString().slice(0, 10);
 ---
 <Base
   title="News — International Rotary Fellowship of Healthcare Professionals"

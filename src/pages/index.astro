@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import { formatDate as fmt } from '../lib/date';
 
 const heroImages = [
   '/images/2024/07/Homepage-main-photo.jpg',
@@ -13,8 +14,6 @@ const heroImages = [
 const latest = (await getCollection('news'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
-const fmt = (d: Date) =>
-  new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).format(d);
 ---
 <Base title={"International Rotary Fellowship of Healthcare Professionals"} description={"You can make a difference — International Rotary Fellowship of Healthcare Professionals. Humanitarian health projects, education and a global network of healthcare professionals."}>
 <!-- HERO -->

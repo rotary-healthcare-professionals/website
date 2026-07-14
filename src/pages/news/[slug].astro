@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
+import { formatDate as fmt } from '../../lib/date';
 
 export async function getStaticPaths() {
   const items = await getCollection('news');
@@ -9,7 +10,6 @@ export async function getStaticPaths() {
 
 const { item } = Astro.props;
 const { Content } = await render(item);
-const fmt = (d: Date) => d.toISOString().slice(0, 10);
 ---
 <Base title={`${item.data.title} — IRFHP`} description={item.data.summary}>
   <div class="page-hero">
