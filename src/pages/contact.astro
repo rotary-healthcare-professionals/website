@@ -1,10 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const mapQuery = 'Highfield House, Red Shute Hill, Thatcham, RG18 9QH';
-const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=15&output=embed`;
-const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
 const email = 'rotaryhealthprofessionals@gmail.com';
+const mapQuery = 'Highfield House, Red Shute Hill, Thatcham, RG18 9QH';
+const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
 ---
 <Base title={"Contact Us — International Rotary Fellowship of Healthcare Professionals"} description={"We are ready to answer all your questions and help you find the best cause to help. Contact the International Rotary Fellowship of Healthcare Professionals."}>
 <div class="page-hero">
@@ -22,11 +21,7 @@ const email = 'rotaryhealthprofessionals@gmail.com';
       <!-- Form -->
       <div class="contact-formwrap">
         <h2>Send us a message</h2>
-        <form id="contactForm" class="contact-form" action={`https://formsubmit.co/${email}`} method="POST">
-          <input type="hidden" name="_subject" value="New enquiry from the IRFHP website">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+        <form id="contactForm" class="contact-form">
           <label>Your name
             <input type="text" name="name" required autocomplete="name">
           </label>
@@ -39,7 +34,7 @@ const email = 'rotaryhealthprofessionals@gmail.com';
           <button type="submit" class="btn btn-primary">Send message</button>
         </form>
         <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
-        <p class="form-note">We usually reply within a few working days. Prefer e-mail? Write to us directly using the details on the right.</p>
+        <p class="form-note">Pressing “Send message” opens your e-mail app with everything filled in — just press send. Prefer to write yourself? Use the details on the right.</p>
       </div>
 
       <!-- Reach us -->
@@ -73,6 +68,7 @@ const email = 'rotaryhealthprofessionals@gmail.com';
             <div class="ci-body">
               <span class="ci-label">Address</span>
               <span class="ci-val">Highfield House, Red Shute Hill, Thatcham, RG18 9QH, United Kingdom</span>
+              <a class="map-open" href={mapLink} target="_blank" rel="noopener">View on Google Maps <span class="ext-arrow" aria-hidden="true">↗</span></a>
             </div>
           </li>
           <li>
@@ -86,19 +82,22 @@ const email = 'rotaryhealthprofessionals@gmail.com';
       </div>
     </div>
 
-    <!-- Map (full width) -->
-    <div class="contact-map-full">
-      <iframe class="map-frame" src={mapEmbed} title="Map showing Highfield House, Red Shute Hill, Thatcham" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <a class="map-open" href={mapLink} target="_blank" rel="noopener">Open in Google Maps <span class="ext-arrow" aria-hidden="true">↗</span></a>
-    </div>
-
     <div class="branches">
       <h2>Our branches</h2>
-      <p class="section-lead">Alongside the United Kingdom we have active branches in Egypt and Uganda. Enquiries for all branches are handled through the same contact details above.</p>
-      <div class="branch-chips">
-        <span>United Kingdom</span>
-        <span>Egypt</span>
-        <span>Uganda</span>
+      <p class="section-lead">Alongside our UK base, we have active branches in Egypt and Uganda. Enquiries for all branches are handled through the contact details above.</p>
+      <div class="branch-cards">
+        <div class="branch-card">
+          <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="b-name">United Kingdom</div><div class="b-label">Headquarters</div></div>
+        </div>
+        <div class="branch-card">
+          <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="b-name">Egypt</div><div class="b-label">Active branch</div></div>
+        </div>
+        <div class="branch-card">
+          <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="b-name">Uganda</div><div class="b-label">Active branch</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -106,30 +105,22 @@ const email = 'rotaryhealthprofessionals@gmail.com';
 
 <script is:inline>
 (function () {
-  /* Kontakt-forma preko FormSubmit AJAX-a (ostaje na stranici) */
+  /* Kontakt-forma preko mailto — otvara korisnikovu mail aplikaciju, bez servisa/aktivacije */
   var form = document.getElementById('contactForm');
   var status = document.getElementById('formStatus');
-  if (form && status) {
+  if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (form.querySelector('.hp') && form.querySelector('.hp').value) return; // spam trap
-      var btn = form.querySelector('button[type=submit]');
-      var orig = btn.textContent;
-      btn.disabled = true; btn.textContent = 'Sending…';
-      status.className = 'form-status';
-      fetch(form.getAttribute('action').replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
-        method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
-      }).then(function (r) { return r.json(); }).then(function (res) {
-        if (res.success === 'true' || res.success === true) {
-          form.style.display = 'none';
-          status.className = 'form-status ok';
-          status.textContent = 'Thank you — your message has been sent. We will get back to you soon.';
-        } else { throw new Error(); }
-      }).catch(function () {
-        btn.disabled = false; btn.textContent = orig;
-        status.className = 'form-status err';
-        status.innerHTML = 'Sorry, something went wrong. Please e-mail us directly at <a href="mailto:rotaryhealthprofessionals@gmail.com">rotaryhealthprofessionals@gmail.com</a>.';
-      });
+      var g = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
+      var name = g('name'), mail = g('email'), msg = g('message');
+      var subject = 'Website enquiry' + (name ? ' from ' + name : '');
+      var body = 'Name: ' + name + '\nE-mail: ' + mail + '\n\n' + msg;
+      window.location.href = 'mailto:rotaryhealthprofessionals@gmail.com?subject=' +
+        encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      if (status) {
+        status.className = 'form-status ok';
+        status.innerHTML = 'Your e-mail app should open with the message ready — just press <strong>Send</strong>. If nothing happened, write to us at <a href="mailto:rotaryhealthprofessionals@gmail.com">rotaryhealthprofessionals@gmail.com</a>.';
+      }
     });
   }
 
