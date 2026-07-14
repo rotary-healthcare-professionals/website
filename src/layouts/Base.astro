@@ -108,44 +108,91 @@ const { title, description = '' } = Astro.props;
 
 <script is:inline>document.getElementById('god').textContent = new Date().getFullYear();</script>
 <script is:inline>
-/* PDF-ovi u vijestima: link na .pdf -> ugrađeni prikaz (desktop) / kartica "Otvori" (mobitel) */
+/* Dokumenti u sadržaju:
+   - PDF unutar vijesti (/news/...) -> ugrađeni prikaz (iframe desktop / kartica mobitel)
+   - svi ostali dokumenti (PDF na stranicama, Word, Excel, PowerPoint) -> uredna "dokument-kartica" za preuzimanje
+   Zatim: vanjski linkovi u sadržaju dobiju malu strelicu ↗. */
 (function () {
-  var links = document.querySelectorAll('.prose a[href$=".pdf"]');
-  if (!links.length) return;
+  var isNews = /\/news\//.test(location.pathname);
+  var TYPES = {
+    pdf:  { css: 'doc-pdf',   ico: 'PDF', label: 'PDF document' },
+    doc:  { css: 'doc-word',  ico: 'DOC', label: 'Word document' },
+    docx: { css: 'doc-word',  ico: 'DOC', label: 'Word document' },
+    xls:  { css: 'doc-excel', ico: 'XLS', label: 'Excel spreadsheet' },
+    xlsx: { css: 'doc-excel', ico: 'XLS', label: 'Excel spreadsheet' },
+    ppt:  { css: 'doc-ppt',   ico: 'PPT', label: 'PowerPoint' },
+    pptx: { css: 'doc-ppt',   ico: 'PPT', label: 'PowerPoint' }
+  };
   var seen = {};
-  [].forEach.call(links, function (a) {
+  [].forEach.call(document.querySelectorAll('.prose a[href]'), function (a) {
     if (!a.isConnected) return;
-    var href = a.getAttribute('href');
-    if (!href) return;
-    if (seen[href]) {
-      var dup = a.closest('p'); a.remove();
-      if (dup && !dup.textContent.trim() && !dup.querySelector('img, a')) dup.remove();
+    if (a.querySelector('img')) return;                 // slika-link ostaje netaknut
+    var href = a.getAttribute('href'); if (!href) return;
+    var m = href.split('?')[0].split('#')[0].match(/\.([a-z0-9]+)$/i);
+    if (!m) return;
+    var ext = m[1].toLowerCase();
+    var t = TYPES[ext]; if (!t) return;
+
+    if (seen[href]) {                                   // isti dokument naveden dvaput
+      var dp = a.closest('li') || a.closest('p'); a.remove();
+      if (dp && !dp.textContent.trim() && !dp.querySelector('img, a')) dp.remove();
       return;
     }
     seen[href] = true;
+
     var label = (a.textContent || '').trim();
-    if (!label || /^(download|pdf)$/i.test(label)) {
-      label = decodeURIComponent(href.split('/').pop().replace(/\.pdf$/i, '')).replace(/[-_]+/g, ' ').trim();
+    if (!label || /^(download|pdf|click here|more information)$/i.test(label)) {
+      label = decodeURIComponent(href.split('/').pop().replace(/\.[a-z0-9]+$/i, '')).replace(/[-_]+/g, ' ').trim();
     }
-    var fig = document.createElement('figure');
-    fig.className = 'pdf-doc';
-    var frame = document.createElement('iframe');
-    frame.className = 'pdf-frame'; frame.src = href; frame.title = label; frame.loading = 'lazy';
+    var container = a.closest('li') || a.closest('p') || a;
+
+    /* PDF u vijesti -> ugrađeni prikaz */
+    if (ext === 'pdf' && isNews) {
+      var fig = document.createElement('figure');
+      fig.className = 'pdf-doc';
+      var frame = document.createElement('iframe');
+      frame.className = 'pdf-frame'; frame.src = href; frame.title = label; frame.loading = 'lazy';
+      var mc = document.createElement('a');
+      mc.className = 'pdf-card'; mc.href = href; mc.target = '_blank'; mc.rel = 'noopener';
+      var mi = document.createElement('span'); mi.className = 'pdf-ico'; mi.textContent = 'PDF';
+      var mm = document.createElement('span'); mm.className = 'pdf-meta';
+      var mn = document.createElement('span'); mn.className = 'pdf-name'; mn.textContent = label;
+      var ms = document.createElement('span'); ms.className = 'pdf-sub'; ms.textContent = 'Open document';
+      mm.appendChild(mn); mm.appendChild(ms);
+      var ma = document.createElement('span'); ma.className = 'pdf-open'; ma.textContent = '›';
+      mc.appendChild(mi); mc.appendChild(mm); mc.appendChild(ma);
+      var open = document.createElement('a');
+      open.className = 'pdf-openfull'; open.href = href; open.target = '_blank'; open.rel = 'noopener';
+      open.textContent = 'Open full screen / download';
+      fig.appendChild(frame); fig.appendChild(mc); fig.appendChild(open);
+      container.parentNode.replaceChild(fig, container);
+      return;
+    }
+
+    /* Sve ostalo -> dokument-kartica za preuzimanje */
     var card = document.createElement('a');
-    card.className = 'pdf-card'; card.href = href; card.target = '_blank'; card.rel = 'noopener';
-    var ico = document.createElement('span'); ico.className = 'pdf-ico'; ico.textContent = 'PDF';
-    var meta = document.createElement('span'); meta.className = 'pdf-meta';
-    var nm = document.createElement('span'); nm.className = 'pdf-name'; nm.textContent = label;
-    var sub = document.createElement('span'); sub.className = 'pdf-sub'; sub.textContent = 'Open document';
+    card.className = 'doc-card'; card.href = href; card.target = '_blank'; card.rel = 'noopener';
+    var ico = document.createElement('span'); ico.className = 'doc-ico ' + t.css; ico.textContent = t.ico;
+    var meta = document.createElement('span'); meta.className = 'doc-meta';
+    var nm = document.createElement('span'); nm.className = 'doc-name'; nm.textContent = label;
+    var sub = document.createElement('span'); sub.className = 'doc-sub'; sub.textContent = t.label + ' · Download';
     meta.appendChild(nm); meta.appendChild(sub);
-    var arr = document.createElement('span'); arr.className = 'pdf-open'; arr.textContent = '›';
+    var arr = document.createElement('span'); arr.className = 'doc-open'; arr.textContent = '↓';
     card.appendChild(ico); card.appendChild(meta); card.appendChild(arr);
-    var open = document.createElement('a');
-    open.className = 'pdf-openfull'; open.href = href; open.target = '_blank'; open.rel = 'noopener';
-    open.textContent = 'Open full screen / download';
-    fig.appendChild(frame); fig.appendChild(card); fig.appendChild(open);
-    var container = a.closest('p') || a;
-    container.parentNode.replaceChild(fig, container);
+    container.parentNode.replaceChild(card, container);
+  });
+
+  /* Vanjski linkovi u sadržaju -> mala strelica ↗ (ne dira gumbe ni slika-linkove) */
+  var host = location.hostname;
+  [].forEach.call(document.querySelectorAll('.prose a[href^="http"]'), function (a) {
+    if (a.classList.contains('btn')) return;
+    if (a.querySelector('img')) return;
+    var u; try { u = new URL(a.href); } catch (e) { return; }
+    if (u.hostname === host) return;
+    a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener');
+    var s = document.createElement('span');
+    s.className = 'ext-arrow'; s.setAttribute('aria-hidden', 'true'); s.textContent = '↗';
+    a.appendChild(s);
   });
 })();
 </script>
