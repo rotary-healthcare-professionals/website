@@ -5,62 +5,152 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IRFHP — Upute za uređivanje vijesti</title>
 <style>
-  :root{--blue:#134a8e;--navy:#0a1e40;--gold:#f4a81c;--ink:#12233e;--muted:#5a6b85;--bg:#f5f8fc;--line:#dce6f2;--card:#fff}
-  *{box-sizing:border-box}body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
-  header{background:linear-gradient(115deg,var(--navy),var(--blue));color:#fff;padding:40px 24px}header div,main{max-width:850px;margin:auto}header p{color:#d5e4f5;max-width:65ch}
-  main{padding:28px 24px 60px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:18px}h1,h2{line-height:1.25}h2{color:var(--navy);font-size:1.25rem}li{margin:7px 0}code{background:#e9f1fa;padding:2px 6px;border-radius:5px}.note{border-left:4px solid var(--gold);background:#fcecc9;padding:12px 16px;border-radius:0 8px 8px 0}a{color:#0a62b4}
+  :root{--blue:#134a8e;--navy:#0a1e40;--azure:#0a62b4;--gold:#f4a81c;--ink:#12233e;--muted:#5a6b85;--bg:#f5f8fc;--line:#dce6f2;--card:#fff;--cloud:#e9f1fa}
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+  header{background:linear-gradient(115deg,var(--navy),var(--blue));color:#fff;padding:40px 24px}
+  header div,main{max-width:850px;margin:auto}
+  header p{color:#d5e4f5;max-width:65ch}
+  main{padding:28px 24px 60px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:18px}
+  h1,h2{line-height:1.25}
+  h2{color:var(--navy);font-size:1.25rem;margin:0 0 4px}
+  .step{color:var(--azure);font-weight:800;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+  ol,ul{margin:10px 0 0;padding-left:22px}li{margin:7px 0}
+  code{background:var(--cloud);padding:2px 6px;border-radius:5px;font-size:.9em}
+  kbd{background:#fff;border:1px solid #c3d0e2;border-bottom-width:2px;border-radius:5px;padding:1px 6px;font-size:.85em;font-family:inherit}
+  .note{border-left:4px solid var(--gold);background:#fcecc9;padding:12px 16px;border-radius:0 8px 8px 0;margin-top:14px}
+  .tip{border-left:4px solid var(--azure);background:var(--cloud);padding:12px 16px;border-radius:0 8px 8px 0;margin-top:14px}
+  a{color:var(--azure)}
+  figure{margin:16px 0 4px}
+  figure img{width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 18px rgba(13,46,94,.10);display:block}
+  .ph{border:2px dashed #b9c8dc;border-radius:10px;background:#fbfdff;color:var(--muted);padding:34px 18px;text-align:center;font-size:.9rem}
+  figcaption{font-size:.82rem;color:var(--muted);margin-top:7px;text-align:center}
+  .toc{font-size:.92rem}.toc a{text-decoration:none}.toc li{margin:4px 0}
 </style>
 </head>
 <body>
 <header><div>
-  <h1>Uređivanje vijesti</h1>
-  <p>Kratke upute za Karlu, Dragu i druge ovlaštene urednike IRFHP websitea.</p>
+  <h1>Uređivanje vijesti — vodič</h1>
+  <p>Kratke, praktične upute za Karlu, Dragu i druge urednike: kako dodati, urediti i obrisati vijest te ubaciti slike. Cijeli sadržaj se uređuje kroz Pages CMS — nije potrebno nikakvo programiranje.</p>
 </div></header>
 <main>
+
   <section class="card">
-    <h2>Prijava</h2>
-    <ol>
-      <li>Otvori <code>/admin</code> na websiteu ili izravno <a href="https://app.pagescms.org/">app.pagescms.org</a>.</li>
-      <li>Prijavi se svojim GitHub računom.</li>
-      <li>Odaberi <code>rotary-healthcare-professionals/website</code>.</li>
-      <li>U lijevom izborniku odaberi <strong>Vijesti</strong>.</li>
-    </ol>
-    <div class="note"><code>/admin</code> je praktična prečica koja preusmjerava na Pages CMS. Karla i Drago moraju imati pristup repozitoriju, a Pages CMS GitHub App mora biti instalirana samo za repo <code>website</code>.</div>
-  </section>
-  <section class="card">
-    <h2>Dodavanje vijesti</h2>
-    <ol>
-      <li>Klikni <strong>New</strong> ili <strong>Create</strong>.</li>
-      <li>Upiši naslov, datum i kratak sažetak.</li>
-      <li>Po želji odaberi naslovnu sliku.</li>
-      <li>U polje <strong>Sadržaj</strong> unesi tekst, poveznice i slike.</li>
-      <li>Pregledaj sadržaj i klikni <strong>Save</strong>.</li>
-    </ol>
-    <div class="note">Spremanje izrađuje promjenu u GitHub repozitoriju. Nakon uspješnog automatskog builda vijest se objavljuje na websiteu.</div>
-  </section>
-  <section class="card">
-    <h2>Uređivanje ili brisanje</h2>
-    <ol>
-      <li>Na popisu vijesti pronađi naslov.</li>
-      <li>Otvori vijest, napravi izmjene i klikni <strong>Save</strong>.</li>
-      <li>Za brisanje otvori vijest, odaberi <strong>Delete</strong> i potvrdi. GitHub čuva povijest pa se sadržaj može vratiti.</li>
-    </ol>
-  </section>
-  <section class="card">
-    <h2>Dobra praksa</h2>
-    <ul>
-      <li>Naslov neka bude kratak i jasan.</li>
-      <li>Sažetak neka ima jednu do dvije rečenice.</li>
-      <li>Prije uploada smanji velike fotografije; preporučena širina je do 1600 px.</li>
-      <li>Ne unosi lozinke, privatne podatke ili podatke o karticama.</li>
-      <li>Nakon objave otvori website i provjeri vijest.</li>
+    <h2>Ukratko</h2>
+    <ul class="toc">
+      <li><a href="#prijava">1. Prijava (ulazak u CMS)</a></li>
+      <li><a href="#dodavanje">2. Dodavanje nove vijesti</a></li>
+      <li><a href="#slika">3. Slika unutar teksta</a></li>
+      <li><a href="#uredi">4. Uređivanje postojeće vijesti</a></li>
+      <li><a href="#brisanje">5. Brisanje vijesti</a></li>
+      <li><a href="#objava">6. Objava (kako vijest dođe na sajt)</a></li>
+      <li><a href="#praksa">7. Dobra praksa</a></li>
     </ul>
   </section>
-  <section class="card">
-    <h2>Ako nešto ne radi</h2>
-    <p>Nemoj ponavljati spremanje mnogo puta. Zabilježi naslov vijesti i poruku greške te se javi developeru ili administratoru GitHub organizacije.</p>
+
+  <section class="card" id="prijava">
+    <span class="step">Korak 1</span>
+    <h2>Prijava — ulazak u CMS</h2>
+    <ol>
+      <li>Na adresu sajta dodaj <code>/admin</code> (npr. <code>rotaryhealthprofessionals.org/admin</code>).</li>
+      <li>Prijavi se svojim <strong>GitHub računom</strong>.</li>
+      <li>Odmah te ubaci u popis <strong>Vijesti</strong> — spreman za rad.</li>
+    </ol>
+    <figure>
+      <img src="slike/vijesti-popis.png" alt="Popis vijesti u Pages CMS-u s gumbom Add an entry gore desno">
+
+      <figcaption>Popis vijesti — svaka ima <strong>Edit</strong> i izbornik <strong>⋮</strong>; gore desno je <strong>Add an entry</strong>.</figcaption>
+    </figure>
+    <div class="note"><code>/admin</code> je samo prečica koja te vodi u Pages CMS. Za pristup moraš biti dodan na repozitorij (to sređuje administrator).</div>
   </section>
-  <p><small>Zadnja izmjena: 2026-07-11 · Autor: AI agent + nbakic</small></p>
+
+  <section class="card" id="dodavanje">
+    <span class="step">Korak 2</span>
+    <h2>Dodavanje nove vijesti</h2>
+    <ol>
+      <li>Gore desno klikni <strong>Add an entry</strong>.</li>
+      <li>Ispuni polja:
+        <ul>
+          <li><strong>Naslov</strong> — naslov vijesti.</li>
+          <li><strong>Datum objave</strong> — datum.</li>
+          <li><strong>Kratki sažetak</strong> — 1–2 rečenice; prikazuje se na popisu vijesti.</li>
+          <li><strong>Naslovna slika</strong> (opcionalno) — <strong>Upload</strong> novu ili <strong>Select</strong> postojeću; prikazuje se na vrhu vijesti i na kartici u popisu.</li>
+          <li><strong>Sadržaj</strong> — glavni tekst vijesti.</li>
+        </ul>
+      </li>
+      <li>Klikni <strong>Save</strong> (gore desno).</li>
+    </ol>
+    <figure>
+      <img src="slike/nova-vijest.png" alt="Obrazac za novu vijest s poljima Naslov, Datum objave, Kratki sažetak, Naslovna slika i Sadržaj">
+
+      <figcaption>Obrazac za novu vijest. Naziv datoteke se generira sam iz naslova.</figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="slika">
+    <span class="step">Korak 3</span>
+    <h2>Slika unutar teksta</h2>
+    <p>U polju <strong>Sadržaj</strong> sliku ubaciš na jedan od tri načina:</p>
+    <ol>
+      <li>Upiši <kbd>/</kbd> (kosu crtu) pa iz izbornika odaberi <strong>Image</strong> → <strong>Upload</strong> ili <strong>Select</strong>.</li>
+      <li><strong>Povuci-i-pusti</strong> sliku s računala izravno u tekst.</li>
+      <li><strong>Zalijepi</strong> sliku s <kbd>Ctrl</kbd>+<kbd>V</kbd>.</li>
+    </ol>
+    <p>Slika se automatski uploada u repozitorij i pojavi u tekstu — ništa se ne mora ručno raditi.</p>
+    <figure>
+      <img src="slike/slika-izbornik.png" alt="Izbornik u editoru nakon upisa kose crte, s istaknutom opcijom Image">
+
+      <figcaption>Upišeš <kbd>/</kbd> u tekst i odabereš <strong>Image</strong>.</figcaption>
+    </figure>
+    <div class="tip"><strong>Dvije vrste slika:</strong> <em>Naslovna slika</em> (cover) je jedna po vijesti i stoji na vrhu; slike kroz <kbd>/</kbd> idu <em>unutar teksta</em> i može ih biti koliko god.</div>
+  </section>
+
+  <section class="card" id="uredi">
+    <span class="step">Korak 4</span>
+    <h2>Uređivanje postojeće vijesti</h2>
+    <ol>
+      <li>Na popisu vijesti klikni <strong>Edit</strong> pored željene vijesti.</li>
+      <li>Promijeni što treba (tekst, sliku, datum…).</li>
+      <li>Klikni <strong>Save</strong>.</li>
+    </ol>
+  </section>
+
+  <section class="card" id="brisanje">
+    <span class="step">Korak 5</span>
+    <h2>Brisanje vijesti</h2>
+    <ol>
+      <li>Pored vijesti klikni izbornik <strong>⋮</strong> (tri točkice) — ili otvori vijest.</li>
+      <li>Odaberi <strong>Delete</strong> i potvrdi.</li>
+    </ol>
+    <figure>
+      <img src="slike/brisanje.png" alt="Izbornik s tri točkice (⋮) s opcijama View on GitHub, Rename i Delete">
+
+      <figcaption>Brisanje kroz izbornik <strong>⋮</strong> pored vijesti.</figcaption>
+    </figure>
+    <div class="note">GitHub čuva povijest svih izmjena, pa se obrisana vijest po potrebi može vratiti — javi se administratoru.</div>
+  </section>
+
+  <section class="card" id="objava">
+    <span class="step">Korak 6</span>
+    <h2>Objava — kako vijest dođe na sajt</h2>
+    <p>Kad klikneš <strong>Save</strong>, izmjena se sprema u repozitorij i sajt se <strong>sam ponovno izgradi za otprilike jednu minutu</strong>. Nakon toga osvježi stranicu sajta i provjeri kako vijest izgleda.</p>
+    <div class="tip">Ako se čini da promjena „ne dolazi", pričekaj minutu pa osvježi bez cachea: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>.</div>
+  </section>
+
+  <section class="card" id="praksa">
+    <span class="step">Korak 7</span>
+    <h2>Dobra praksa</h2>
+    <ul>
+      <li>Naslov neka bude kratak i jasan; sažetak jedna do dvije rečenice.</li>
+      <li>Prije uploada smanji velike fotografije — preporučena širina do <strong>1600 px</strong>.</li>
+      <li>Ne unosi lozinke, privatne podatke ni podatke o karticama.</li>
+      <li>Nakon objave otvori sajt i provjeri vijest.</li>
+      <li>Ako nešto ne radi, <strong>nemoj</strong> spremati mnogo puta zaredom — zabilježi naslov vijesti i poruku greške pa se javi administratoru.</li>
+    </ul>
+  </section>
+
+  <p><small>Zadnja izmjena: 2026-07-14</small></p>
 </main>
 </body>
 </html>
