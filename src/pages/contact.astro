@@ -21,7 +21,11 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
       <!-- Form -->
       <div class="contact-formwrap">
         <h2>Send us a message</h2>
-        <form id="contactForm" class="contact-form">
+        <form id="contactForm" class="contact-form" action={`https://formsubmit.co/${email}`} method="POST">
+          <input type="hidden" name="_subject" value="New enquiry from the IRFHP website">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
           <label>Your name
             <input type="text" name="name" required autocomplete="name">
           </label>
@@ -34,10 +38,10 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
           <button type="submit" class="btn btn-primary">Send message</button>
         </form>
         <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
-        <p class="form-note">Pressing “Send message” opens your e-mail app with everything filled in — just press send. Prefer to write yourself? Use the details on the right.</p>
+        <p class="form-note">Your message is sent straight to our inbox — we usually reply within a few working days.</p>
       </div>
 
-      <!-- Reach us -->
+      <!-- Reach us + branches -->
       <div class="contact-info">
         <h2>How to reach us</h2>
         <ul class="contact-methods">
@@ -79,24 +83,24 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
             </div>
           </li>
         </ul>
-      </div>
-    </div>
 
-    <div class="branches">
-      <h2>Our branches</h2>
-      <p class="section-lead">Alongside our UK base, we have active branches in Egypt and Uganda. Enquiries for all branches are handled through the contact details above.</p>
-      <div class="branch-cards">
-        <div class="branch-card">
-          <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <div><div class="b-name">United Kingdom</div><div class="b-label">Headquarters</div></div>
-        </div>
-        <div class="branch-card">
-          <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <div><div class="b-name">Egypt</div><div class="b-label">Active branch</div></div>
-        </div>
-        <div class="branch-card">
-          <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <div><div class="b-name">Uganda</div><div class="b-label">Active branch</div></div>
+        <div class="branches">
+          <h2>Our branches</h2>
+          <p class="section-lead">Alongside our UK base, we have active branches in Egypt and Uganda — all reachable through the details above.</p>
+          <div class="branch-cards">
+            <div class="branch-card">
+              <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div><div class="b-name">United Kingdom</div><div class="b-label">Headquarters</div></div>
+            </div>
+            <div class="branch-card">
+              <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div><div class="b-name">Egypt</div><div class="b-label">Active branch</div></div>
+            </div>
+            <div class="branch-card">
+              <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div><div class="b-name">Uganda</div><div class="b-label">Active branch</div></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -105,22 +109,30 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
 
 <script is:inline>
 (function () {
-  /* Kontakt-forma preko mailto — otvara korisnikovu mail aplikaciju, bez servisa/aktivacije */
+  /* Kontakt-forma preko FormSubmit AJAX-a — poruka ide ravno u inbox, ostaje na stranici */
   var form = document.getElementById('contactForm');
   var status = document.getElementById('formStatus');
-  if (form) {
+  if (form && status) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var g = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
-      var name = g('name'), mail = g('email'), msg = g('message');
-      var subject = 'Website enquiry' + (name ? ' from ' + name : '');
-      var body = 'Name: ' + name + '\nE-mail: ' + mail + '\n\n' + msg;
-      window.location.href = 'mailto:rotaryhealthprofessionals@gmail.com?subject=' +
-        encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      if (status) {
-        status.className = 'form-status ok';
-        status.innerHTML = 'Your e-mail app should open with the message ready — just press <strong>Send</strong>. If nothing happened, write to us at <a href="mailto:rotaryhealthprofessionals@gmail.com">rotaryhealthprofessionals@gmail.com</a>.';
-      }
+      var hp = form.querySelector('.hp'); if (hp && hp.value) return; // spam trap
+      var btn = form.querySelector('button[type=submit]');
+      var orig = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Sending…';
+      status.className = 'form-status';
+      fetch(form.getAttribute('action').replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+        method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        if (res.success === 'true' || res.success === true) {
+          form.style.display = 'none';
+          status.className = 'form-status ok';
+          status.textContent = 'Thank you — your message has been sent. We will get back to you soon.';
+        } else { throw new Error(); }
+      }).catch(function () {
+        btn.disabled = false; btn.textContent = orig;
+        status.className = 'form-status err';
+        status.innerHTML = 'Sorry, something went wrong. Please e-mail us directly at <a href="mailto:rotaryhealthprofessionals@gmail.com">rotaryhealthprofessionals@gmail.com</a>.';
+      });
     });
   }
 

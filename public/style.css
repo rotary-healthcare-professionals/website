@@ -505,9 +505,9 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
 .map-open{display:inline-block;margin-top:6px;font-size:.85rem;color:var(--azure);text-decoration:none}
 .map-open:hover{text-decoration:underline}
 
-/* podružnice -> kartice */
-.branches{margin-top:52px}
-.branch-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+/* podružnice -> kartice (u desnom stupcu, okomito) */
+.branches{margin-top:34px;padding-top:30px;border-top:1px solid var(--line)}
+.branch-cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
 .branch-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s}
 .branch-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--azure)}
 .branch-card .pin{flex:none;width:46px;height:46px;border-radius:13px;background:var(--cloud);color:var(--azure);display:grid;place-items:center}
