@@ -394,6 +394,12 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
 .tier--featured .btn-blue:hover{background:var(--gold-2)}
 .tiers-note{display:flex;align-items:center;gap:12px;margin-top:26px;color:var(--muted);font-size:.92rem;max-width:70ch}
 .tiers-note svg{flex:none;color:var(--azure)}
+.minigrant{margin-top:26px;background:linear-gradient(135deg,var(--cloud) 0%,#fff 72%);border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px 34px;display:grid;grid-template-columns:1.1fr 1fr;gap:22px 44px;align-items:center;box-shadow:var(--shadow)}
+.minigrant h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;color:var(--blue-dark);margin:14px 0 8px;letter-spacing:-.01em}
+.minigrant p{color:var(--muted);font-size:.96rem;max-width:46ch}
+.minigrant__examples{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:11px}
+.minigrant__examples li{background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 17px;font-weight:600;font-size:.9rem;color:var(--blue-dark);box-shadow:var(--shadow)}
+@media(max-width:760px){.minigrant{grid-template-columns:1fr;gap:18px;padding:26px 24px}}
 
 /* ---- Vision band ---- */
 .vision{background:var(--navy);color:#fff;text-align:center;position:relative;overflow:hidden;isolation:isolate}
@@ -466,7 +472,9 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
 }
 
 /* ---------- Contact stranica ---------- */
+.page-hero--slim{padding:44px 0}
 .contact-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:start;margin-top:30px}
+.contact-grid>*{min-width:0}
 .contact-formwrap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;box-shadow:var(--shadow)}
 .contact-formwrap h2,.contact-info h2,.branches h2{font-size:1.35rem;font-weight:800;color:var(--blue-dark);margin-bottom:4px}
 
@@ -492,7 +500,7 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
 .contact-methods .ci svg{width:21px;height:21px}
 .contact-methods .ci-body{display:flex;flex-direction:column;min-width:0}
 .contact-methods .ci-label{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
-.contact-methods .ci-body a,.contact-methods .ci-val{color:var(--ink);font-weight:600;text-decoration:none;overflow-wrap:break-word}
+.contact-methods .ci-body a,.contact-methods .ci-val{color:var(--ink);font-weight:600;text-decoration:none;overflow-wrap:anywhere}
 .contact-methods .ci-body a:hover{color:var(--azure)}
 .copy-btn{margin-left:auto;flex:none;width:34px;height:34px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--muted);display:grid;place-items:center;cursor:pointer;transition:color .15s,border-color .15s}
 .copy-btn:hover{color:var(--azure);border-color:var(--azure)}
