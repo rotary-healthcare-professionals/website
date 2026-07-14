@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 const mapQuery = 'Highfield House, Red Shute Hill, Thatcham, RG18 9QH';
 const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=15&output=embed`;
 const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
+const email = 'rotaryhealthprofessionals@gmail.com';
 ---
 <Base title={"Contact Us — International Rotary Fellowship of Healthcare Professionals"} description={"We are ready to answer all your questions and help you find the best cause to help. Contact the International Rotary Fellowship of Healthcare Professionals."}>
 <div class="page-hero">
@@ -18,6 +19,30 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
     <p class="section-lead">We are ready to answer all your questions and help you find the best cause to help.</p>
 
     <div class="contact-grid">
+      <!-- Form -->
+      <div class="contact-formwrap">
+        <h2>Send us a message</h2>
+        <form id="contactForm" class="contact-form" action={`https://formsubmit.co/${email}`} method="POST">
+          <input type="hidden" name="_subject" value="New enquiry from the IRFHP website">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+          <label>Your name
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>Your e-mail
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label>Message
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Send message</button>
+        </form>
+        <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+        <p class="form-note">We usually reply within a few working days. Prefer e-mail? Write to us directly using the details on the right.</p>
+      </div>
+
+      <!-- Reach us -->
       <div class="contact-info">
         <h2>How to reach us</h2>
         <ul class="contact-methods">
@@ -25,8 +50,12 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
             <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
             <div class="ci-body">
               <span class="ci-label">E-mail</span>
-              <a href="mailto:rotaryhealthprofessionals@gmail.com">rotaryhealthprofessionals@gmail.com</a>
+              <a href={`mailto:${email}`}>{email}</a>
             </div>
+            <button type="button" class="copy-btn" data-copy={email} aria-label="Copy e-mail address">
+              <svg class="ico-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg class="ico-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </button>
           </li>
           <li>
             <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
@@ -34,6 +63,10 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
               <span class="ci-label">Phone</span>
               <a href="tel:+442071932137">+44 (0)20 7193 2137</a>
             </div>
+            <button type="button" class="copy-btn" data-copy="+44 (0)20 7193 2137" aria-label="Copy phone number">
+              <svg class="ico-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg class="ico-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </button>
           </li>
           <li>
             <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
@@ -50,13 +83,13 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
             </div>
           </li>
         </ul>
-        <a class="btn btn-primary" href="mailto:rotaryhealthprofessionals@gmail.com">Send us an e-mail</a>
       </div>
+    </div>
 
-      <div class="contact-map">
-        <iframe class="map-frame" src={mapEmbed} title="Map showing Highfield House, Red Shute Hill, Thatcham" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <a class="map-open" href={mapLink} target="_blank" rel="noopener">Open in Google Maps <span class="ext-arrow" aria-hidden="true">↗</span></a>
-      </div>
+    <!-- Map (full width) -->
+    <div class="contact-map-full">
+      <iframe class="map-frame" src={mapEmbed} title="Map showing Highfield House, Red Shute Hill, Thatcham" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <a class="map-open" href={mapLink} target="_blank" rel="noopener">Open in Google Maps <span class="ext-arrow" aria-hidden="true">↗</span></a>
     </div>
 
     <div class="branches">
@@ -70,4 +103,47 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
     </div>
   </div>
 </section>
+
+<script is:inline>
+(function () {
+  /* Kontakt-forma preko FormSubmit AJAX-a (ostaje na stranici) */
+  var form = document.getElementById('contactForm');
+  var status = document.getElementById('formStatus');
+  if (form && status) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form.querySelector('.hp') && form.querySelector('.hp').value) return; // spam trap
+      var btn = form.querySelector('button[type=submit]');
+      var orig = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Sending…';
+      status.className = 'form-status';
+      fetch(form.getAttribute('action').replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+        method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        if (res.success === 'true' || res.success === true) {
+          form.style.display = 'none';
+          status.className = 'form-status ok';
+          status.textContent = 'Thank you — your message has been sent. We will get back to you soon.';
+        } else { throw new Error(); }
+      }).catch(function () {
+        btn.disabled = false; btn.textContent = orig;
+        status.className = 'form-status err';
+        status.innerHTML = 'Sorry, something went wrong. Please e-mail us directly at <a href="mailto:rotaryhealthprofessionals@gmail.com">rotaryhealthprofessionals@gmail.com</a>.';
+      });
+    });
+  }
+
+  /* Klikni za kopiranje (e-mail / telefon) */
+  [].forEach.call(document.querySelectorAll('.copy-btn'), function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-copy');
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(t).then(function () {
+        b.classList.add('copied');
+        setTimeout(function () { b.classList.remove('copied'); }, 1400);
+      });
+    });
+  });
+})();
+</script>
 </Base>
