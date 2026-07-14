@@ -1,5 +1,5 @@
 ---
-const cmsUrl = 'https://app.pagescms.org/';
+const cmsUrl = 'https://app.pagescms.org/rotary-healthcare-professionals/website/main/collection/news';
 ---
 <!DOCTYPE html>
 <html lang="hr">
@@ -11,7 +11,7 @@ const cmsUrl = 'https://app.pagescms.org/';
   <title>Otvaranje CMS-a</title>
 </head>
 <body>
-  <p>Otvaram Pages CMS… <a href={cmsUrl}>Klikni ovdje ako se stranica ne otvori automatski.</a></p>
-  <script is:inline>window.location.replace('https://app.pagescms.org/');</script>
+  <p>Otvaram uređivanje vijesti… <a href={cmsUrl}>Klikni ovdje ako se stranica ne otvori automatski.</a></p>
+  <script is:inline define:vars={{ cmsUrl }}>window.location.replace(cmsUrl);</script>
 </body>
 </html>
