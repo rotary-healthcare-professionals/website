@@ -108,6 +108,48 @@ const { title, description = '' } = Astro.props;
 
 <script is:inline>document.getElementById('god').textContent = new Date().getFullYear();</script>
 <script is:inline>
+/* PDF-ovi u vijestima: link na .pdf -> ugrađeni prikaz (desktop) / kartica "Otvori" (mobitel) */
+(function () {
+  var links = document.querySelectorAll('.prose a[href$=".pdf"]');
+  if (!links.length) return;
+  var seen = {};
+  [].forEach.call(links, function (a) {
+    if (!a.isConnected) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    if (seen[href]) {
+      var dup = a.closest('p'); a.remove();
+      if (dup && !dup.textContent.trim() && !dup.querySelector('img, a')) dup.remove();
+      return;
+    }
+    seen[href] = true;
+    var label = (a.textContent || '').trim();
+    if (!label || /^(download|pdf)$/i.test(label)) {
+      label = decodeURIComponent(href.split('/').pop().replace(/\.pdf$/i, '')).replace(/[-_]+/g, ' ').trim();
+    }
+    var fig = document.createElement('figure');
+    fig.className = 'pdf-doc';
+    var frame = document.createElement('iframe');
+    frame.className = 'pdf-frame'; frame.src = href; frame.title = label; frame.loading = 'lazy';
+    var card = document.createElement('a');
+    card.className = 'pdf-card'; card.href = href; card.target = '_blank'; card.rel = 'noopener';
+    var ico = document.createElement('span'); ico.className = 'pdf-ico'; ico.textContent = 'PDF';
+    var meta = document.createElement('span'); meta.className = 'pdf-meta';
+    var nm = document.createElement('span'); nm.className = 'pdf-name'; nm.textContent = label;
+    var sub = document.createElement('span'); sub.className = 'pdf-sub'; sub.textContent = 'Open document';
+    meta.appendChild(nm); meta.appendChild(sub);
+    var arr = document.createElement('span'); arr.className = 'pdf-open'; arr.textContent = '›';
+    card.appendChild(ico); card.appendChild(meta); card.appendChild(arr);
+    var open = document.createElement('a');
+    open.className = 'pdf-openfull'; open.href = href; open.target = '_blank'; open.rel = 'noopener';
+    open.textContent = 'Open full screen / download';
+    fig.appendChild(frame); fig.appendChild(card); fig.appendChild(open);
+    var container = a.closest('p') || a;
+    container.parentNode.replaceChild(fig, container);
+  });
+})();
+</script>
+<script is:inline>
 (function () {
   var nav = document.getElementById('mainNav');
   if (!nav) return;

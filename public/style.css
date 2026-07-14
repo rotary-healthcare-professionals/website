@@ -277,3 +277,18 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
   .site-footer .links a{padding:2px 0;line-height:1.45}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.hero-slide{animation:none!important}}
+
+/* ---------- PDF dokumenti u vijestima ---------- */
+.pdf-doc{margin:24px 0}
+.pdf-frame{width:100%;height:72vh;max-height:780px;border:1px solid var(--line);border-radius:12px;display:block;background:#fff;box-shadow:var(--shadow)}
+.pdf-openfull{display:inline-block;margin-top:10px;font-size:.9rem;color:var(--azure)}
+.pdf-card{display:none}
+@media(max-width:760px){
+  .pdf-frame,.pdf-openfull{display:none}
+  .pdf-card{display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--cloud);text-decoration:none;color:var(--ink)}
+  .pdf-card .pdf-ico{flex:none;width:44px;height:44px;border-radius:9px;background:#d7362e;color:#fff;font-weight:800;font-size:.74rem;display:flex;align-items:center;justify-content:center}
+  .pdf-card .pdf-meta{display:flex;flex-direction:column;min-width:0}
+  .pdf-card .pdf-name{font-weight:700;font-size:.97rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pdf-card .pdf-sub{font-size:.82rem;color:var(--muted)}
+  .pdf-card .pdf-open{margin-left:auto;font-size:1.5rem;color:var(--azure)}
+}
