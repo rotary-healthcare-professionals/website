@@ -10,6 +10,7 @@ const { title, description = '' } = Astro.props;
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script is:inline>document.documentElement.classList.add('has-js');</script>
 <title>{title}</title>
 {description && <meta name="description" content={description} />}
 <link rel="icon" href="/images/2025/02/RFHP_Logofinal_round-105x83.png" />
@@ -38,12 +39,7 @@ const { title, description = '' } = Astro.props;
         <div class="dropdown">
           <a href="/kmc">Kangaroo Mother Care (KMC)</a>
           <a href="/cervical-cancer">Cervical cancer</a>
-          <a href="/ukraine">Ukraine</a>
-          <a href="/helping-babies-ukraine">Helping babies in Ukraine</a>
-          <a href="/hub">Hats for Ukrainian Babies (HUB)</a>
-          <a href="/babies-of-war">Babies of the Ukrainian war</a>
-          <a href="/education">Educational Activities</a>
-          <a href="/networking">Networking</a>
+          <a href="/ukraine">Ukraine</a>          <a href="/education">Educational Activities</a>
           <a href="/quality-safety">Quality and Safety in Healthcare</a>
           <a href="/equipment-environment">Equipment &amp; the Environment</a>
           <a href="/tanzania">Tanzania: transforming lives</a>
@@ -62,9 +58,10 @@ const { title, description = '' } = Astro.props;
         </div>
       </div>
       <div class="has-dropdown">
-        <a href="/membership">Membership</a>
+        <a class="nav-trigger" role="button" tabindex="0" aria-haspopup="true">Membership</a>
         <button class="submenu-toggle" type="button" aria-label="Toggle Membership submenu" aria-expanded="false"><span class="caret">▾</span></button>
         <div class="dropdown">
+          <a href="/membership">Our membership</a>
           <a href="/partners">Our partners</a>
         </div>
       </div>
@@ -82,7 +79,7 @@ const { title, description = '' } = Astro.props;
       <img src="/images/2025/02/RFHP_Logofinal_round-300x238.png" alt="IRFHP logo" />
       <p>Highfield House, Red Shute Hill, Thatcham, RG18 9QH<br />United Kingdom</p>
       <p>E-mail: <a href="mailto:rotaryhealthprofessionals@gmail.com">rotaryhealthprofessionals@gmail.com</a></p>
-      <p><a href="https://www.facebook.com/people/Fellowship-of-Healthcare-Professionals/100080617180613/" target="_blank" rel="noopener">Facebook</a></p>
+      <p><a class="social-link" href="https://www.facebook.com/people/Fellowship-of-Healthcare-Professionals/100080617180613/" target="_blank" rel="noopener" aria-label="Follow us on Facebook"><span class="fb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7h2.35l.4-3H13.5V9.05c0-.87.28-1.46 1.53-1.46H16.4V4.9c-.28-.04-1.23-.12-2.34-.12-2.32 0-3.9 1.42-3.9 4.02V11H7.8v3h2.36v7h3.34Z"/></svg></span>Facebook</a></p>
     </div>
     <div class="links">
       <h4>Quick links</h4>
@@ -265,6 +262,24 @@ const { title, description = '' } = Astro.props;
   window.addEventListener('resize', function () {
     if (window.innerWidth > 760 && nav.classList.contains('open')) closeNav();
   });
+})();
+</script>
+<script is:inline>
+/* Reveal-on-scroll: progresivno poboljšanje. Bez JS-a ili uz reduced-motion sadržaj je odmah vidljiv. */
+(function () {
+  var els = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if (!els.length) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!('IntersectionObserver' in window) || reduce.matches) {
+    els.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+  els.forEach(function (el) { io.observe(el); });
 })();
 </script>
 </body>
