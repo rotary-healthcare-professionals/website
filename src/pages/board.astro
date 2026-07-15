@@ -1,55 +1,213 @@
 ---
 import Base from '../layouts/Base.astro';
+
+// Board of Directors 2025-26 — 17 Directors from 10 countries.
+const directors = [
+  { name: 'Herbert Ederer', country: 'Austria', role: 'Chair' },
+  { name: 'Amal El Sisi', country: 'Egypt', role: 'Vice Chair' },
+  { name: 'Ann Evans', country: 'USA', role: 'Vice Chair · Preventable Blindness' },
+  { name: 'Rainer Moosdorf', country: 'Germany', role: 'Secretary' },
+  { name: 'John Philip', country: 'UK', role: 'Treasurer · Signatory · Trustee' },
+  { name: 'Gillian Pearce', country: 'UK', role: 'Signatory · Trustee' },
+  { name: 'Demetress Harrell', country: 'USA', role: 'Medical Equipment' },
+  { name: 'Richard Kalungi', country: 'Uganda', role: 'Uganda' },
+  { name: 'Drago Pausek', country: 'Croatia', role: 'Webmaster · Signatory · Trustee' },
+  { name: 'Pat Merryweather-Arges', country: 'USA', role: 'Quality & Patient Safety' },
+  { name: 'Douglas Donald McMillan', country: 'Canada', role: 'Newborn Care' },
+  { name: 'Francisco Rosiello', country: 'Italy', role: 'Disaster Medicine · Medical Intelligence' },
+  { name: 'K V Ravishankar', country: 'India', role: 'Preventable Blindness' },
+  { name: 'Surinder Pal Singh Grover', country: 'India', role: 'IRFHP Branches' },
+  { name: 'Saroj Bajracharya', country: 'Nepal', role: 'IRFHP Branches' },
+  { name: 'Maimuna Alex-Adeomi', country: 'USA', role: 'Patient Safety' },
+  { name: 'Bagathsingh Karuppanan', country: 'India', role: 'IRFHP Branches' },
+];
+const isOfficer = (role) => /Chair|Secretary|Treasurer/.test(role);
+
+const chairCreds = [
+  'Rotary Passport Club — co Planet D1900',
+  'Rotary Club Weiz D1910 — Gründungspräsident 2006–07 & Präsident 2007–08',
+  'AG D1910 2009–11 · District Governor (DG) D1910 2012–13',
+  'District Rotary Foundation Committee Chair (DRFCC) D1910 2013–15',
+  'Rotary Foundation Coordinator (RRFC) Zone 19p 2015–18 · ARRFC Z21A 2018–20',
+  'Endowment Major Gift Advisor (EMGA) Zone 21A 2020–23',
+];
+
+const reports = [
+  { name: 'Message from our incoming Chair (2023)', href: '/images/2023/07/New-Board-and-Herberts-words.pdf' },
+  { name: '‘Thank you’ from our outgoing Chair (2023)', href: '/images/2023/07/Thank-you-from-outgoing-chair.pdf' },
+  { name: 'Chairman’s Report 2023 — a year of achievement & our support to Ukraine', href: '/images/2023/07/CHAIRMANS-REPORT-2023.pdf' },
+];
+const accounts = [
+  { name: 'Annual accounts 2021–22', href: '/images/2023/07/Draft-accounts-IRFHP-Trust-2022.pdf' },
+  { name: 'Annual accounts 2022–23', href: '/images/2024/07/Final-accounts-IRFHP-Trust-2023-2.pdf' },
+  { name: 'Annual accounts 2023–24', href: '/images/2024/07/Final-accounts-IRFHP-Trust-2023-3.pdf' },
+  { name: 'Annual accounts 2024–25', href: '/images/2025/02/2024-Final-accounts-IRFHP-signed.pdf' },
+];
 ---
-<Base title={"Our Board and accounts — International Rotary Fellowship of Healthcare Professionals"} description={"Our Governance, Meetings, Board of Directors and Accounts — the IRFHP is led by an international Board of Directors who meet monthly online."}>
-<div class="page-hero">
-  <div class="container">
-    <p class="crumb"><a href="/">Home</a> / About us</p>
-    <h1>Our Board and accounts</h1>
+<Base
+  title={"Our Board and accounts — International Rotary Fellowship of Healthcare Professionals"}
+  description={"Our governance, Board of Directors and published accounts. The IRFHP is led by an international Board of 17 Directors from 10 countries, elected under our Constitution and Bylaws, meeting monthly online."}
+>
+<!-- ============ HERO ============ -->
+<header class="ed-hero" data-reveal>
+  <div class="ed-hero__media">
+    <div class="ed-hero__img" style="background-image:url('/images/2023/07/RIC2023_HOF_GlobalHealthCollaborators-1024x783.jpg')"></div>
+    <div class="ed-hero__tint"></div>
+    <div class="ed-hero__warm"></div>
+    <div class="ed-hero__shade"></div>
+    <div class="ed-hero__grain"></div>
   </div>
-</div>
+  <div class="container ed-hero__inner">
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>About us · Our Board and accounts</p>
+    <h1 class="display ed-hero__title">Led by an international <em>Board of Directors.</em></h1>
+  </div>
+</header>
 
-<section>
+<!-- ============ GOVERNANCE ============ -->
+<section class="ed-section">
+  <div class="container ed-head" data-reveal>
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Governance & accountability</p>
+    <h2 class="ed-title">We govern ourselves — openly and accountably</h2>
+    <p class="ed-sub">The International Rotary Fellowship of Healthcare Professionals is led by an international Board of Directors who meet monthly online. Directors are elected in accordance with the Fellowship’s Constitution and Bylaws, ensuring transparent and accountable governance.</p>
+    <p class="ed-sub" style="margin-top:14px">As one of Rotary’s most active Fellowships, we maintain a vibrant programme of global activities, professional exchanges, humanitarian initiatives and collaborative learning. We warmly encourage members to connect with us, take part in our work and strengthen our shared impact.</p>
+  </div>
+</section>
+
+<!-- ============ CHAIR ============ -->
+<section class="ed-section" style="padding-top:0">
   <div class="container">
-    <div class="prose">
-      <h2>Our Governance, Meetings, Board of Directors and Accounts</h2>
-
-      <img src="/images/2025/02/Herbert.jpg" alt="Dr. med. Herbert Ederer, Chair of the Fellowship">
-
-      <h3>Our Chair</h3>
-      <p><strong>Dr. med. Herbert Ederer</strong></p>
-      <ul>
-        <li>Rotary Passport Club co Planet D1900</li>
-        <li>Rotary Club Weiz D1910 &ndash; Gr&uuml;ndungspr&auml;sident 2006-2007 und Pr&auml;sident 2007-08</li>
-        <li>AG D1910 2009-11 Distrikt Governor (DG) D1910 2012-13</li>
-        <li>District Rotary Foundation Committee Chair (DRFCC) D1910 2013-15</li>
-        <li>Rotary Foundation Coordinator (RRFC) Zone 19p 2015-18 ARRFC Z 21A 2018-20</li>
-        <li>Endowment Major Gift Advisor (EMGA) Zone 21A 2020-23</li>
-      </ul>
-
-      <h3>The Board of Directors 2025-26</h3>
-      <p>We are fortunate to have a talented International Board of Directors. There are 17 Directors from 10 different countries. We meet once a month online.</p>
-
-      <img src="/images/2026/05/board.png" alt="The Board of Directors of the International Rotary Fellowship of Healthcare Professionals">
-
-      <p>The International Rotary Fellowship of Healthcare Professionals (IRFHP) is led by an international Board of Directors who meet monthly online. Directors are elected in accordance with the Fellowship&rsquo;s Constitution and Bylaws, ensuring transparent and accountable governance.</p>
-      <p>As one of Rotary&rsquo;s most active Fellowships, we maintain a vibrant programme of global activities, professional exchanges, humanitarian initiatives, and collaborative learning. We warmly encourage members to connect with us, participate in our work, and strengthen our shared impact.</p>
-      <p>If you wish to contact any member of the Board, we would be pleased to hear from you.</p>
-      <p>CONTACT: <a href="mailto:rotaryhealthprofessionals@gmail.com">rotaryhealthprofessionals@gmail.com</a></p>
-
-      <h3>Documents and accounts</h3>
-      <ul>
-        <li>MESSAGE FROM OUR INCOMING CHAIR 2023 <a href="/images/2023/07/New-Board-and-Herberts-words.pdf" target="_blank" rel="noopener">(CLICK HERE)</a></li>
-        <li>&lsquo;THANK YOU&rsquo; FROM OUR OUTGOING CHAIR 2023 <a href="/images/2023/07/Thank-you-from-outgoing-chair.pdf" target="_blank" rel="noopener">(CLICK HERE)</a></li>
-        <li>ANNUAL ACCOUNTS 2021-22 <a href="/images/2023/07/Draft-accounts-IRFHP-Trust-2022.pdf" target="_blank" rel="noopener">(CLICK HERE)</a></li>
-        <li>ANNUAL ACCOUNTS 2022-23 <a href="/images/2024/07/Final-accounts-IRFHP-Trust-2023-2.pdf" target="_blank" rel="noopener">(CLICK HERE)</a></li>
-        <li>ANNUAL ACCOUNTS 2023-24 <a href="/images/2024/07/Final-accounts-IRFHP-Trust-2023-3.pdf" target="_blank" rel="noopener">(CLICK HERE)</a></li>
-        <li>ANNUAL ACCOUNTS 2024-25 <a href="/images/2025/02/2024-Final-accounts-IRFHP-signed.pdf" target="_blank" rel="noopener">(CLICK HERE)</a></li>
-        <li>2023 A YEAR OF ACHIEVEMENT AND OUR SUPPORT TO THE PEOPLE OF UKRAINE <a href="/images/2023/07/CHAIRMANS-REPORT-2023.pdf" target="_blank" rel="noopener">(CLICK HERE)</a></li>
-      </ul>
-
-      <p><a class="btn btn-primary" href="/contact">OUR CONTACT - CLICK HERE</a></p>
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Our Chair</p>
+      <h2 class="ed-title">Leading the Fellowship</h2>
+    </div>
+    <div class="chair" data-reveal>
+      <figure class="chair__photo">
+        <img src="/images/2025/02/Herbert.jpg" alt="Dr. med. Herbert Ederer, Chair of the Fellowship" loading="lazy" />
+      </figure>
+      <div class="chair__body">
+        <p class="chair__role">Chair · Austria</p>
+        <p class="chair__name">Dr. med. Herbert Ederer</p>
+        <p class="chair__loc">Decades of Rotary leadership and Foundation service</p>
+        <ul class="chair__creds">
+          {chairCreds.map((c) => (<li>{c}</li>))}
+        </ul>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- ============ THE BOARD ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>The Board of Directors 2025–26</p>
+      <h2 class="ed-title">A talented, international team</h2>
+      <p class="ed-sub">Seventeen Directors from ten different countries, bringing together medicine, nursing, public health and humanitarian leadership. We meet once a month online.</p>
+    </div>
+    <div class="board-table-wrap" data-reveal>
+      <table class="board-table">
+        <thead>
+          <tr><th scope="col">Director</th><th scope="col">Role</th><th scope="col" class="col-country">Country</th></tr>
+        </thead>
+        <tbody>
+          {directors.map((d) => (
+            <tr class={isOfficer(d.role) ? 'is-officer' : ''}>
+              <th scope="row">{d.name}</th>
+              <td>{d.role}</td>
+              <td class="col-country">{d.country}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOCUMENTS & ACCOUNTS ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Transparency</p>
+      <h2 class="ed-title">Documents & accounts</h2>
+      <p class="ed-sub">Our reports and full financial accounts, published openly. Every document opens or downloads directly.</p>
+    </div>
+    <div class="cards-2" data-reveal style="margin-top:40px">
+      <div>
+        <h3 class="gov-h">Reports & messages</h3>
+        {reports.map((d) => (
+          <a class="doc-card" href={d.href} target="_blank" rel="noopener">
+            <span class="doc-ico doc-pdf">PDF</span>
+            <span class="doc-meta"><span class="doc-name">{d.name}</span><span class="doc-sub">PDF · Download</span></span>
+            <span class="doc-open">↓</span>
+          </a>
+        ))}
+      </div>
+      <div>
+        <h3 class="gov-h">Annual accounts</h3>
+        {accounts.map((d) => (
+          <a class="doc-card" href={d.href} target="_blank" rel="noopener">
+            <span class="doc-ico doc-pdf">PDF</span>
+            <span class="doc-meta"><span class="doc-name">{d.name}</span><span class="doc-sub">PDF · Download</span></span>
+            <span class="doc-open">↓</span>
+          </a>
+        ))}
+      </div>
+    </div>
+    <p class="acct-note" data-reveal>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+      Our accounts are also published on the Charity Commission register. <a href="https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/5172968" target="_blank" rel="noopener">View our Charity Commission entry</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ============ CLOSING CTA ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="join-cta" data-reveal>
+      <div class="join-cta__img" style="background-image:url('/images/2024/07/Homepage-main-photo.jpg')"></div>
+      <div class="join-cta__grade"></div>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Join us</p>
+      <h2>Bring your skills to a global family.</h2>
+      <p>Open to all health professionals — Rotarian and non-Rotarian. All it takes is a heart to do good.</p>
+      <div class="join-cta__actions">
+        <a class="btn btn-primary" href="/membership">Become a member</a>
+        <a class="btn btn-outline" href="/contact">Contact us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .chair{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start;margin-top:52px}
+  .chair__photo{margin:0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line)}
+  .chair__photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+  .chair__role{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--azure)}
+  .chair__name{font-family:var(--serif);font-weight:800;font-size:clamp(1.5rem,3vw,2rem);color:var(--blue-dark);letter-spacing:-.01em;margin:8px 0 4px}
+  .chair__loc{color:var(--muted);font-weight:600;margin-bottom:20px}
+  .chair__creds{list-style:none;padding:0;margin:0;display:grid;gap:11px}
+  .chair__creds li{position:relative;padding-left:24px;color:var(--ink-2);font-size:.96rem;line-height:1.5}
+  .chair__creds li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+
+  .board-table-wrap{margin-top:48px;overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);-webkit-overflow-scrolling:touch}
+  .board-table{width:100%;min-width:560px;border-collapse:collapse;background:var(--card)}
+  .board-table thead th{text-align:left;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue-dark);padding:15px 22px}
+  .board-table tbody th,.board-table tbody td{padding:14px 22px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .board-table tbody tr:last-child th,.board-table tbody tr:last-child td{border-bottom:0}
+  .board-table tbody th{text-align:left;font-weight:800;color:var(--blue-dark);font-size:1rem;white-space:nowrap}
+  .board-table td{color:var(--ink-2);font-size:.94rem}
+  .board-table .col-country{color:var(--azure);font-weight:700;font-size:.86rem;white-space:nowrap}
+  .board-table tbody tr:nth-child(even){background:var(--bg)}
+  .board-table tbody tr:hover{background:var(--cloud)}
+  .board-table tbody tr.is-officer th{box-shadow:inset 4px 0 0 var(--gold)}
+
+  .acct-note{display:flex;align-items:flex-start;gap:12px;margin-top:26px;color:var(--muted);font-size:.92rem;max-width:74ch;line-height:1.6}
+  .acct-note svg{flex:none;color:var(--azure);margin-top:2px}
+  .acct-note a{font-weight:700}
+
+  @media(max-width:760px){
+    .chair{grid-template-columns:1fr;gap:24px}
+    .chair__photo{max-width:300px}
+    .board-table thead th,.board-table tbody th,.board-table tbody td{padding:12px 14px}
+  }
+</style>
 </Base>

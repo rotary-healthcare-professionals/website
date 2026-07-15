@@ -1,48 +1,96 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const gives = [
+  { h: 'Donate with PayPal', d: 'Quick and secure — give online in seconds.', cta: 'Donate now',
+    href: 'https://www.paypal.com/donate/?hosted_button_id=VF6AWH69J2B9S',
+    icon: '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>' },
+  { h: 'Donate to our charity', d: 'Give through our secure charity form.', cta: 'Make a donation',
+    href: 'https://form.jotform.com/232724983523057',
+    icon: '<path d="M12 21s-8-4.5-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 11c0 5.5-8 10-8 10Z"/>' },
+  { h: 'Gift Aid — UK taxpayers', d: 'A UK taxpayer? Let us reclaim 20% of your gift from HMRC, at no cost to you.', cta: 'Gift Aid form',
+    href: 'https://form.jotform.com/90982753022357',
+    icon: '<rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12.5h18M12 8v13"/><path d="M12 8S10.5 3.8 8.6 4.6 12 8 12 8Zm0 0s1.5-4.2 3.4-3.4S12 8 12 8Z"/>' },
+];
+
+const trust = [
+  'Registered UK charity — number 1195213',
+  'No admin charges beyond required accountancy and legal fees',
+  'Every gift is used for the purpose it’s given',
+  'Full transparency — accounts published on the Charity Commission register',
+];
 ---
-<Base title={"Donate — International Rotary Fellowship of Healthcare Professionals"} description={"Make a donation to our humanitarian work. We support a number of health related humanitarian projects in different parts of the world."}>
-<div class="page-hero">
-  <div class="container">
-    <p class="crumb"><a href="/">Home</a> / Donate</p>
-    <h1>Donate to our humanitarian projects</h1>
+<Base
+  title={"Donate — International Rotary Fellowship of Healthcare Professionals"}
+  description={"Make a donation to our humanitarian health work. Give by PayPal, our charity form, or Gift Aid. A registered UK charity — every gift goes to the work."}
+>
+<!-- ============ HERO ============ -->
+<header class="ed-hero" data-reveal>
+  <div class="ed-hero__media">
+    <div class="ed-hero__img" style="background-image:url('/images/2025/03/hanna-morris-405462-unsplash-copyright-1900-min.jpg')"></div>
+    <div class="ed-hero__tint"></div>
+    <div class="ed-hero__warm"></div>
+    <div class="ed-hero__shade"></div>
+    <div class="ed-hero__grain"></div>
   </div>
-</div>
+  <div class="container ed-hero__inner">
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Donate</p>
+    <h1 class="display ed-hero__title">Your gift becomes <em>second chances.</em></h1>
+  </div>
+</header>
 
-<section>
+<!-- ============ LEAD ============ -->
+<section class="ed-section">
+  <div class="container ed-head" data-reveal>
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Your donation can change lives</p>
+    <h2 class="ed-title">Turn your generosity into care</h2>
+    <p class="ed-sub">We support health-related humanitarian projects around the world — made possible only by the generosity of our donors. Choose the way that suits you best.</p>
+  </div>
+</section>
+
+<!-- ============ WAYS TO GIVE ============ -->
+<section class="ed-section" style="padding-top:0">
   <div class="container">
-    <div class="prose">
-      <h2>Make a donation to our humanitarian work</h2>
-      <h3>Your Donation Can Change Lives</h3>
-      <p>We support a number of health related humanitarian projects in different parts of the world. We are able to do this only because of the generosity of our donors.</p>
+    <div class="cards-3">
+      {gives.map((g, i) => (
+        <div class="info-card center" data-reveal style={`--d:${(i % 3) * 0.08}s`}>
+          <div class="icon" style="margin:0 auto 16px;color:var(--blue-dark)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:30px;height:30px" set:html={g.icon} />
+          </div>
+          <h3>{g.h}</h3>
+          <p>{g.d}</p>
+          <p class="card-cta"><a class="btn btn-primary" href={g.href} target="_blank" rel="noopener">{g.cta}</a></p>
+        </div>
+      ))}
     </div>
+  </div>
+</section>
 
-    <div class="cards-3" style="margin-top:28px">
-      <div class="info-card center">
-        <h3>Donate with PayPal</h3>
-        <p>Quick and secure online donation via PayPal.</p>
-        <p style="margin-top:16px"><a class="btn btn-primary" href="https://www.paypal.com/donate/?hosted_button_id=VF6AWH69J2B9S" target="_blank" rel="noopener">Donate Now</a></p>
-      </div>
-      <div class="info-card center">
-        <h3>Donate to our charity</h3>
-        <p>Make a donation through our secure charity form.</p>
-        <p style="margin-top:16px"><a class="btn btn-primary" href="https://form.jotform.com/232724983523057" target="_blank" rel="noopener">Make a donation</a></p>
-      </div>
-      <div class="info-card center">
-        <h3>Gift Aid — UK taxpayers</h3>
-        <p>UK taxpayer? Let us reclaim 20% of your gift from HMRC, at no extra cost to you.</p>
-        <p style="margin-top:16px"><a class="btn btn-primary" href="https://form.jotform.com/90982753022357" target="_blank" rel="noopener">Gift Aid Form</a></p>
-      </div>
+<!-- ============ TRANSPARENCY ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Transparency</p>
+      <h2 class="ed-title">Giving you can trust</h2>
+      <p class="ed-sub">The International Rotary Fellowship of Healthcare Professionals (UK) Trust Fund is a registered charity. We keep our costs tiny and our books open.</p>
     </div>
+    <div class="info-card" data-reveal style="margin-top:32px">
+      <ul class="tier__feats trust-list">
+        {trust.map((t) => (<li>{t}</li>))}
+      </ul>
+      <p class="card-cta" style="margin-top:22px">
+        <a class="btn btn-ghost" href="https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/5172968" target="_blank" rel="noopener">View our Charity Commission entry</a>
+      </p>
+    </div>
+  </div>
+</section>
 
-    <div class="prose" style="margin-top:44px">
-      <p>The International Rotary Fellowship of healthcare Professionals (UK) Trust Fund is a registered charity (Charity number 1195213)</p>
-      <p>In handling donations and disbursing funds, the Chairty will incur no administration charges except the required accountancy fees and/or any legal fees to prepare reports and accounts for the Charity Commissioners. All the funds received will be used for the purpose for which they are donated. We will work through Rotary colleagues in the affected areas whenever practical. We will also respond to genuine requests for help from other groups. There will be total transparency in our financial record keeping. Our accounts and governance structure is published on the Charity Commission&rsquo;s website.</p>
-      <p><a href="https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/5172968" target="_blank" rel="noopener">View our entry on the Charity Commission register</a></p>
-
-      <h2>Donate Your Time. Become a Volunteer</h2>
-      <h3>Together We Can Change The World!</h3>
-      <p><a class="btn btn-primary" href="/membership">Join Today</a></p>
+<!-- ============ VOLUNTEER CTA ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="cta-band" data-reveal>
+      <h2>Give your time, too.</h2>
+      <a class="btn btn-blue" href="/membership">Become a volunteer</a>
     </div>
   </div>
 </section>
