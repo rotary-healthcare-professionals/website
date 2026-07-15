@@ -256,6 +256,24 @@ const { title, description = '' } = Astro.props;
     });
   });
 
+  // Bezhref roditeljski trigger (npr. "Membership") — tap na naziv otvara/zatvara
+  // podizbornik jednako kao strelica. Linkovi s href-om (Service projects, About us)
+  // ostaju obična navigacija.
+  nav.querySelectorAll('.has-dropdown > a:not([href])').forEach(function (trigger) {
+    var btn = trigger.parentNode.querySelector('.submenu-toggle');
+    if (!btn) return;
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      btn.click();
+    });
+    trigger.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+  });
+
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && nav.classList.contains('open')) closeNav();
   });

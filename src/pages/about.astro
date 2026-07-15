@@ -1,56 +1,208 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const aims = [
+  'Encourage fellowship among healthcare professionals.',
+  'Take part in health programmes — volunteering, advising, training and sharing experience.',
+  'Keep members connected through visits, exchanges and online.',
+  'Recognise those who give exceptional service.',
+  'Collaborate with professional bodies and governmental and non-governmental agencies.',
+];
+
+const govDocs = [
+  { name: 'Our constitution', type: 'PDF', cls: 'doc-pdf', href: '/images/2022/07/Rotary_Fellowship_Healthcare_Proff_Constit-2.pdf' },
+  { name: 'Our Trust governing document', type: 'PDF', cls: 'doc-pdf', href: '/images/2022/07/Trust-deed-signed-final-3.pdf' },
+  { name: 'Our bylaws', type: 'DOC', cls: 'doc-word', href: '/images/2025/03/Rotary_Fellowship_Healthcare_Proff_Bylaws_amended2.docx' },
+];
+
+const policies = [
+  { name: 'Data Protection', href: '/images/2024/12/Data-Protection-Policy_2024-1.pdf' },
+  { name: 'Risk Management', href: '/images/2024/12/Risk-Management-Policy_2024.pdf' },
+  { name: 'Equality & Diversity', href: '/images/2024/12/Equality-and-Diversity-Policy_2024.pdf' },
+  { name: 'Dignity', href: '/images/2024/12/Dignity-Policy_2024.pdf' },
+  { name: 'Anti-Fraud & Anti-Corruption', href: '/images/2024/12/Anti-Fraud-and-Anti-Corruption-Policy_2024-1.pdf' },
+];
+
+const subgroups = [
+  {
+    acr: 'HOPS', name: 'Health Outcomes & Patient Safety',
+    mission: 'Provide support to achieve the highest quality health services in a safe environment for patients and health care workers.',
+    vision: 'A world in which no patient is harmed in health care, and everyone receives safe and respectful care — every time, everywhere.',
+  },
+  {
+    acr: 'SASMES', name: 'Safe & Sustainable Medical Equipment Supply',
+    mission: 'Encourage and assist Rotarians to improve patient care by responding, in a safe and sustainable manner, to requests for new or repurposed medical devices that meet the proven health needs of their communities.',
+    vision: 'A world where everyone has access to quality healthcare, supported by appropriate, affordable and sustainable medical devices.',
+  },
+];
+
+const branches = [
+  // Big Ben (Elizabeth Tower) silhouette — clock knocked out via evenodd
+  { label: 'Headquarters', name: 'United Kingdom', icon: '<path d="M12 1.2l1.7 3.4h-3.4z"/><path d="M10.6 4.9h2.8v1.5h-2.8z"/><path d="M9.3 6.6h5.4v4.6H9.3zM13.25 8.9a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0z"/><path d="M10.2 11.2h3.6v9.8h-3.6z"/><path d="M9 21h6v2H9z"/>' },
+  // Pyramids of Giza silhouette + sun + sand baseline
+  { label: 'Active branch', name: 'Egypt', icon: '<path d="M14 6.8 23 20.6H5z"/><path d="M7.4 11.4 14 20.6H.8z"/><circle cx="6.4" cy="6.2" r="1.9"/><path d="M.8 20.4h22.4v1.7H.8z"/>' },
+  // Grey crowned crane (Uganda national bird) silhouette
+  { label: 'Active branch', name: 'Uganda', icon: '<path d="M10.3 13.8h.9l.3 7.6h-1z"/><path d="M12.8 13.8h.9l.4 7.6h-1z"/><path d="M9.6 21h2.4v.9H9.6z"/><path d="M12.4 21h2.5v.9h-2.5z"/><ellipse cx="11" cy="12" rx="4.9" ry="3.3"/><path d="M6.4 10.4 1 7 6.9 12.2z"/><path d="M11.9 9.6c.1-2.7 1.9-4.6 4.1-5.6l1 1.6c-2 .9-3.4 2.4-3.4 4.6z"/><circle cx="17" cy="3.8" r="1.55"/><path d="M18.3 3.5 21.6 2.9 18.4 4.7z"/><path d="M16.9 2.5 16.2 .2 17.2 2.4z"/><path d="M15.9 2.8 14.7 .8 16.5 2.7z"/><path d="M17.8 2.7 19 .9 18.2 2.8z"/>' },
+];
+
+const explore = [
+  { h: 'Our journey', d: 'The story of how our Fellowship grew.', href: '/our-journey' },
+  { h: 'Our heritage', d: 'The people and history behind us.', href: '/heritage' },
+  { h: 'Our board & accounts', d: 'Directors, governance and published accounts.', href: '/board' },
+  { h: 'Directory of Health Programmes', d: 'An open directory of Rotary health programmes worldwide.', href: '/directory' },
+  { h: 'Rotary International Conventions', d: 'Where to meet us around the world.', href: '/conventions' },
+];
 ---
-<Base title={"Who we are — International Rotary Fellowship of Healthcare Professionals"} description={"Healthcare Professionals united by the ideal of 'service above self'. We are a global family — the International Rotary Fellowship of Healthcare Professionals (IRFHP)."}>
-<div class="page-hero">
-  <div class="container">
-    <p class="crumb"><a href="/">Home</a> / About us</p>
-    <h1>Who we are</h1>
+<Base
+  title={"About us — International Rotary Fellowship of Healthcare Professionals"}
+  description={"Who we are: a global family of healthcare professionals united by 'service above self'. Our aims, governance, subgroups and branches."}
+>
+<!-- ============ HERO ============ -->
+<header class="ed-hero" data-reveal>
+  <div class="ed-hero__media">
+    <div class="ed-hero__img" style="background-image:url('/images/2023/07/RIC2023_HOF_GlobalHealthCollaborators-1024x783.jpg')"></div>
+    <div class="ed-hero__tint"></div>
+    <div class="ed-hero__warm"></div>
+    <div class="ed-hero__shade"></div>
+    <div class="ed-hero__grain"></div>
   </div>
-</div>
+  <div class="container ed-hero__inner">
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>About us</p>
+    <h1 class="display ed-hero__title">A global family, united by <em>‘service above self.’</em></h1>
+  </div>
+</header>
 
-<section>
+<!-- ============ WHO WE ARE ============ -->
+<section class="ed-section">
+  <div class="container ed-head" data-reveal>
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Who we are</p>
+    <h2 class="ed-title">The natural home of every healthcare professional — Rotarian and non-Rotarian.</h2>
+    <p class="ed-sub">Rotary Fellowships are international groups who share a common passion. Ours brings health professionals together across the world to make friends, share knowledge — and combine fellowship with action.</p>
+  </div>
+</section>
+
+<!-- ============ AIMS ============ -->
+<section class="ed-section" style="padding-top:0">
   <div class="container">
-    <div class="prose">
-      <h2>About Us</h2>
-      <p>Healthcare Professionals united by the ideal of &lsquo;service above self&rsquo;. We are a global family. Our full name is the International Rotary Fellowship of Healthcare Professionals (IRFHP)</p>
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>What we set out to do</p>
+      <h2 class="ed-title">Our aims</h2>
+    </div>
+    <div class="goals">
+      {aims.map((g, i) => (
+        <div class="goal" data-reveal style={`--d:${i * 0.06}s`}>
+          <span class="goal__n">{String(i + 1).padStart(2, '0')}</span>
+          <p class="goal__t">{g}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
-      <div class="two-col-img">
-        <img src="/images/2024/07/Rotary_Fellowship_Healthcare_Proff_Bylaws_amended-pdf-724x1024.jpg" alt="Cover page of the IRFHP amended bylaws document">
-        <img src="/images/2024/07/Homepage-main-photo.jpg" alt="Members of the Fellowship of Healthcare Professionals">
+<!-- ============ GOVERNANCE ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Governance</p>
+      <h2 class="ed-title">We set our own course</h2>
+      <p class="ed-sub">We have our own constitution, governance structure and decide our own activities. This Fellowship operates in compliance with Rotary International’s policies for Rotary Fellowships, but is not an agency of — or controlled by — Rotary International.</p>
+    </div>
+    <div class="cards-2" data-reveal>
+      <div>
+        <h3 class="gov-h">Governing documents</h3>
+        {govDocs.map((d) => (
+          <a class="doc-card" href={d.href} target="_blank" rel="noopener">
+            <span class={`doc-ico ${d.cls}`}>{d.type}</span>
+            <span class="doc-meta"><span class="doc-name">{d.name}</span><span class="doc-sub">{d.type} · Download</span></span>
+            <span class="doc-open">↓</span>
+          </a>
+        ))}
       </div>
+      <div>
+        <h3 class="gov-h">Our policies</h3>
+        <div class="policy-links">
+          {policies.map((p) => (
+            <a href={p.href} target="_blank" rel="noopener">{p.name}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <h2>Our governance</h2>
-      <p>We operate in compliance with the Rotary International&rsquo;s policies for Rotary Fellowships, but we are not be an agency of, or controlled by, Rotary International.</p>
-      <ul>
-        <li><a href="/images/2022/07/Rotary_Fellowship_Healthcare_Proff_Constit-2.pdf" target="_blank" rel="noopener">Our constitution</a></li>
-        <li><a href="/images/2022/07/Trust-deed-signed-final-3.pdf" target="_blank" rel="noopener">Our Trust governing document</a></li>
-        <li><a href="/images/2025/03/Rotary_Fellowship_Healthcare_Proff_Bylaws_amended2.docx" target="_blank" rel="noopener">Our bylaws</a></li>
-      </ul>
+<!-- ============ SUBGROUPS ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>How we focus</p>
+      <h2 class="ed-title">Our subgroups</h2>
+      <p class="ed-sub">Members can put their energy where it matters most through two focused subgroups.</p>
+    </div>
+    <div class="cards-2" data-reveal>
+      {subgroups.map((s) => (
+        <div class="info-card">
+          <span class="tier__badge">{s.acr}</span>
+          <h3 style="margin-top:14px">{s.name}</h3>
+          <p><strong>Mission</strong> — {s.mission}</p>
+          <p style="margin-top:10px"><strong>Vision</strong> — {s.vision}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
-      <h2>Our policies</h2>
-      <ul>
-        <li><a href="/images/2024/12/Data-Protection-Policy_2024-1.pdf" target="_blank" rel="noopener">Data Protection</a></li>
-        <li><a href="/images/2024/12/Risk-Management-Policy_2024.pdf" target="_blank" rel="noopener">Risk management</a></li>
-        <li><a href="/images/2024/12/Equality-and-Diversity-Policy_2024.pdf" target="_blank" rel="noopener">Equality and Diversity</a></li>
-        <li><a href="/images/2024/12/Dignity-Policy_2024.pdf" target="_blank" rel="noopener">Dignity Policy</a></li>
-        <li><a href="/images/2024/12/Anti-Fraud-and-Anti-Corruption-Policy_2024-1.pdf" target="_blank" rel="noopener">Anti-Fraud</a></li>
-      </ul>
+<!-- ============ BRANCHES ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Global thinking, local action</p>
+      <h2 class="ed-title">Where we work</h2>
+      <p class="ed-sub">We think globally and act locally.</p>
+    </div>
+    <div class="cards-3" data-reveal>
+      {branches.map((b) => (
+        <div class="info-card center branch-card">
+          <span class="branch-ico"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" set:html={b.icon} /></span>
+          <span class="branch-label">{b.label}</span>
+          <h3>{b.name}</h3>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
-      <h2>Branches</h2>
-      <p>We recognises that in fulfilling our mission we must adopt a policy of &lsquo;global thinking and local action&rsquo;. We have three active branches</p>
-      <ul>
-        <li>Ukraine</li>
-        <li>Egypt</li>
-        <li>Uganda</li>
-      </ul>
+<!-- ============ EXPLORE MORE ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Explore more</p>
+      <h2 class="ed-title">More about us</h2>
+    </div>
+    <div class="cards-3" data-reveal>
+      {explore.map((e) => (
+        <a class="info-card link-card" href={e.href}>
+          <h3>{e.h}</h3>
+          <p>{e.d}</p>
+          <span class="link-card__arr">Read more →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
 
-      <h2>Subgroups</h2>
-      <p>We&rsquo;ve two subgroups</p>
-      <ul>
-        <li>Health Outcomes and Patient Safety (HOPS)</li>
-        <li>Safe and Sustainable Medical Equipment Supply (SASMES)</li>
-      </ul>
+<!-- ============ CTA ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="join-cta" data-reveal>
+      <div class="join-cta__img" style="background-image:url('/images/2024/07/Homepage-main-photo.jpg')"></div>
+      <div class="join-cta__grade"></div>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Join us</p>
+      <h2>Bring your skills to a global family.</h2>
+      <p>Open to all health professionals — Rotarian and non-Rotarian. All it takes is a heart to do good.</p>
+      <div class="join-cta__actions">
+        <a class="btn btn-primary" href="/membership">Become a member</a>
+        <a class="btn btn-outline" href="/contact">Contact us</a>
+      </div>
     </div>
   </div>
 </section>
