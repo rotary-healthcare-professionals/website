@@ -28,7 +28,7 @@ const latest = (await getCollection('news'))
     <h1>You can make the difference in global health</h1>
     <p class="sub">A worldwide fellowship of doctors, nurses and volunteers delivering life‑saving care where it is needed most.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="https://www.paypal.com/donate/?hosted_button_id=VF6AWH69J2B9S" target="_blank" rel="noopener">Support our work</a>
+      <a class="btn btn-primary" href="/donate">Support our work</a>
       <a class="btn btn-outline" href="https://membermojo.co.uk/irfhp" target="_blank" rel="noopener">Join the fellowship</a>
     </div>
   </div>
@@ -77,7 +77,7 @@ const latest = (await getCollection('news'))
 <!-- TAIPEI CONVENTION -->
 <section style="padding-top:40px;padding-bottom:40px">
   <div class="container split">
-    <div class="media-card"><img src="/images/2024/07/IMG-20240123-WA0017-225x300.jpg" alt="Rotary International Convention"></div>
+    <div class="media-card"><img src="/images/2023/01/2-Houston.jpg" alt="IRFHP members at the Rotary International Convention House of Friendship"></div>
     <div>
       <span class="kicker">Upcoming</span>
       <h2 class="section-title">The Rotary International Convention in Taipei, Taiwan</h2>
@@ -99,7 +99,7 @@ const latest = (await getCollection('news'))
       <span class="kicker">Ukraine</span>
       <h2 class="section-title">Many mums and babies are innocent victims of the Ukrainian war</h2>
       <p class="section-lead">We are reaching out to them and to those who care for them.</p>
-      <p style="margin-top:24px"><a class="btn btn-blue" href="/babies-of-war">More details</a></p>
+      <p style="margin-top:24px"><a class="btn btn-blue" href="/ukraine">More details</a></p>
     </div>
     <div class="media-card"><img src="/images/2024/07/IMG-20240123-WA0017.jpg" alt="Ukrainian mother holding her baby skin-to-skin in a Kangaroo Mother Care wrap"></div>
   </div>
@@ -151,30 +151,6 @@ const latest = (await getCollection('news'))
     <div class="quote">
       <blockquote>"Dear Colleagues, Rotarian Friends! Thank you so much! Your support is incredibly important for us here in Ukraine. With sincere respect and gratitude to you"</blockquote>
       <cite>Dr Volodymyr Korolenko, Fellowship member</cite>
-    </div>
-  </div>
-</section>
-
-<!-- TILES -->
-<section style="padding-top:40px;padding-bottom:40px">
-  <div class="container">
-    <div class="tiles">
-      <a class="tile" href="/quality-safety">
-        <img src="/images/elementor/thumbs/SASMES1-1-p9r18i7e0krs3gld536v63j1afcq3ubj6pbxcln6m4.jpg" alt="">
-        <h3>Health Outcomes and Patient Safety</h3>
-      </a>
-      <a class="tile" href="/equipment-environment">
-        <img src="/images/elementor/thumbs/volunteers-image-1-p8t9uiasv4uksng76sftwz6ua72ynd6j5veb4qs90g.jpg" alt="">
-        <h3>Safe and Sustainable Medical Equipment Supply</h3>
-      </a>
-      <a class="tile" href="/projects">
-        <img src="/images/elementor/thumbs/Poverty-p9r0riagffi66z0mtujzfliylyz71h1e3x6m4rhz1c.jpg" alt="">
-        <h3>Service Projects</h3>
-      </a>
-      <a class="tile" href="/networking">
-        <img src="/images/elementor/thumbs/bill-wegener-287873-unsplash-min-copyright-r1y4hg4zxge3d8x745zhh6ccr4pziaulc3on922zzc.jpg" alt="">
-        <h3>Connecting with colleagues around the world</h3>
-      </a>
     </div>
   </div>
 </section>
@@ -262,16 +238,6 @@ const latest = (await getCollection('news'))
           {item.data.summary && <p>{item.data.summary}</p>}
         </article>
       ))}
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section style="padding-top:20px">
-  <div class="container">
-    <div class="cta-band">
-      <h2>Your support becomes surgery, screening and second chances.</h2>
-      <a class="btn btn-blue" href="/projects">View our programmes</a>
     </div>
   </div>
 </section>
