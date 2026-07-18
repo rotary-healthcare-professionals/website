@@ -1,56 +1,54 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title={"Our journey so far — International Rotary Fellowship of Healthcare Professionals"} description={"My life and the life of the Fellowship changed on 20th February 2022. The Fellowship is playing a significant role in offering medical aid to the people of Ukraine."}>
-<div class="page-hero">
-  <div class="container">
-    <p class="crumb"><a href="/">Home</a> / About us</p>
-    <h1>Our journey so far</h1>
+<Base
+  title={"Our journey so far — International Rotary Fellowship of Healthcare Professionals"}
+  description={"My life and the life of the Fellowship changed on 20th February 2022. The Fellowship is playing a significant role in offering medical aid to the people of Ukraine."}
+>
+<!-- ============ HERO ============ -->
+<header class="ed-hero" data-reveal>
+  <div class="ed-hero__media">
+    <div class="ed-hero__img" style="background-image:url('/images/2022/03/IMG-20220308-WA0009.jpg')"></div>
+    <div class="ed-hero__tint"></div>
+    <div class="ed-hero__warm"></div>
+    <div class="ed-hero__shade"></div>
+    <div class="ed-hero__grain"></div>
   </div>
-</div>
+  <div class="container ed-hero__inner">
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>About us · Our journey</p>
+    <h1 class="display ed-hero__title">Our journey <em>so far.</em></h1>
+  </div>
+</header>
 
-<section>
+<!-- ============ LEAD ============ -->
+<section class="ed-section">
+  <div class="container ed-head" data-reveal>
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>A letter from our Chairman · 2022</p>
+    <h2 class="ed-title">My life and the life of the Fellowship changed on 20th February 2022</h2>
+    <p class="ed-sub">The Fellowship is playing a significant role in offering medical aid to the people of Ukraine.</p>
+  </div>
+</section>
+
+<!-- ============ NARRATIVE ============ -->
+<section class="ed-section" style="padding-top:0">
   <div class="container">
-    <div class="prose">
-      <h2>My life and the life of the Fellowship changed on 20th February 2022</h2>
-      <p>The Fellowship is playing a significant role in offering medical aid to the people of Ukraine.</p>
-      <p>I was so shocked by the brutality of the war in its first fortnight that I decided call a meeting on Saturday 5th March.</p>
-      <p>My life and the life of the Fellowship changed that day. I now chair a group with representatives from the Fellowship, many medical colleagues from Ukraine, supporting Rotarians from all the frontline countries as well as from Austria and Italy. Our aim is to provide medical aid to the victims of the war in Ukraine. We meet weekly sometimes more often, listen to the challenges faced by medics in Ukraine. They tell us what their needs are &ndash; we source them and transport them across the border.</p>
+    <div class="prose" data-reveal>
+      <p>I was so shocked by the brutality of the war in its first fortnight that I decided to call a meeting on Saturday 5th March.</p>
+      <p>My life and the life of the Fellowship changed that day. I now chair a group with representatives from the Fellowship, many medical colleagues from Ukraine, supporting Rotarians from all the frontline countries as well as from Austria and Italy. Our aim is to provide medical aid to the victims of the war in Ukraine. We meet weekly, sometimes more often, listen to the challenges faced by medics in Ukraine. They tell us what their needs are &ndash; we source them and transport them across the border.</p>
       <p>There are about 12,000 doctors serving a population of 42 million &ndash; many of them are overstretched and risk burn out. The medics and hospitals in Ukraine need help &ndash; medicines, devices, training, pastoral support, advice about how to optimise resources, guidance about maintaining safe and high standards, skill development and above all professional support.</p>
       <p>The Fellowship is able to partner with colleagues in Ukraine to meet their immediate needs, but also help them to think beyond the immediate crisis and consider medium to long term needs as well.</p>
       <p>There are many humanitarian organisations raising funds and transporting medical items to Ukraine. I&rsquo;ll endeavour to form a coalition of organisations to avoid duplication and encourage collaboration, but I know that this is not going to be easy.</p>
-      <p>There are about 1,100 Rotarians in Ukraine in 62 clubs. Rotary has provided the Ukrainian Rotarians funds and provisions on a scale that has never been seen before. We would like to work with them and create a road map for the future. As an international group of healthcare professionals, we stand ready to help our colleagues in Ukraine to emerge from the current dark times into a bright future with a modern and compassionate health service.</p>
-      <blockquote><p>John Philip, Chairman of the Fellowship of Healthcare Professionals</p></blockquote>
+      <p>There are about 1,100 Rotarians in Ukraine in 62 clubs. Rotary has provided the Ukrainian Rotarians funds and provisions on a scale that has never been seen before. We would like to work with them and create a road map for the future.</p>
+      <p class="letter-signoff"><span class="letter-signoff__name">John Philip</span>Chairman of the Fellowship of Healthcare Professionals</p>
     </div>
   </div>
 </section>
 
-<!-- Support / Donate -->
-<section style="padding-top:20px">
+<!-- ============ CLOSING QUOTE (separate) ============ -->
+<section class="ed-section" style="padding-top:0">
   <div class="container">
-    <div class="support-cta">
-      <span class="kicker">Support the children</span>
-      <h2>Your generous gift will bring joy and purpose to orphans around the world</h2>
-      <div class="support-tags">
-        <span>Donations</span>
-        <span>Food</span>
-        <span>Schools</span>
-        <span>Investments</span>
-        <span>Education</span>
-        <span>Vaccination</span>
-      </div>
-      <a class="btn btn-primary" href="https://www.paypal.com/donate/?hosted_button_id=VF6AWH69J2B9S" target="_blank" rel="noopener">Donate</a>
-    </div>
+    <blockquote class="closing-quote" data-reveal>As an international group of healthcare professionals, we stand ready to help our colleagues in Ukraine emerge from the current dark times into <em>a bright future — with a modern and compassionate health service.</em></blockquote>
   </div>
 </section>
 
-<!-- Volunteer -->
-<section style="padding-top:0">
-  <div class="container">
-    <div class="cta-band">
-      <h2>Become a volunteer &mdash; together we can change the world!</h2>
-      <a class="btn btn-blue" href="https://membermojo.co.uk/irfhp" target="_blank" rel="noopener">Join Today</a>
-    </div>
-  </div>
-</section>
 </Base>
