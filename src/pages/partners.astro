@@ -23,7 +23,7 @@ const partners = [
     district: "District 3233",
   },
   {
-    club: "Rotary club of Masaka city, Uganda",
+    club: "Rotary Club of Masaka city, Uganda",
     contact: "Mweruka Jolly",
     email: "mwerukajolly2@gmail.com",
     summary: "Public health dental officer.",
@@ -33,7 +33,7 @@ const partners = [
     district: "Uganda & Tanzania",
   },
   {
-    club: "Rotary club of Masaka city, Uganda",
+    club: "Rotary Club of Masaka city, Uganda",
     contact: "Mweruka Jolly",
     email: "mwerukajolly2@gmail.com",
     summary: "We aim at providing dental and eye care services to vulnerable people in Uganda such as eye care and dental health education, tooth extraction, scaling and polishing, cementing, dentures, giving reading glasses and treatment of eye conditions.",
@@ -105,18 +105,30 @@ const partners = [
 ];
 ---
 <Base title={"Our partners — International Rotary Fellowship of Healthcare Professionals"} description={"Rotary clubs and partners around the world who share their health programmes and collaborate with the International Rotary Fellowship of Healthcare Professionals."}>
-<div class="page-hero">
-  <div class="container">
-    <p class="crumb"><a href="/">Home</a> / Membership</p>
-    <h1>Our partners</h1>
+<!-- ============ HERO ============ -->
+<header class="ed-hero" data-reveal>
+  <div class="ed-hero__media">
+    <div class="ed-hero__img" style="background-image:url('/images/2025/02/victor-nnakwe-625746-unsplash-min-copyright.jpg')"></div>
+    <div class="ed-hero__tint"></div>
+    <div class="ed-hero__warm"></div>
+    <div class="ed-hero__shade"></div>
+    <div class="ed-hero__grain"></div>
   </div>
-</div>
+  <div class="container ed-hero__inner">
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Our partners</p>
+    <h1 class="display ed-hero__title">Partners in health, <em>worldwide.</em></h1>
+  </div>
+</header>
 
-<section>
+<!-- ============ NETWORK ============ -->
+<section class="ed-section">
+  <div class="container ed-head" data-reveal>
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>A global network</p>
+    <h2 class="ed-title">Rotary clubs working alongside us</h2>
+    <p class="ed-sub">Rotary clubs around the world have shared details of their health programmes with us. If you would like your club&rsquo;s programme to be listed, please <a href="/contact">contact us</a>.</p>
+  </div>
   <div class="container">
-    <p class="section-lead" style="margin-bottom:6px">Rotary clubs around the world have shared details of their health programmes with us. If you would like your club&rsquo;s programme to be listed, please <a href="/contact">contact us</a>.</p>
-
-    <div class="partner-grid">
+    <div class="partner-grid" data-reveal>
       {partners.map((p) => (
         <article class="partner-card">
           <header>
