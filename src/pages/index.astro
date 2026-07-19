@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { formatDate as fmt } from '../lib/date';
 
 const heroImages = [
@@ -14,6 +14,22 @@ const heroImages = [
 const latest = (await getCollection('news'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
+
+const events = await Promise.all(
+  (await getCollection('events'))
+    .sort((a, b) => {
+      const ad = a.data.date ? a.data.date.getTime() : Infinity;
+      const bd = b.data.date ? b.data.date.getTime() : Infinity;
+      return ad - bd;
+    })
+    .map(async (e) => {
+      const d = e.data;
+      const dateline = d.dateLabel
+        ? d.dateLabel
+        : [d.date && fmt(d.date), d.time, d.location].filter(Boolean).join(' · ');
+      return { title: d.title, dateline, Body: (await render(e)).Content };
+    })
+);
 ---
 <Base title={"International Rotary Fellowship of Healthcare Professionals"} description={"You can make a difference — International Rotary Fellowship of Healthcare Professionals. Humanitarian health projects, education and a global network of healthcare professionals."}>
 <!-- HERO -->
@@ -164,6 +180,7 @@ const latest = (await getCollection('news'))
 </section>
 
 <!-- EVENTS -->
+{events.length > 0 && (
 <section>
   <div class="container">
     <div class="center">
@@ -171,27 +188,20 @@ const latest = (await getCollection('news'))
       <h2 class="section-title">Upcoming Events</h2>
     </div>
     <div class="events">
-      <div class="event">
-        <p class="date">16/6/2026 · 13:30–14:30 · Taipei, Taiwan</p>
-        <h3>Members' Presentations</h3>
-        <p>Rotary International Convention in Taipei — Tuesday, 16th June 13:30–14:30.</p>
-        <p>TaiNEx1, floor 5F – Room 500</p>
-      </div>
-      <div class="event">
-        <p class="date">31/7/2026</p>
-        <h3>Annual General Meeting</h3>
-        <p>Reports and presentations from our members.</p>
-        <p>Guest speaker (Details to be confirmed)</p>
-      </div>
-      <div class="event">
-        <p class="date">Upcoming events</p>
-        <h3>Webinars</h3>
-        <p><strong>Good eyesight – a perfect gift</strong><br>Webinar on preventable blindness and other eye problems (Details to follow)</p>
-        <p><strong>Eliminating Cervical Cancer</strong><br>The role of advocacy (Details to follow)</p>
-      </div>
+      {events.map((e) => {
+        const Body = e.Body;
+        return (
+          <div class="event">
+            {e.dateline && <p class="date">{e.dateline}</p>}
+            <h3>{e.title}</h3>
+            <Body />
+          </div>
+        );
+      })}
     </div>
   </div>
 </section>
+)}
 
 <!-- SUPPORT / DONATE / JOIN -->
 <section style="padding-top:0">

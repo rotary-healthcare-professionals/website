@@ -57,3 +57,46 @@ content:
           categories: [image]
           extensions: [jpg, jpeg, png, webp, gif]
           rename: safe
+
+  - name: events
+    label: Događaji (Upcoming Events)
+    type: collection
+    path: src/content/events
+    format: yaml-frontmatter
+    filename: "{fields.title}.md"
+    view:
+      fields: [title, date, location]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: asc
+    fields:
+      - name: title
+        label: Naslov događaja
+        type: string
+        required: true
+        description: Naziv događaja koji se prikazuje na naslovnici.
+      - name: date
+        label: Datum
+        type: date
+        options:
+          format: yyyy-MM-dd
+        description: Datum događaja. Ostavi prazno ako je "uskoro / detalji slijede".
+      - name: dateLabel
+        label: Tekst umjesto datuma (opcionalno)
+        type: string
+        description: Npr. "Uskoro — detalji slijede". Ako je ispunjeno, prikazuje se umjesto datuma.
+      - name: time
+        label: Vrijeme (opcionalno)
+        type: string
+        description: Npr. "13:30–14:30".
+      - name: location
+        label: Lokacija (opcionalno)
+        type: string
+        description: Npr. "Taipei, Taiwan".
+      - name: body
+        label: Detalji
+        type: rich-text
+        options:
+          format: markdown
