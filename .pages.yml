@@ -100,3 +100,91 @@ content:
         type: rich-text
         options:
           format: markdown
+
+  - name: projects
+    label: Service projects
+    type: collection
+    path: src/content/projects
+    format: yaml-frontmatter
+    filename: "{fields.slug}.mdoc"
+    view:
+      fields: [title, slug, order]
+      primary: title
+      sort: [order, title]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: slug
+        label: Slug (URL identifikator)
+        type: string
+        required: true
+        description: "Interni identifikator / URL, npr. ukraine. NE mijenjati nakon objave."
+      - name: title
+        label: Naslov
+        type: string
+        required: true
+        description: Naslov projekta (prikazuje se kao naslov stranice).
+      - name: navLabel
+        label: Naziv u izborniku (opcionalno)
+        type: string
+        description: Ako je prazno, koristi se Naslov.
+      - name: order
+        label: Redoslijed
+        type: number
+        description: Manji broj = ranije u popisu i izborniku.
+      - name: summary
+        label: Kratki sažetak (za karticu)
+        type: text
+        options:
+          maxlength: 200
+      - name: coverImage
+        label: Naslovna slika
+        type: image
+        options:
+          path: public/images/projects
+          categories: [image]
+          extensions: [jpg, jpeg, png, webp, gif]
+          rename: safe
+      - name: metaDescription
+        label: SEO opis (za tab i tražilice)
+        type: text
+        options:
+          maxlength: 300
+      - name: intro
+        label: Uvodni odlomci
+        type: text
+        description: "Uvod iznad tablice. Svaki prazan red = novi odlomak."
+      - name: costCaption
+        label: Naslov tablice (opcionalno)
+        type: string
+        description: "Npr. \"Our support to Ukraine\". Ostavi prazno ako projekt nema tablicu."
+      - name: costTable
+        label: Tablica troškova (stavke)
+        type: object
+        list: true
+        description: "Svaki red = jedna stavka. Iznos upiši bez znaka £."
+        fields:
+          - name: label
+            label: Stavka
+            type: string
+          - name: amount
+            label: Iznos (bez £)
+            type: string
+      - name: costTotal
+        label: Ukupno (bez £)
+        type: string
+        description: "Npr. 705,206. Prikazuje se kao zadnji red tablice."
+      - name: costNote
+        label: Napomena ispod tablice (opcionalno)
+        type: text
+      - name: body
+        label: Sadržaj stranice
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+          path: public/images/projects
+          categories: [image]
+          extensions: [jpg, jpeg, png, webp, gif]
+          rename: safe

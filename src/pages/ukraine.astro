@@ -1,113 +1,25 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import ProjectBody from '../components/ProjectBody.astro';
+
+const project = (await getCollection('projects')).find((p) => p.data.slug === 'ukraine');
+if (!project) throw new Error("Missing project content: src/content/projects/ukraine.mdoc (slug 'ukraine')");
+const d = project.data;
 ---
-<Base title={"Helping Ukraine — International Rotary Fellowship of Healthcare Professionals"} description={"What is happening in Ukraine is a human tragedy. We have supplied over £705,000 worth of medical equipment and aid to Ukraine — tourniquets, medications, VAC pumps, Kangaroo Mother Care carriers and other life saving items."}>
+<Base title={`${d.title} — International Rotary Fellowship of Healthcare Professionals`} description={d.metaDescription}>
 <div class="page-hero">
   <div class="container">
     <p class="crumb"><a href="/">Home</a> / <a href="/projects">Service projects</a></p>
-    <h1>Helping Ukraine</h1>
+    <h1>{d.title}</h1>
   </div>
 </div>
 
 <section>
   <div class="container">
     <div class="prose">
-      <h2>Stop the WAR</h2>
-      <p>We have a special relationship with our medical colleagues in Ukraine.</p>
-      <p>On 10 January 2022, we chartered our first branch in Ukraine with 16 charter members. We were in discussion with them about joint projects and exchange visits and many other exciting opportunities for collaboration.</p>
-      <p>The world changed on 24th February 2022 when Russia invaded Ukraine.</p>
-      <p>At a meeting on 5 March 2022 attended by 80 people we decided to initiate medical aid for Ukraine.</p>
-      <p>Since the onset of the war four years ago, we have stood firmly beside our colleagues in Ukraine. Our support has taken many forms &mdash; medical, humanitarian and logistical &mdash; totalling over &pound;705,000 to date. The table below summarises our direct contributions.</p>
-
-      <figure class="equip">
-        <table class="equip-table">
-          <caption>Our support to Ukraine</caption>
-          <tbody>
-            <tr><th scope="row">Urgent medications</th><td>&pound;11,170</td></tr>
-            <tr><th scope="row">Vac pumps for wound care</th><td>&pound;16,375</td></tr>
-            <tr><th scope="row">Tourniquets for emergency trauma care (20,000)</th><td>&pound;107,280</td></tr>
-            <tr><th scope="row">Infant resuscitator</th><td>&pound;9,136</td></tr>
-            <tr><th scope="row">Orthopaedic instruments to treat trauma</th><td>&pound;123,874</td></tr>
-            <tr><th scope="row">Mobile clinic</th><td>&pound;15,200</td></tr>
-            <tr><th scope="row">Operating theatre equipment</th><td>&pound;7,453</td></tr>
-            <tr><th scope="row">Disabled children support</th><td>&pound;4,929</td></tr>
-            <tr><th scope="row">Kangaroo Mother Care</th><td>&pound;409,789</td></tr>
-          </tbody>
-          <tfoot>
-            <tr><th scope="row">Total</th><td>&pound;705,206</td></tr>
-          </tfoot>
-        </table>
-      </figure>
-
-      <p>Over the past two years, we have concentrated our efforts on a low-cost, high-impact intervention: supplying Kangaroo Mother Care (KMC) carriers to the Institute of Neonatology in Kyiv. This simple, evidence-based method is saving newborn lives every day, particularly in a health system strained by conflict and infrastructure disruption.</p>
-
-      <h2>Kangaroo Mother Care in Ukraine</h2>
-      <p>From the beginning of the war the Fellowship has mobilised significant medical aid to Ukraine. After 18 months of emergency medical aid, we made a strategic decision to support maternity care &ndash; focusing mainly on babies born with a low birth weight. We concluded that the most effective way to give newborn babies the best chance of survival is Kangaroo Mother Care (KMC).</p>
-      <p>KMC involves keeping small (preterm) babies skin-to-skin with their mother (or another family member), with exclusive breast or breast-milk feeding and medical assessment. Studies of KMC report increased survival, decreased infection, improved nutrition and growth and possible improved development. Its benefits extend far beyond the well-known advantages of skin-to-skin care, and the support it has provided to perinatal facilities in Ukraine has exceeded all expectations.</p>
-      <p>In Ukraine, babies are born into a terrifying world of war. Newborn babies are spending the first days of their lives in shelters and basements (UNICEF). KMC is a simple, life-saving tool.</p>
-
-      <h3>A vital device for mums in areas of conflict</h3>
-      <p>During active hostilities, the number of premature births increases, and the lack of electricity complicates the uninterrupted operation of equipment in neonatal wards. Because of unpredictable bombings, mothers must run to bomb shelters in haste. With the help of Kangaroo carriers, we can increase the safety of both mothers and babies, even in these extreme circumstances.</p>
-      <p>In addition to the carriers themselves, a large part of the project is dedicated to training healthcare professionals &ndash; as well as parents of premature babies &ndash; how to implement Kangaroo Mother Care effectively, to ensure the most effective and efficient care.</p>
-      <p>The carriers are manufactured in Moldova by Ascend Group SRL (Director Geta Rasciuc &ndash; a sling and carrier expert with over 17 years of experience and a board member of the International Council of Babywearing Consulting Schools), using local materials. They are made in accordance with the EU safety standard EN 13209-1, using materials that meet the clinical hygiene requirements for washing at high temperatures.</p>
-      <p>The Fellowship has supplied 8,000 KMC carriers to neonatal units in Ukraine and has received excellent feedback from medical and nursing staff as well as mums and dads.</p>
-      <img src="/images/2024/07/IMG-20240123-WA0017.jpg" alt="Mother holding her premature baby skin-to-skin in a Kangaroo Mother Care carrier">
-
-      <h3>Voices from Ukraine</h3>
-      <blockquote>
-        <p>&ldquo;Children make up 24% of the population &mdash; but they are one hundred percent of our future. By investing in the survival of premature babies, by improving the care of all newborns, and by ensuring that mothers can reach bomb shelters quickly and safely, we are directly shaping what tomorrow will look like for a country at war.</p>
-        <p>Parents live with an elevated level of stress, which affects their wellbeing and that of their children. When mothers carry their infants in baby wraps their oxytocin levels rise &mdash; reducing stress and strengthening emotional connection. This helps them cope with daily challenges, and over time it becomes profoundly important for infants, who are nurtured by calmer, less stressed mothers.</p>
-        <p>Every child matters &mdash; especially in a country facing war and the demographic consequences of war. Baby carriers have been shown to be easy to use, safe, and to provide stability for the baby as the mother moves around. Many thanks to the Rotary Fellowship for this.&rdquo;</p>
-        <p>&mdash; <cite>Olga Nicolyuk, Ukraine</cite></p>
-      </blockquote>
-      <blockquote>
-        <p>&ldquo;I will say now, as a parent, that it&rsquo;s really important for a mum to be close to her children and free to move around. I spent January and February in Okhmatdyt hospital in Kyiv with my elder child. In those months there was a lot of bombing, a lot of attacks, so I had to take my elder child and my little daughter to the shelter many times. I know how important these carriers are. Thank you.&rdquo;</p>
-        <p>&mdash; <cite>Alyona Kovriga, Ukraine</cite></p>
-      </blockquote>
-
-      <h3>Supported by</h3>
-      <ul>
-        <li>The Human Rights Commissioner of the Ukrainian Verkhovna Rada (parliament)</li>
-        <li>The Ukrainian Pediatric Association, affiliated to the Ukrainian Ministry of Health</li>
-        <li>The Association of Neonatologists in Ukraine</li>
-        <li>The Ukrainian Association of Babywearing Consultants</li>
-      </ul>
-
-      <h3>Upscale and extend to other areas of conflict?</h3>
-      <p>Our experience suggests that KMC is a valuable additional life-saving tool in areas of conflict.</p>
-      <p>Want to know more? Contact Dr John Philip &mdash; <a href="mailto:jp_rotary@btinternet.com">jp_rotary@btinternet.com</a></p>
-      <p><a href="/kmc">More about Kangaroo Mother Care</a></p>
-
-      <h2>Protecting pregnant women and newborns</h2>
-      <p>The war poses both immediate and long-term risks to mothers, fathers and new-borns &ndash; among them premature births, which can lead to a host of complications both immediately and later in life. Colleagues from Ukraine told us of a high rate of Caesarean sections and a higher than normal number of children born with birth asphyxia (oxygen starvation). There were also several reports of direct attacks on health facilities and ambulances, and disruption to supply chains.</p>
-      <p>Around May 2022, we became concerned about the impact of the war on pregnant women and the new-born, and prepared a programme to support 37 maternity departments. The Fellowship has so far supplied &pound;95,000 worth of vital maternity care medical equipment to these hospitals, to help pregnant women give birth in relative safety and with better care.</p>
-      <p>It is estimated that these 37 hospitals will see about 30,000 births in the next 12 months. It is our hope that the vital supplies now available to these specialists will save lives.</p>
-      <h2>Hats for Ukrainian Babies</h2>
-      <p>Often considered an adornment, hats for new-born babies may be life-saving. Their heads are relatively larger than their bodies compared with older children and adults, and a large source of heat loss. Mild heat loss may be associated with poor feeding and growth; larger losses with decreased body temperature and an increased chance of death.</p>
-      <p>The hats are often knitted &ndash; especially, but not exclusively, by grandmothers &ndash; sometimes along with booties and mittens. We have supplied 10,000 knitted hats and a large quantity of baby clothes to maternity units in Ukraine, thanks to the generosity of UK Rotarians and friends. (We are no longer able to collect or transport such items to Ukraine.)</p>
-      <img src="/images/2023/01/2-Houston.jpg" alt="Knitted hats for Ukrainian babies collected for donation">
-      <h2>Helping babies breathe &ndash; Neopuff</h2>
-      <p>NEOPUFF is a simple device to help babies breathe; in many cases, having it in the right place at the right time makes the difference between life and death. In partnership with the Rotary Club of Klosterneuburg and with the support of RC Leoben, the Fellowship delivered 25 Neopuff devices to 15 cities in Ukraine.</p>
-      <blockquote>
-        <p>&lsquo;Such a device as Neopuff can literally save the future of Ukraine by saving newly born, little babies&hellip; you are a part of a big important project and we value it a lot!&rsquo; &mdash; Yuliya Bitner, Lviv</p>
-      </blockquote>
-      <img src="/images/2022/07/Rivne-765x1024.png" alt="Medical staff in Rivne, Ukraine, with a delivered Neopuff device">
-      <p>Many children have been killed or injured, many have lost parents and siblings, their homes, schools and playgrounds. We have been told that some have been kidnapped and trafficked. No child should ever have to bear that kind of suffering. They need mental and physical support urgently.</p>
-      <p>Our support has been possible due the generosity of Rotarians and non-Rotarians to all of them we say – thank you.</p>
-      <blockquote>
-        <p>‘It’s impossible for you to hear each “thank you” from the doctors but on behalf of them I can say that you are a part of big important project and we value it a lot!’</p>
-      </blockquote>    </div>
+      <ProjectBody project={project} />
+    </div>
   </div>
 </section>
-
-<style>
-  .equip{margin:28px 0}
-  .equip-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);font-variant-numeric:tabular-nums}
-  .equip-table caption{caption-side:top;text-align:left;font-weight:700;color:var(--blue-dark);margin-bottom:12px;font-size:1.05rem}
-  .equip-table th,.equip-table td{padding:13px 18px;border-bottom:1px solid var(--line)}
-  .equip-table th{text-align:left;font-weight:600;color:var(--ink)}
-  .equip-table td{text-align:right;font-weight:700;color:var(--blue-dark);white-space:nowrap}
-  .equip-table tbody tr:nth-child(even){background:var(--bg)}
-  .equip-table tfoot th,.equip-table tfoot td{background:var(--blue-dark);color:#fff;font-size:1.06rem;border-bottom:0}
-</style>
 </Base>
