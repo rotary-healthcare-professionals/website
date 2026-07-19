@@ -1,0 +1,24 @@
+---
+// Renders a CMS-managed service project inside a .prose wrapper:
+// intro paragraphs -> optional cost table -> note paragraphs -> rich-text body.
+import { render } from 'astro:content';
+import CostTable from './CostTable.astro';
+
+const { project } = Astro.props;
+const d = project.data;
+const { Content } = await render(project);
+
+const split = (s?: string) =>
+  (s ?? '').split(/\n\s*\n/).map((x) => x.trim()).filter(Boolean);
+const introParas = split(d.intro);
+const noteParas = split(d.costNote);
+---
+{introParas.map((p: string) => <p>{p}</p>)}
+
+{d.costTable && d.costTable.length > 0 && (
+  <CostTable rows={d.costTable} total={d.costTotal} caption={d.costCaption} />
+)}
+
+{noteParas.map((p: string) => <p>{p}</p>)}
+
+<Content />
