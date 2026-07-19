@@ -84,7 +84,7 @@ const perks = [
         <span class="tier__badge">A perfect first step</span>
         <h3 class="tier__name">Associate membership</h3>
         <p class="tier__price"><b>£12</b><span>one-time fee</span></p>
-        <p class="tier__desc">For those getting involved through a subgroup or branch who want to put their energy into focused work.</p>
+        <p class="tier__desc">For those getting involved through a subgroup or branch who want to put their energy into our work.</p>
         <ul class="tier__feats">
           <li>Attend all business meetings as a non-voting member</li>
           <li>Join one or more subgroups and branches</li>
@@ -168,4 +168,10 @@ const perks = [
     </div>
   </div>
 </section>
+
+<style is:global>
+  /* Membership: popis pogodnosti bez kvačica — čist tekst */
+  .tier__feats li{padding-left:0 !important}
+  .tier__feats li::before{display:none !important}
+</style>
 </Base>
