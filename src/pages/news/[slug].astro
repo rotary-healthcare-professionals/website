@@ -12,24 +12,37 @@ const { item } = Astro.props;
 const { Content } = await render(item);
 ---
 <Base title={`${item.data.title} — IRFHP`} description={item.data.summary}>
-  <div class="page-hero">
-    <div class="container">
-      <p class="crumb"><a href="/">Home</a> / <a href="/news">News</a></p>
-      <h1>{item.data.title}</h1>
-      <p class="date">{fmt(item.data.date)}</p>
+<article class="news-article">
+  <div class="container">
+    <div class="news-article__wrap">
+      <header class="news-article__head" data-reveal>
+        <p class="news-eyebrow"><a href="/news">News</a> <span>&middot;</span> {fmt(item.data.date)}</p>
+        <h1>{item.data.title}</h1>
+      </header>
+
+      {item.data.coverImage && (
+        <img class="news-article__cover" src={item.data.coverImage} alt={item.data.title} data-reveal />
+      )}
+
+      <div class="prose news-article__body" data-reveal><Content /></div>
+
+      <a class="news-back" href="/news" data-reveal>&larr; Back to all news</a>
     </div>
   </div>
+</article>
 
-  <section>
-    <div class="container" style="max-width:820px">
-      {item.data.coverImage && (
-        <img
-          src={item.data.coverImage}
-          alt={item.data.title}
-          style="width:100%;border-radius:12px;margin-bottom:24px"
-        />
-      )}
-      <div class="prose"><Content /></div>
-    </div>
-  </section>
+<style>
+  .news-article{padding:clamp(46px,7vw,88px) 0}
+  .news-article__wrap{max-width:820px;margin:0 auto}
+  .news-article__head{margin-bottom:28px}
+  .news-eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--azure);margin:0;display:flex;align-items:center;gap:9px}
+  .news-eyebrow a{color:var(--azure);text-decoration:none}
+  .news-eyebrow a:hover{text-decoration:underline}
+  .news-eyebrow span{color:var(--line)}
+  .news-article__head h1{font-family:var(--serif);font-weight:800;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.1;letter-spacing:-.02em;color:var(--blue-dark);margin:16px 0 0}
+  .news-article__cover{width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow);display:block;margin:0 0 8px}
+  .news-article__body{margin-top:34px}
+  .news-back{display:inline-block;margin-top:44px;font-weight:800;color:var(--azure);text-decoration:none}
+  .news-back:hover{text-decoration:underline}
+</style>
 </Base>
