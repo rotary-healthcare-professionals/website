@@ -4,7 +4,7 @@ title: Helping Ukraine
 navLabel: Helping Ukraine
 order: 20
 summary: Supporting mothers, babies and the health professionals who care for them.
-coverImage: /images/2024/07/IMG-20240123-WA0017.jpg
+coverImage: /images/2023/01/2-Houston.jpg
 metaDescription: "What is happening in Ukraine is a human tragedy. We have supplied over £705,000 worth of medical equipment and aid to Ukraine — tourniquets, medications, VAC pumps, Kangaroo Mother Care carriers and other life saving items."
 ---
 We have a special relationship with our medical colleagues in Ukraine.

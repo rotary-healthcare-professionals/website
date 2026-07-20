@@ -594,6 +594,19 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
   .board-table thead th,.board-table tbody th,.board-table tbody td{padding:12px 14px}
 }
 
+/* Kartice Service projects (/projects) — slika + naslov + sažetak */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:36px}
+.proj-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease}
+.proj-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.proj-card__media{display:block;background:var(--cloud)}
+.proj-card__media img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.proj-card__body{display:flex;flex-direction:column;gap:10px;padding:22px 22px 24px;flex:1}
+.proj-card__body h3{margin:0;font-size:1.18rem;color:var(--blue-dark)}
+.proj-card__body p{margin:0;color:var(--muted);flex:1}
+.proj-card__body .btn{align-self:flex-start;margin-top:6px}
+@media(max-width:900px){ .proj-grid{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:600px){ .proj-grid{grid-template-columns:1fr} }
+
 /* Tablice unutar .prose (npr. troškovi na Service projects — ubace se u sadržaj po potrebi) */
 .prose table{width:100%;border-collapse:collapse;margin:28px 0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);font-variant-numeric:tabular-nums}
 .prose thead th{background:var(--cloud);color:var(--blue-dark);text-align:left;font-weight:700;font-size:.82rem;letter-spacing:.03em;text-transform:uppercase}
