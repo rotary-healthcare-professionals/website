@@ -106,7 +106,7 @@ content:
     type: collection
     path: src/content/projects
     format: yaml-frontmatter
-    filename: "{fields.slug}.mdoc"
+    filename: "{fields.slug}.md"
     view:
       fields: [title, slug, order]
       primary: title
@@ -151,36 +151,10 @@ content:
         type: text
         options:
           maxlength: 300
-      - name: intro
-        label: Uvodni odlomci
-        type: text
-        description: "Uvod iznad tablice. Svaki prazan red = novi odlomak."
-      - name: costCaption
-        label: Naslov tablice (opcionalno)
-        type: string
-        description: "Npr. \"Our support to Ukraine\". Ostavi prazno ako projekt nema tablicu."
-      - name: costTable
-        label: Tablica troškova (stavke)
-        type: object
-        list: true
-        description: "Svaki red = jedna stavka. Iznos upiši bez znaka £."
-        fields:
-          - name: label
-            label: Stavka
-            type: string
-          - name: amount
-            label: Iznos (bez £)
-            type: string
-      - name: costTotal
-        label: Ukupno (bez £)
-        type: string
-        description: "Npr. 705,206. Prikazuje se kao zadnji red tablice."
-      - name: costNote
-        label: Napomena ispod tablice (opcionalno)
-        type: text
       - name: body
         label: Sadržaj stranice
         type: rich-text
+        description: "Cijeli tekst stranice. Tablicu (npr. troškova) ubaci samo gdje ti treba — preko alata za tablicu; stranice bez nje je jednostavno nemaju."
         options:
           format: markdown
           switcher: true

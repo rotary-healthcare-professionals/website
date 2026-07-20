@@ -593,3 +593,12 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
   .chair__photo{max-width:300px}
   .board-table thead th,.board-table tbody th,.board-table tbody td{padding:12px 14px}
 }
+
+/* Tablice unutar .prose (npr. troškovi na Service projects — ubace se u sadržaj po potrebi) */
+.prose table{width:100%;border-collapse:collapse;margin:28px 0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);font-variant-numeric:tabular-nums}
+.prose thead th{background:var(--cloud);color:var(--blue-dark);text-align:left;font-weight:700;font-size:.82rem;letter-spacing:.03em;text-transform:uppercase}
+.prose th,.prose td{padding:13px 18px;border-bottom:1px solid var(--line)}
+.prose td{color:var(--blue-dark);font-weight:600}
+.prose tbody tr:nth-child(even){background:var(--bg)}
+.prose tbody tr:last-child th,.prose tbody tr:last-child td{background:var(--blue-dark);color:#fff;font-weight:700;border-bottom:0}
+@media(max-width:560px){ .prose th,.prose td{padding:11px 12px} }
