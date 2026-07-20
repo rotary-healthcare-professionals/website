@@ -31,7 +31,7 @@ const eras = [
 ---
 <Base title={"Our Heritage — International Rotary Fellowship of Healthcare Professionals"} description={"The Rotarian Doctors Fellowship started in 1991 by a small group of Rotarian Doctors in the US headed by Past District Governor Dr. Jim Shamblin. The story of how our Fellowship grew."}>
 <!-- ============ HERO ============ -->
-<header class="ed-hero" data-reveal>
+<header class="ed-hero ed-hero--soft" data-reveal>
   <div class="ed-hero__media">
     <div class="ed-hero__img" style="background-image:url('/images/2019/02/20170610_174238.jpg')"></div>
     <div class="ed-hero__tint"></div>
@@ -70,6 +70,10 @@ const eras = [
 </section>
 
 <style>
+  /* heritage hero: booth slika je tamna/pretrpana — smanji tint/shade da se pozadina vidi */
+  .ed-hero--soft .ed-hero__tint{opacity:.6}
+  .ed-hero--soft .ed-hero__img{background-position:center 30%}
+  .ed-hero--soft .ed-hero__shade{background:linear-gradient(96deg,rgba(6,17,38,.8) 0%,rgba(6,17,38,.4) 50%,rgba(6,17,38,.1) 100%),linear-gradient(0deg,rgba(6,17,38,.82),transparent 42%)}
   .tl{max-width:780px;margin:0 auto}
   .tl__item{position:relative;padding:0 0 40px 40px}
   .tl__item::before{content:"";position:absolute;left:5px;top:8px;bottom:-4px;width:2px;background:var(--line)}
