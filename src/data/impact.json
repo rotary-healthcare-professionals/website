@@ -1,0 +1,13 @@
+{
+  "homepage": [
+    { "value": "$2M", "label": "Global grant to fight cervical cancer in Egypt" },
+    { "value": "9", "label": "Children given life-saving heart surgery in Uganda" },
+    { "value": "30+", "label": "Countries reached through service projects" },
+    { "value": "17", "label": "Active service programmes worldwide" }
+  ],
+  "projects": [
+    { "value": "£705k", "label": "Medical aid to Ukraine" },
+    { "value": "30,000", "label": "Newborns helped" },
+    { "value": "37", "label": "Hospitals supported" }
+  ]
+}

@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import impact from '../data/impact.json';
 const projects = (await getCollection('projects'))
   .sort((a, b) => (a.data.order ?? 100) - (b.data.order ?? 100));
 ---
@@ -68,9 +69,9 @@ const projects = (await getCollection('projects'))
 <!-- IMPACT -->
 <section class="impact-band" style="padding:52px 0">
   <div class="container impact">
-    <div class="item"><div class="n">£95k</div><div class="l">Medical equipment for Ukraine</div></div>
-    <div class="item"><div class="n">30,000</div><div class="l">Newborns helped</div></div>
-    <div class="item"><div class="n">37</div><div class="l">Hospitals supported</div></div>
+    {impact.projects.map((s) => (
+      <div class="item"><div class="n">{s.value}</div><div class="l">{s.label}</div></div>
+    ))}
   </div>
 </section>
 
