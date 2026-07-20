@@ -6,6 +6,7 @@ interface Props {
 }
 const { title, description = '' } = Astro.props;
 const projectNav = (await getCollection('projects'))
+  .filter((p) => !p.data.externalUrl)
   .sort((a, b) => (a.data.order ?? 100) - (b.data.order ?? 100))
   .map((p) => ({ href: `/${p.data.slug}`, label: p.data.navLabel || p.data.title }));
 ---

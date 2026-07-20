@@ -151,6 +151,10 @@ content:
         type: text
         options:
           maxlength: 300
+      - name: externalUrl
+        label: Vanjski link (opcionalno)
+        type: string
+        description: "Ako je ispunjeno, kartica na /projects vodi na ovaj link (npr. Heart2Heart na GlobalGiving) i projekt se NE prikazuje u izborniku. Ostavi prazno za normalnu stranicu."
       - name: body
         label: Sadržaj stranice
         type: rich-text
