@@ -6,40 +6,34 @@ order: 20
 summary: Supporting mothers, babies and the health professionals who care for them.
 coverImage: /images/2024/07/IMG-20240123-WA0017.jpg
 metaDescription: "What is happening in Ukraine is a human tragedy. We have supplied over £705,000 worth of medical equipment and aid to Ukraine — tourniquets, medications, VAC pumps, Kangaroo Mother Care carriers and other life saving items."
-intro: |
-  We have a special relationship with our medical colleagues in Ukraine.
-
-  On 10 January 2022, we chartered our first branch in Ukraine with 16 charter members. We were in discussion with them about joint projects and exchange visits and many other exciting opportunities for collaboration.
-
-  The world changed on 24th February 2022 when Russia invaded Ukraine.
-
-  At a meeting on 5 March 2022 attended by 80 people we decided to initiate medical aid for Ukraine.
-
-  Since the onset of the war four years ago, we have stood firmly beside our colleagues in Ukraine. Our support has taken many forms — medical, humanitarian and logistical — totalling over £705,000 to date. The table below summarises our direct contributions.
-costCaption: Our support to Ukraine
-costTotal: "705,206"
-costTable:
-  - label: Urgent medications
-    amount: "11,170"
-  - label: Vac pumps for wound care
-    amount: "16,375"
-  - label: Tourniquets for emergency trauma care (20,000)
-    amount: "107,280"
-  - label: Infant resuscitator
-    amount: "9,136"
-  - label: Orthopaedic instruments to treat trauma
-    amount: "123,874"
-  - label: Mobile clinic
-    amount: "15,200"
-  - label: Operating theatre equipment
-    amount: "7,453"
-  - label: Disabled children support
-    amount: "4,929"
-  - label: Kangaroo Mother Care
-    amount: "409,789"
-costNote: |
-  Over the past two years, we have concentrated our efforts on a low-cost, high-impact intervention: supplying Kangaroo Mother Care (KMC) carriers to the Institute of Neonatology in Kyiv. This simple, evidence-based method is saving newborn lives every day, particularly in a health system strained by conflict and infrastructure disruption.
 ---
+We have a special relationship with our medical colleagues in Ukraine.
+
+On 10 January 2022, we chartered our first branch in Ukraine with 16 charter members. We were in discussion with them about joint projects and exchange visits and many other exciting opportunities for collaboration.
+
+The world changed on 24th February 2022 when Russia invaded Ukraine.
+
+At a meeting on 5 March 2022 attended by 80 people we decided to initiate medical aid for Ukraine.
+
+Since the onset of the war four years ago, we have stood firmly beside our colleagues in Ukraine. Our support has taken many forms — medical, humanitarian and logistical — totalling over £705,000 to date. The table below summarises our direct contributions.
+
+**Our support to Ukraine**
+
+| Item | Amount |
+| --- | ---: |
+| Urgent medications | £11,170 |
+| Vac pumps for wound care | £16,375 |
+| Tourniquets for emergency trauma care (20,000) | £107,280 |
+| Infant resuscitator | £9,136 |
+| Orthopaedic instruments to treat trauma | £123,874 |
+| Mobile clinic | £15,200 |
+| Operating theatre equipment | £7,453 |
+| Disabled children support | £4,929 |
+| Kangaroo Mother Care | £409,789 |
+| **Total** | **£705,206** |
+
+Over the past two years, we have concentrated our efforts on a low-cost, high-impact intervention: supplying Kangaroo Mother Care (KMC) carriers to the Institute of Neonatology in Kyiv. This simple, evidence-based method is saving newborn lives every day, particularly in a health system strained by conflict and infrastructure disruption.
+
 ## Kangaroo Mother Care in Ukraine
 
 From the beginning of the war the Fellowship has mobilised significant medical aid to Ukraine. After 18 months of emergency medical aid, we made a strategic decision to support maternity care – focusing mainly on babies born with a low birth weight. We concluded that the most effective way to give newborn babies the best chance of survival is Kangaroo Mother Care (KMC).

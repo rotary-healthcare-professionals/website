@@ -23,7 +23,7 @@ const events = defineCollection({
 });
 
 const projects = defineCollection({
-  loader: glob({ pattern: '*.mdoc', base: './src/content/projects' }),
+  loader: glob({ pattern: '*.md', base: './src/content/projects' }),
   schema: z.object({
     slug: z.string(),
     title: z.string(),
@@ -32,13 +32,6 @@ const projects = defineCollection({
     summary: z.string().optional().default(''),
     coverImage: z.string().nullable().optional(),
     metaDescription: z.string().optional().default(''),
-    intro: z.string().optional(),
-    costCaption: z.string().optional(),
-    costTotal: z.string().optional(),
-    costNote: z.string().optional(),
-    costTable: z
-      .array(z.object({ label: z.string(), amount: z.string() }))
-      .optional(),
   }),
 });
 
