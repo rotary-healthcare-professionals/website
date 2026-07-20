@@ -1,22 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import ProjectBody from '../components/ProjectBody.astro';
+
+const project = (await getCollection('projects')).find((p) => p.data.slug === 'kmc');
+if (!project) throw new Error("Missing project content: src/content/projects/kmc.mdoc (slug 'kmc')");
+const d = project.data;
 ---
-<Base title={"Kangaroo Mother Care (KMC) — International Rotary Fellowship of Healthcare Professionals"} description={"Kangaroo Mother Care (KMC) — something so simple, yet so effective in saving lives. We have supplied thousands of KMC carriers to neonatal units in Ukraine."}>
+<Base title={`${d.title} — International Rotary Fellowship of Healthcare Professionals`} description={d.metaDescription}>
 <div class="page-hero">
   <div class="container">
     <p class="crumb"><a href="/">Home</a> / <a href="/projects">Service projects</a></p>
-    <h1>Kangaroo Mother Care (KMC)</h1>
+    <h1>{d.title}</h1>
   </div>
 </div>
 
 <section>
   <div class="container">
     <div class="prose">
-      <p><strong>Something so simple – yet so effective in saving lives</strong></p>
-
-      <h2>15 Years in Action</h2>
-      <p>KMC is all about skin-to-skin contact, exclusive breast, or breast milk feeding – and of course medical assessment.</p>
-      <p>Studies of KMC report increased survival, decreased infection, improved nutrition and growth and possible improved development. Mothers have less postpartum depression and increased confidence in caring for their babies. Recently the World Health Organization has recommended KMC be started at birth even if small babies require other assistance in care.</p>
+      <ProjectBody project={project} />
     </div>
   </div>
 </section>

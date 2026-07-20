@@ -1,58 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import ProjectBody from '../components/ProjectBody.astro';
+
+const project = (await getCollection('projects')).find((p) => p.data.slug === 'education');
+if (!project) throw new Error("Missing project content: src/content/projects/education.mdoc (slug 'education')");
+const d = project.data;
 ---
-<Base title={"Educational Activities — International Rotary Fellowship of Healthcare Professionals"} description={"Educational activities of the International Rotary Fellowship of Healthcare Professionals — webinars, round table discussions and articles. There is so much we can learn from each other."}>
+<Base title={`${d.title} — International Rotary Fellowship of Healthcare Professionals`} description={d.metaDescription}>
 <div class="page-hero">
   <div class="container">
-    <p class="crumb"><a href="/">Home</a> / Service projects</p>
-    <h1>Educational Activities</h1>
+    <p class="crumb"><a href="/">Home</a> / <a href="/projects">Service projects</a></p>
+    <h1>{d.title}</h1>
   </div>
 </div>
 
 <section>
   <div class="container">
     <div class="prose">
-      <p><strong>There is so much we can learn from each other</strong></p>
-
-      <div class="two-col-img">
-        <img src="/images/elementor/thumbs/about1-video-overlay-r1y4ib5o6zkk0do531e69gikcuh3kb9qgd7o36t0a0.jpg" alt="Healthcare professionals sharing knowledge in a video discussion">
-        <img src="/images/2025/02/victor-nnakwe-625746-unsplash-min-copyright.jpg" alt="Healthcare worker caring for a patient">
-      </div>
-
-      <h2>Webinar</h2>
-      <p>Many of our members are on the frontline facing challenges during this pandemic. We have been able to give them a voice and have a forum for them to share their views.</p>
-      <p>Our virtual round table discussions have been unique because the participants were heroes on the frontline – what they said came from the bottom of their hearts.</p>
-
-      <h3>Our recent discussions:</h3>
-      <ul>
-        <li>End of life care in this pandemic led by Jeremy Johnson</li>
-        <li>Challenges in maternity care led by Himansu Basu</li>
-        <li>Covid testing facts and fiction led by Gabriele Mallapaty</li>
-        <li>Skin manifestation of Covid-19 – led by John Strasswimmer</li>
-        <li>Collaboration with Water and Sanitation Rotary Action Group – led by Ron Denham and John Philip</li>
-        <li>Medical equipment – procurement and donation – sharing good practices and learning lessons.</li>
-        <li>Covid-19 and medical ethics led by Dr Benjamin Stoff</li>
-      </ul>
-      <p>This is a voluntary group – we use this to disseminate general information about new information of interest. Members can use the group to exchange ideas.</p>
-
-      <h3>Posting</h3>
-      <p>Selected articles of interest are posted on this site.</p>
-      <ul>
-        <li><a href="/news/poliomyelitis-yesterday-today-and-tomorrow-almost-at-the-end-rotarys">Poliomyelitis: yesterday, today and tomorrow</a></li>
-        <li><a href="https://ponseti.medicine.uiowa.edu/about-us/dr-ponseti" target="_blank" rel="noopener">The clubfoot treatment revolution: Dr. Ponseti</a></li>
-      </ul>
-
-      <h2>Our Work in Action</h2>
-      <div class="gallery">
-        <img src="/images/2025/02/tucker-tangeman-584468-unsplash-min-copyright.jpg" alt="Children in a rural community">
-        <img src="/images/2025/02/victor-nnakwe-625746-unsplash-min-copyright.jpg" alt="Healthcare worker attending to a patient">
-        <img src="/images/2025/02/bill-wegener-285004-unsplash-min.jpg" alt="Community members gathered together">
-      </div>
-      <div class="gallery">
-        <img src="/images/2025/02/jeffrey-eisen-271222-unsplash-min-copyright.jpg" alt="Children sharing a meal">
-        <img src="/images/2025/02/seth-doyle-78210-unsplash-copyright-min-1.jpg" alt="Young child in a local community">
-        <img src="/images/2025/02/bill-wegener-287873-unsplash-min-copyright.jpg" alt="Children in school uniforms">
-      </div>
+      <ProjectBody project={project} />
     </div>
   </div>
 </section>
