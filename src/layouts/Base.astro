@@ -1,9 +1,13 @@
 ---
+import { getCollection } from 'astro:content';
 interface Props {
   title: string;
   description?: string;
 }
 const { title, description = '' } = Astro.props;
+const projectNav = (await getCollection('projects'))
+  .sort((a, b) => (a.data.order ?? 100) - (b.data.order ?? 100))
+  .map((p) => ({ href: `/${p.data.slug}`, label: p.data.navLabel || p.data.title }));
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -37,12 +41,7 @@ const { title, description = '' } = Astro.props;
         <a href="/projects">Service projects</a>
         <button class="submenu-toggle" type="button" aria-label="Toggle Service projects submenu" aria-expanded="false"><span class="caret">▾</span></button>
         <div class="dropdown">
-          <a href="/kmc">Kangaroo Mother Care (KMC)</a>
-          <a href="/cervical-cancer">Cervical cancer</a>
-          <a href="/ukraine">Helping Ukraine</a>
-          <a href="/education">Educational Activities</a>
-          <a href="/quality-safety">Quality and Safety in Healthcare</a>
-          <a href="/tanzania">Tanzania: transforming lives</a>
+          {projectNav.map((p) => <a href={p.href}>{p.label}</a>)}
         </div>
       </div>
       <div><a href="/news">News</a></div>

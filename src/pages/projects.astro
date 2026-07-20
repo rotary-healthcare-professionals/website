@@ -1,5 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const projects = (await getCollection('projects'))
+  .sort((a, b) => (a.data.order ?? 100) - (b.data.order ?? 100));
 ---
 <Base title={"Service projects — International Rotary Fellowship of Healthcare Professionals"} description={"Our humanitarian service projects: Kangaroo Mother Care, Ukraine, cervical cancer prevention, Tanzania and more — channelling the skills of health professionals to help those in need."}>
 <div class="page-hero">
@@ -51,21 +54,13 @@ import Base from '../layouts/Base.astro';
   <div class="container">
     <div class="center"><span class="kicker">Programmes</span><h2 class="section-title">Our service projects</h2></div>
     <div class="cards-3" style="margin-top:26px">
-      <div class="info-card">
-        <h3>Kangaroo Mother Care</h3>
-        <p>Skin-to-skin care and KMC carriers for preterm babies in Ukraine and other conflict areas.</p>
-        <p style="margin-top:16px"><a class="btn btn-blue" href="/kmc">Read more</a></p>
-      </div>
-      <div class="info-card">
-        <h3>Helping Ukraine</h3>
-        <p>Supporting mothers, babies and the health professionals who care for them.</p>
-        <p style="margin-top:16px"><a class="btn btn-blue" href="/ukraine">Read more</a></p>
-      </div>
-      <div class="info-card">
-        <h3>Cervical Cancer</h3>
-        <p>Advocacy and action to eliminate a preventable, curable cancer.</p>
-        <p style="margin-top:16px"><a class="btn btn-blue" href="/cervical-cancer">Read more</a></p>
-      </div>
+      {projects.map((p) => (
+        <div class="info-card">
+          <h3>{p.data.navLabel || p.data.title}</h3>
+          <p>{p.data.summary}</p>
+          <p style="margin-top:16px"><a class="btn btn-blue" href={`/${p.data.slug}`}>Read more</a></p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
