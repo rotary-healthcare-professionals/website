@@ -30,13 +30,13 @@ const programmes = [
 
 <!-- ============ LEAD ============ -->
 <section class="ed-section">
-  <div class="container ed-head" data-reveal>
-    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Share and learn</p>
-    <h2 class="ed-title">Learning from one another</h2>
-    <p class="ed-sub">Many Rotarians are actively involved in programmes aimed at enhancing healthcare — providing medical equipment, training, improving patient safety, and hands-on interventions such as cataract operations and cardiac surgery.</p>
-  </div>
   <div class="container">
-    <div class="prose" data-reveal>
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Share and learn</p>
+      <h2 class="ed-title">Learning from one another</h2>
+      <p class="ed-sub">Many Rotarians are actively involved in programmes aimed at enhancing healthcare — providing medical equipment, training, improving patient safety, and hands-on interventions such as cataract operations and cardiac surgery.</p>
+    </div>
+    <div class="prose" data-reveal style="max-width:760px;margin:20px 0 0">
       <p>Rotary has extensive experience and expertise in engaging in sustainable healthcare programmes. However, many clubs and Rotarians work in isolation, without the opportunity to share lessons or learn from others. Our goal is to create an open directory of health programmes to share experiences and lessons, building on our past successes.</p>
     </div>
   </div>
@@ -44,11 +44,11 @@ const programmes = [
 
 <!-- ============ PROGRAMMES ============ -->
 <section class="ed-section" style="padding-top:0">
-  <div class="container ed-head" data-reveal>
-    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>What has been shared</p>
-    <h2 class="ed-title">Programmes Rotarians have shared</h2>
-  </div>
   <div class="container">
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>What has been shared</p>
+      <h2 class="ed-title">Programmes Rotarians have shared</h2>
+    </div>
     <div class="dir-grid" data-reveal>
       {programmes.map((p) => (
         <div class="dir-item">{p}</div>
@@ -65,14 +65,14 @@ const programmes = [
       <p>Share the details and we will add your project to the directory — so others can learn from your experience.</p>
       <div class="dir-cta__actions">
         <a class="btn btn-primary" href="https://form.jotform.com/232014525247852" target="_blank" rel="noopener">Share your programme</a>
-        <a class="btn btn-outline" href="/images/2025/02/ROTARY_HEALTH_PROGRAMMES.xlsx" target="_blank" rel="noopener">See the full list (XLSX)</a>
+        <a class="btn btn-outline dir-cta__ghost" href="/images/2025/02/ROTARY_HEALTH_PROGRAMMES.xlsx" target="_blank" rel="noopener">See the full list (XLSX)</a>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .dir-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:860px}
+  .dir-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:860px;margin-top:28px}
   @media(max-width:640px){.dir-grid{grid-template-columns:1fr}}
   .dir-item{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow);font-weight:700;color:var(--blue-dark);line-height:1.4}
   .dir-item::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--gold)}
@@ -80,5 +80,8 @@ const programmes = [
   .dir-cta h3{font-family:var(--serif);font-weight:800;font-size:clamp(1.3rem,2.6vw,1.7rem);color:var(--blue-dark);margin:0 0 10px}
   .dir-cta p{color:var(--ink-2);line-height:1.6;margin:0 0 20px;max-width:60ch}
   .dir-cta__actions{display:flex;flex-wrap:wrap;gap:12px}
+  /* outline gumb je bijeli (za tamne heroje) — na svijetloj kartici treba azurni obrub */
+  .dir-cta__ghost{border-color:var(--azure);color:var(--azure)}
+  .dir-cta__ghost:hover{background:var(--azure);border-color:var(--azure);color:#fff}
 </style>
 </Base>
