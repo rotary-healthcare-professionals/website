@@ -162,3 +162,32 @@ content:
           categories: [image]
           extensions: [jpg, jpeg, png, webp, gif]
           rename: safe
+
+  - name: impact
+    label: Impact brojke
+    type: file
+    path: src/data/impact.json
+    format: json
+    fields:
+      - name: homepage
+        label: Naslovnica — statistike
+        type: object
+        list: true
+        fields:
+          - name: value
+            label: Broj (npr. $2M, 30+, 17)
+            type: string
+          - name: label
+            label: Opis
+            type: string
+      - name: projects
+        label: Service projects stranica — statistike
+        type: object
+        list: true
+        fields:
+          - name: value
+            label: Broj (npr. £705k, 30,000, 37)
+            type: string
+          - name: label
+            label: Opis
+            type: string

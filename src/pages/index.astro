@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
 import { formatDate as fmt } from '../lib/date';
+import impact from '../data/impact.json';
 
 const heroImages = [
   '/images/2024/07/Homepage-main-photo.jpg',
@@ -53,10 +54,9 @@ const events = await Promise.all(
 <!-- IMPACT STRIP -->
 <section class="impact-band" style="padding:56px 0">
   <div class="container impact">
-    <div class="item"><div class="n">$2M</div><div class="l">Global grant to fight cervical cancer in Egypt</div></div>
-    <div class="item"><div class="n">9</div><div class="l">Children given life‑saving heart surgery in Uganda</div></div>
-    <div class="item"><div class="n">30+</div><div class="l">Countries reached through service projects</div></div>
-    <div class="item"><div class="n">17</div><div class="l">Active service programmes worldwide</div></div>
+    {impact.homepage.map((s) => (
+      <div class="item"><div class="n">{s.value}</div><div class="l">{s.label}</div></div>
+    ))}
   </div>
 </section>
 
