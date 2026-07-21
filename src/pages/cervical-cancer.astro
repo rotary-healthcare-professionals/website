@@ -4,18 +4,22 @@ import { getCollection } from 'astro:content';
 import ProjectBody from '../components/ProjectBody.astro';
 
 const project = (await getCollection('projects')).find((p) => p.data.slug === 'cervical-cancer');
-if (!project) throw new Error("Missing project content: src/content/projects/cervical-cancer.mdoc (slug 'cervical-cancer')");
+if (!project) throw new Error("Missing project content: src/content/projects/cervical-cancer.md (slug 'cervical-cancer')");
 const d = project.data;
 ---
 <Base title={`${d.title} — International Rotary Fellowship of Healthcare Professionals`} description={d.metaDescription}>
-<div class="page-hero">
-  <div class="container">
-    <p class="crumb"><a href="/">Home</a> / <a href="/projects">Service projects</a></p>
-    <h1>{d.title}</h1>
+<header class="ed-hero ed-hero--brand" data-reveal>
+  <div class="ed-hero__media">
+    <div class="ed-hero__warm"></div>
+    <div class="ed-hero__grain"></div>
   </div>
-</div>
+  <div class="container ed-hero__inner">
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Service projects</p>
+    <h1 class="display ed-hero__title">{d.title}</h1>
+  </div>
+</header>
 
-<section>
+<section class="ed-section">
   <div class="container">
     <div class="prose">
       <ProjectBody project={project} />
