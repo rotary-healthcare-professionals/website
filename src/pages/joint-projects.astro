@@ -3,8 +3,8 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import ProjectBody from '../components/ProjectBody.astro';
 
-const project = (await getCollection('projects')).find((p) => p.data.slug === 'education');
-if (!project) throw new Error("Missing project content: src/content/projects/education.mdoc (slug 'education')");
+const project = (await getCollection('projects')).find((p) => p.data.slug === 'joint-projects');
+if (!project) throw new Error("Missing project content: src/content/projects/joint-projects.md (slug 'joint-projects')");
 const d = project.data;
 ---
 <Base title={`${d.title} — International Rotary Fellowship of Healthcare Professionals`} description={d.metaDescription}>

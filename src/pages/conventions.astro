@@ -1,7 +1,47 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const conventions = [
+  {
+    year: '2023',
+    city: 'Melbourne',
+    title: 'In the House of Friendship',
+    body: [
+      'Our booth in the House of Friendship was one of the most colourful and perhaps the busiest. We met many old friends and made many new ones.',
+      'We heard so many amazing stories about Rotary’s impact on healthcare in different parts of the world — hundreds of health programmes initiated by Rotarians, many changing lives.',
+    ],
+    link: { label: 'Read our Melbourne report ↗', href: '/images/2023/07/Melbourne-Report-3.pdf' },
+  },
+  {
+    year: '2024',
+    city: 'Singapore',
+    title: '',
+    body: [],
+    link: null,
+  },
+  {
+    year: '2025',
+    city: 'Calgary',
+    title: 'The Fellowship’s Annual Dinner',
+    body: [
+      'Tuesday 24 June, 6 for 6:30pm at The Westin Calgary Downtown — 320 4 Ave SW, Calgary, AB.',
+      'Canadian $120 per person, including a welcome drink.',
+    ],
+    link: { label: 'View more ↗', href: '/images/2025/03/Annual-Dinner-in-Calgary2.pdf' },
+  },
+  {
+    year: '2026',
+    city: 'Taipei',
+    title: 'Come and see us at Booth 1234',
+    body: [
+      'Do come and see us at our booth in the House of Friendship — Booth number 1234.',
+      'Fellowship meeting: Tuesday 16 June, 13:30–14:30 at TaiNEx1, floor 5F, Room 500 — featuring four 10-minute presentations of members’ projects.',
+    ],
+    link: null,
+  },
+];
 ---
-<Base title={"Rotary International Conventions — International Rotary Fellowship of Healthcare Professionals"} description={"Our booth in the House of Friendship at the Melbourne Rotary International Convention was one of the most colourful and perhaps the busiest. We met many old friends and made many new ones."}>
+<Base title={"Fellowship at RI — International Rotary Fellowship of Healthcare Professionals"} description={"The International Rotary Fellowship of Healthcare Professionals at Rotary International Conventions — Melbourne 2023, Singapore 2024, Calgary 2025 and Taipei 2026. Come and find us in the House of Friendship."}>
 <!-- ============ HERO ============ -->
 <header class="ed-hero" data-reveal>
   <div class="ed-hero__media">
@@ -12,62 +52,69 @@ import Base from '../layouts/Base.astro';
     <div class="ed-hero__grain"></div>
   </div>
   <div class="container ed-hero__inner">
-    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>About us · Rotary International Conventions</p>
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>About us · Fellowship at RI</p>
     <h1 class="display ed-hero__title">Where we meet <em>the world.</em></h1>
   </div>
 </header>
 
-<!-- ============ HOUSE OF FRIENDSHIP ============ -->
+<!-- ============ LEAD ============ -->
 <section class="ed-section">
   <div class="container">
     <div class="ed-head" data-reveal>
-      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>The Melbourne Convention</p>
-      <h2 class="ed-title">In the House of Friendship</h2>
-      <p class="ed-sub">Our booth in the House of Friendship was one of the most colourful and perhaps the busiest. We met many old friends and made many new ones.</p>
-    </div>
-    <div class="prose" data-reveal style="max-width:760px;margin:22px 0 0">
-      <p>We heard so many amazing stories about Rotary’s impact on healthcare in different parts of the world. It never ceases to surprise me that there are hundreds of health programmes initiated by Rotarians, many changing lives. Rotarians invest countless voluntary hours setting up health camps, offering free treatment, transporting medications, and donating medical equipment.</p>
-      <p>Each programme makes a difference to people’s lives — but how do we measure and quantify our impact, and how do we acknowledge the heroes who provide such service? At present we also do not have a way of sharing our experiences and learning from each other. Valuable lessons learned are lost in the mist of time.</p>
-      <p><a href="/images/2023/07/Melbourne-Report-3.pdf" target="_blank" rel="noopener">Read our Melbourne report ↗</a></p>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>The Fellowship at RI</p>
+      <h2 class="ed-title">Every year, in the House of Friendship</h2>
+      <p class="ed-sub">At each Rotary International Convention we take our stand in the House of Friendship — meeting old friends, making new ones, and sharing the Fellowship’s work with health professionals from around the world.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ KANGAROO MOTHER CARE ============ -->
+<!-- ============ CONVENTIONS ============ -->
 <section class="ed-section" style="padding-top:0">
   <div class="container">
     <div class="ed-head" data-reveal>
-      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Our current focus</p>
-      <h2 class="ed-title">Kangaroo Mother Care</h2>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Recent conventions</p>
+      <h2 class="ed-title">Where you’ll find us</h2>
     </div>
-    <div class="prose" data-reveal style="max-width:760px;margin:22px 0 0">
-      <p>Our current focus is on supplying Kangaroo Mother Care wraps to a number of maternity hospitals.</p>
-      <p>KMC includes keeping small (preterm) babies skin-to-skin with their mother (or another family member). Studies of KMC report increased survival, decreased infection, improved nutrition and growth, and possible improved development.</p>
-      <p>We have also supplied 10,000 small, knitted hats to complement KMC. Such hats for new-born babies may be life-saving: their heads are relatively larger than their bodies compared to older children and adults, and a large source of potentially risky heat loss.</p>
-      <p><a href="/kmc">More about Kangaroo Mother Care →</a></p>
+    <div class="conv" data-reveal>
+      {conventions.map((c) => (
+        <div class="conv__item">
+          <div class="conv__when">
+            <span class="conv__yr">{c.year}</span>
+            <span class="conv__city">{c.city}</span>
+          </div>
+          <div class="conv__body">
+            {c.title ? (
+              <>
+                <h3>{c.title}</h3>
+                {c.body.map((p) => (<p>{p}</p>))}
+                {c.link && (<p class="conv__link"><a href={c.link.href} target="_blank" rel="noopener">{c.link.label}</a></p>)}
+              </>
+            ) : (
+              <p class="conv__soon">Details to be confirmed — check back closer to the convention.</p>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
-<!-- ============ STANDING WITH UKRAINE ============ -->
-<section class="ed-section" style="padding-top:0">
-  <div class="container">
-    <div class="ed-head" data-reveal>
-      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Relief efforts</p>
-      <h2 class="ed-title">Standing with Ukraine</h2>
-    </div>
-    <div class="prose" data-reveal style="max-width:760px;margin:22px 0 0">
-      <p>Many children have been killed or injured, many have lost parents and siblings, their homes, schools and playgrounds. We have been told that some have been kidnapped and trafficked. No child should ever have to bear that kind of suffering. They need mental and physical support urgently.</p>
-      <p>Our support has been possible due to the generosity of Rotarians and non-Rotarians — to all of them we say thank you.</p>
-      <p><a href="/images/2022/03/Rotary-in-Great-Britain-and-Ireland-supports-Ukraine.pdf" target="_blank" rel="noopener">More information ↗</a></p>
-      <p>The Fellowship was actively involved in relief efforts in Great Britain and Ireland.</p>
-      <p><a href="/ukraine">Helping babies live →</a></p>
-    </div>
-    <blockquote class="closing-quote" data-reveal>‘It’s impossible for you to hear each “thank you” from the doctors, but on behalf of them I can say that you are <em>part of a big, important project — and we value it a lot!</em>’</blockquote>
-    <div class="prose" data-reveal style="max-width:760px;margin:8px 0 0">
-      <p>As an international group of healthcare professionals, we stand ready to help our colleagues in Ukraine emerge from the current dark times into a bright future — with a modern and compassionate health service.</p>
-      <p><a href="/our-journey">Our Journey so far →</a></p>
-    </div>
-  </div>
-</section>
+<style>
+  .conv{display:grid;gap:20px;max-width:840px}
+  .conv__item{display:grid;grid-template-columns:120px 1fr;gap:26px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:26px 30px}
+  .conv__when{display:flex;flex-direction:column;border-right:1px solid var(--line);padding-right:20px}
+  .conv__yr{font-family:var(--serif);font-weight:800;font-size:2rem;line-height:1;color:var(--azure)}
+  .conv__city{margin-top:8px;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .conv__body h3{font-weight:800;color:var(--blue-dark);font-size:1.15rem;line-height:1.3;margin:0 0 10px}
+  .conv__body p{color:var(--ink-2);line-height:1.6;margin:0 0 10px}
+  .conv__body p:last-child{margin-bottom:0}
+  .conv__link a{font-weight:700;color:var(--azure);text-decoration:none}
+  .conv__link a:hover{text-decoration:underline}
+  .conv__soon{color:var(--muted);font-style:italic}
+  @media(max-width:560px){
+    .conv__item{grid-template-columns:1fr;gap:14px}
+    .conv__when{flex-direction:row;align-items:baseline;gap:12px;border-right:0;border-bottom:1px solid var(--line);padding:0 0 12px}
+    .conv__city{margin-top:0}
+  }
+</style>
 </Base>

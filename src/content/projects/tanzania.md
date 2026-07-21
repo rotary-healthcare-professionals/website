@@ -7,16 +7,11 @@ summary: A holistic, collaborative project supporting a remote island community 
 coverImage: /images/2021/03/Operating_theatre_transformed_by_Rotarians.jpg
 metaDescription: "The Fellowship members have been supporting the people of Ukerewe, the largest inhabited island in Lake Victoria, since 2008 — renovating the hospital, improving schools and providing the community with substantial support."
 ---
-![Operation table at the Ukerewe hospital before renovation](/images/2021/03/BEFORE-OPERATION-TABLE.jpg)
-
 <div class="two-col-img">
   <img src="/images/2021/03/Operating_theatre_transformed_by_Rotarians.jpg" alt="Operating theatre transformed by Rotarians" />
   <img src="/images/2021/07/General-ward.jpg" alt="General ward of the hospital on Ukerewe island" />
 </div>
-<div class="two-col-img">
-  <img src="/images/2022/03/IMG-20220308-WA0009.jpg" alt="School pupils on Ukerewe island" />
-  <img src="/images/2025/02/A-MUG-OF-PORRIDGE3.jpg" alt="A mug of porridge — breakfast for primary school pupils" />
-</div>
+<img src="/images/2025/02/A-MUG-OF-PORRIDGE3.jpg" alt="A mug of porridge — breakfast for primary school pupils" />
 
 The Fellowship members have been supporting the people of Ukerewe since 2008.
 
