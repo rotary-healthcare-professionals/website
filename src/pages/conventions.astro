@@ -3,20 +3,15 @@ import Base from '../layouts/Base.astro';
 
 const conventions = [
   {
-    year: '2023',
-    city: 'Melbourne',
-    title: 'In the House of Friendship',
+    year: '2026',
+    city: 'Taipei',
+    title: 'Come and see us at Booth 1234',
     body: [
-      'Our booth in the House of Friendship was one of the most colourful and perhaps the busiest. We met many old friends and made many new ones.',
-      'We heard so many amazing stories about Rotary’s impact on healthcare in different parts of the world — hundreds of health programmes initiated by Rotarians, many changing lives.',
+      'Do come and see us at our booth in the House of Friendship — Booth number 1234.',
+      'Fellowship meeting: Tuesday 16 June, 13:30–14:30 at TaiNEx1, floor 5F, Room 500. This is a unique opportunity for our members to present their projects to a wide audience.',
+      'We plan to have four 10-minute presentations. Please write to us with a brief outline of your project before 30 April; if your presentation is selected, we will contact you with more information.',
     ],
-    link: { label: 'Read our Melbourne report ↗', href: '/images/2023/07/Melbourne-Report-3.pdf' },
-  },
-  {
-    year: '2024',
-    city: 'Singapore',
-    title: '',
-    body: [],
+    images: [],
     link: null,
   },
   {
@@ -24,20 +19,31 @@ const conventions = [
     city: 'Calgary',
     title: 'The Fellowship’s Annual Dinner',
     body: [
-      'Tuesday 24 June, 6 for 6:30pm at The Westin Calgary Downtown — 320 4 Ave SW, Calgary, AB.',
-      'Canadian $120 per person, including a welcome drink.',
+      'Join us for our Annual Dinner on Tuesday 24 June, 6 for 6:30pm at The Westin Calgary Downtown — 320 4 Ave SW, Calgary, AB T2P 2S6.',
+      'Canadian $120 per person, including a welcome drink. Scan the QR code on the flyer to book and pay; you will receive an email receipt and ticket.',
     ],
-    link: { label: 'View more ↗', href: '/images/2025/03/Annual-Dinner-in-Calgary2.pdf' },
+    images: [{ src: '/images/2025/04/image-1.png', alt: 'The Fellowship’s Annual Dinner in Calgary — flyer' }],
+    link: { label: 'View more', href: '/images/2025/03/Annual-Dinner-in-Calgary2.pdf' },
   },
   {
-    year: '2026',
-    city: 'Taipei',
-    title: 'Come and see us at Booth 1234',
-    body: [
-      'Do come and see us at our booth in the House of Friendship — Booth number 1234.',
-      'Fellowship meeting: Tuesday 16 June, 13:30–14:30 at TaiNEx1, floor 5F, Room 500 — featuring four 10-minute presentations of members’ projects.',
-    ],
+    year: '2024',
+    city: 'Singapore',
+    title: '',
+    body: [],
+    images: [],
     link: null,
+  },
+  {
+    year: '2023',
+    city: 'Melbourne',
+    title: 'In the House of Friendship',
+    body: [
+      'Our booth in the House of Friendship was one of the most colourful and perhaps the busiest. We met many old friends and made many new ones.',
+      'We heard so many amazing stories about Rotary’s impact on healthcare in different parts of the world. It never ceases to surprise me that there are hundreds of health programmes initiated by Rotarians, many changing lives. Rotarians invest countless voluntary hours setting up health camps, offering free treatment, transporting medications, and donating medical equipment.',
+      'Each programme makes a difference to people’s lives — but how do we measure and quantify our impact, and how do we acknowledge the heroes who provide such service?',
+    ],
+    images: [],
+    link: { label: 'Read our Melbourne report', href: '/images/2023/07/Melbourne-Report-3.pdf' },
   },
 ];
 ---
@@ -87,6 +93,7 @@ const conventions = [
               <>
                 <h3>{c.title}</h3>
                 {c.body.map((p) => (<p>{p}</p>))}
+                {c.images.map((img) => (<img class="conv__img" src={img.src} alt={img.alt} loading="lazy" />))}
                 {c.link && (<p class="conv__link"><a href={c.link.href} target="_blank" rel="noopener">{c.link.label}</a></p>)}
               </>
             ) : (
@@ -108,6 +115,7 @@ const conventions = [
   .conv__body h3{font-weight:800;color:var(--blue-dark);font-size:1.15rem;line-height:1.3;margin:0 0 10px}
   .conv__body p{color:var(--ink-2);line-height:1.6;margin:0 0 10px}
   .conv__body p:last-child{margin-bottom:0}
+  .conv__img{display:block;width:100%;max-width:360px;border-radius:12px;margin:6px 0 14px;border:1px solid var(--line);box-shadow:var(--shadow)}
   .conv__link a{font-weight:700;color:var(--azure);text-decoration:none}
   .conv__link a:hover{text-decoration:underline}
   .conv__soon{color:var(--muted);font-style:italic}
