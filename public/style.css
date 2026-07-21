@@ -615,3 +615,8 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
 .prose tbody tr:nth-child(even){background:var(--bg)}
 .prose tbody tr:last-child th,.prose tbody tr:last-child td{background:var(--blue-dark);color:#fff;font-weight:700;border-bottom:0}
 @media(max-width:560px){ .prose th,.prose td{padding:11px 12px} }
+
+/* Cost table: bold text in the dark total row must stay white (overrides .prose strong) */
+.prose tbody tr:last-child strong{color:#fff}
+/* Brand-gradient editorial hero for Service project pages (no photo) */
+.ed-hero--brand{background:linear-gradient(125deg,#072a52 0%,#0a5cad 56%,#1e7fdb 100%);min-height:clamp(300px,40vh,420px)}

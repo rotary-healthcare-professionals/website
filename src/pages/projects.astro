@@ -6,12 +6,16 @@ const projects = (await getCollection('projects'))
   .sort((a, b) => (a.data.order ?? 100) - (b.data.order ?? 100));
 ---
 <Base title={"Service projects — International Rotary Fellowship of Healthcare Professionals"} description={"Our humanitarian service projects: Kangaroo Mother Care, Ukraine, cervical cancer prevention, Tanzania and more — channelling the skills of health professionals to help those in need."}>
-<div class="page-hero">
-  <div class="container">
-    <p class="crumb"><a href="/">Home</a> / Service projects</p>
-    <h1>Service projects</h1>
+<header class="ed-hero ed-hero--brand" data-reveal>
+  <div class="ed-hero__media">
+    <div class="ed-hero__warm"></div>
+    <div class="ed-hero__grain"></div>
   </div>
-</div>
+  <div class="container ed-hero__inner">
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Service projects</p>
+    <h1 class="display ed-hero__title">Channelling skills, <em>changing lives.</em></h1>
+  </div>
+</header>
 
 <section>
   <div class="container">
