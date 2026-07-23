@@ -68,15 +68,6 @@ const perks = [
         <h3 class="tier__name">Life membership</h3>
         <p class="tier__price"><b>£80</b><span>one-time fee</span></p>
         <p class="tier__desc">For practising and retired healthcare professionals who want to stay connected and help others — for life.</p>
-        <ul class="tier__feats">
-          <li>Attend business meetings and vote on how we’re run</li>
-          <li>Take up office and help shape our policies and strategy</li>
-          <li>Apply for our mini-grants to launch a project</li>
-          <li>Raise funds for your projects through our fundraising platform</li>
-          <li>Attend Board meetings as a guest</li>
-          <li>Join or sponsor a subgroup or branch</li>
-          <li>Nominate a colleague for special recognition</li>
-        </ul>
         <a class="btn btn-blue" href={JOIN} target="_blank" rel="noopener">Become a Life member</a>
       </article>
 
@@ -85,12 +76,6 @@ const perks = [
         <h3 class="tier__name">Associate membership</h3>
         <p class="tier__price"><b>£12</b><span>one-time fee</span></p>
         <p class="tier__desc">For those getting involved through a subgroup or branch who want to put their energy into our work.</p>
-        <ul class="tier__feats">
-          <li>Attend all business meetings as a non-voting member</li>
-          <li>Join one or more subgroups and branches</li>
-          <li>Contribute to the activities of a branch or subgroup</li>
-          <li>Connect with our international members on social media</li>
-        </ul>
         <a class="btn btn-blue" href={JOIN} target="_blank" rel="noopener">Become an Associate</a>
       </article>
     </div>
@@ -168,10 +153,4 @@ const perks = [
     </div>
   </div>
 </section>
-
-<style is:global>
-  /* Membership: popis pogodnosti bez kvačica — čist tekst */
-  .tier__feats li{padding-left:0 !important}
-  .tier__feats li::before{display:none !important}
-</style>
 </Base>
