@@ -43,9 +43,9 @@ const [featured, ...rest] = items;
       </a>
     )}
 
-    <div class="news-grid" data-reveal>
-      {rest.map((item) => (
-        <a class="news-card" href={`/news/${item.id}`}>
+    <div class="news-grid">
+      {rest.map((item, i) => (
+        <a class="news-card" href={`/news/${item.id}`} data-reveal style={`--d:${(i % 3) * 0.06}s`}>
           {item.data.coverImage
             ? <div class="news-card__img" style={`background-image:url('${item.data.coverImage}')`}></div>
             : <div class="news-card__img news-ph"><svg class="pulse" viewBox="0 0 140 24" fill="none" aria-hidden="true"><path d="M0 12h44l5-9 6 18 5-13 4 9h71" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>}
