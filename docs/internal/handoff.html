@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- IRFHP Website — HANDOFF | Zadnja izmjena: 2026-07-11 | Autor: AI agent -->
+<!-- IRFHP Website — HANDOFF | Zadnja izmjena: 2026-08-11 | Autor: AI agent -->
 <html lang="hr">
 <head>
 <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 <body>
 <header><div class="wrap">
   <h1>IRFHP Website — Handoff</h1>
-  <p>Sažetak za developera ili AI agenta koji nastavlja rad u <code>C:\dev\Apps\rotary-website</code>.</p>
+  <p>Sažetak za developera ili AI agenta koji nastavlja rad u <code>c:\projects\healthcare\website</code>.</p>
 </div></header>
 <div class="wrap"><main>
   <section class="card">
@@ -23,7 +23,7 @@
       <li>Repo: <code>rotary-healthcare-professionals/website</code>; produkcijska grana <code>main</code>.</li>
       <li>Pročitaj <code>docs/project-overview.html</code> i <code>docs/deployment-guide.html</code>.</li>
       <li>Pokreni <code>npm install</code>, zatim <code>npm run build</code>.</li>
-      <li>Ne mijenjaj DNS dok GitHub Pages nije aktivan i provjeren.</li>
+      <li>Cutover je gotov — domena je uživo. Ne diraj DNS bez potrebe; <strong>email MX zapis mora ostati</strong> (Bluehost).</li>
     </ol>
   </section>
   <section class="card">
@@ -35,7 +35,7 @@
       <li>CMS konfiguracija: <code>.pages.yml</code>.</li>
       <li>Deploy workflow: <code>.github/workflows/deploy-pages.yml</code>.</li>
       <li>Workflow je aktivan; <code>ENABLE_GITHUB_PAGES=true</code>.</li>
-      <li><code>PAGES_BASE_PATH</code> i <code>PAGES_SITE_URL</code> određuju koristi li build projektnu GitHub Pages adresu ili završnu custom domenu.</li>
+      <li>Build ide na custom domenu: <code>PAGES_SITE_URL=https://rotaryhealthprofessionals.org</code>, a <code>PAGES_BASE_PATH</code> se <strong>ne postavlja</strong> (prazno = korijen domene).</li>
     </ul>
   </section>
   <section class="card">
@@ -55,35 +55,35 @@ gh pr create --fill</code></pre>
   <section class="card">
     <h2>Što je gotovo</h2>
     <ul>
-      <li>23 Astro stranice, redizajn, responsive navigacija i hero slideshow.</li>
-      <li>17 vijesti u <code>src/content/news/*.mdoc</code>.</li>
-      <li>Pages CMS schema za naslov, datum, sažetak, sliku i sadržaj.</li>
-      <li>Statički build od 42 rute, uključujući 404.</li>
-      <li>GitHub Pages workflow s aktivacijskom varijablom.</li>
+      <li>20+ Astro stranica, redizajn, responsive navigacija i hero slideshow.</li>
+      <li>17 vijesti u <code>src/content/news/*.mdoc</code>; kolekcije Događaji i Service projects; Impact brojke u <code>src/data/impact.json</code>.</li>
+      <li>Pages CMS schema za sve kolekcije (naslov, datum, sažetak, slika, sadržaj…).</li>
+      <li>Cijeli statički build (sve rute + 404).</li>
+      <li>GitHub Pages workflow s aktivacijskom varijablom; <strong>domena uživo s HTTPS-om</strong>.</li>
       <li>Upute za urednike, deployment, DNS i rollback.</li>
     </ul>
   </section>
   <section class="card">
     <h2>Što još zahtijeva vanjski pristup</h2>
     <ol>
-      <li>Pages CMS GitHub App instalacija samo na <code>website</code>.</li>
-      <li>Karla i Drago kao GitHub Owneri; prijava vlastitim GitHub računima i probni CMS unos, uređivanje i brisanje.</li>
-      <li>GitHub Pages custom domena; Pages i workflow već su aktivni.</li>
-      <li>DNS cutover prema <code>docs/deployment-guide.html</code>.</li>
-      <li>Uklanjanje starog hostinga tek nakon 48 sati stabilnosti.</li>
+      <li><strong>Team plan → privatni repo:</strong> čeka ručnu primjenu odobrenog besplatnog Team plana od GitHuba (do tjedan dana). Prebacivanje repoa u privatni tek kad org plan postane <code>team</code> — inače se ugasi GitHub Pages.</li>
+      <li><strong>Test urednika:</strong> Karla i Drago prijava vlastitim GitHub računima + probni unos/uređivanje/brisanje vijesti.</li>
+      <li><strong>Kontakt forma:</strong> jednokratna aktivacija FormSubmit forme na <code>/contact</code>.</li>
+      <li><strong>Pristupi:</strong> Karla kao Owner/admin organizacije.</li>
+      <li><strong>Email pa Bluehost:</strong> preseliti email, pa tek onda ugasiti Bluehost hosting.</li>
     </ol>
   </section>
   <section class="card">
     <h2>Trenutačna produkcija i rollback</h2>
-    <div class="note">Stari WordPress na Bluehostu ostaje privremeni fallback sve dok GitHub Pages nije aktivan, provjeren i spreman za DNS cutover.</div>
-    <div class="warn"><strong>Javna domena još pokazuje na Bluehost IP <code>50.87.253.47</code>.</strong> Prije DNS promjene zabilježi sve postojeće zapise. Ako cutover ne uspije, vrati prethodne zapise.</div>
+    <div class="note">Domena je uživo na GitHub Pagesu s uključenim HTTPS-om. Website rollback = revert commita na <code>main</code> (automatski se objavi ispravna verzija).</div>
+    <div class="warn"><strong>Email je i dalje na Bluehostu</strong> (MX <code>mail.rotaryhealthprofessionals.org</code>). Ne uklanjati Bluehost i ne dirati mail DNS zapise dok se email ne preseli. Krajnji DNS rollback (referenca): vraćanje apex A zapisa na <code>50.87.253.47</code>.</div>
   </section>
   <section class="card">
     <h2>Ownership pravilo</h2>
-    <p>Repo, GitHub App, domena i DNS moraju pripadati organizaciji. Ne ostavljati produkciju ovisnu o osobnom računu developera. Karla i Drago ulaze u Pages CMS svojim GitHub računima; pristup ograničiti samo na potrebne korisnike i repo <code>website</code>.</p>
+    <p>Repo, GitHub App, domena i DNS moraju pripadati organizaciji. Ne ostavljati produkciju ovisnu o osobnom računu developera. Roko je trenutačno Owner; Karlu još treba dodati kao Owner/admin. Karla i Drago ulaze u Pages CMS svojim GitHub računima; pristup ograničiti samo na potrebne korisnike i repo <code>website</code>.</p>
   </section>
 </main>
-<div class="foot">IRFHP Website — interni handoff · Zadnja izmjena: 2026-07-11 · Autor: AI agent</div>
+<div class="foot">IRFHP Website — interni handoff · Zadnja izmjena: 2026-08-11 · Autor: AI agent</div>
 </div>
 </body>
 </html>
