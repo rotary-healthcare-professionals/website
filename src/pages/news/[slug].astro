@@ -24,7 +24,7 @@ const { Content } = await render(item);
         <img class="news-article__cover" src={item.data.coverImage} alt={item.data.title} data-reveal />
       )}
 
-      <div class="prose news-article__body" data-reveal><Content /></div>
+      <div class="prose news-article__body"><Content /></div>
 
       <a class="news-back" href="/news" data-reveal>&larr; Back to all news</a>
     </div>

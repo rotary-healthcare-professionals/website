@@ -75,9 +75,9 @@ const conventions = [
       <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Recent conventions</p>
       <h2 class="ed-title">Where you’ll find us</h2>
     </div>
-    <div class="conv" data-reveal>
-      {conventions.map((c) => (
-        <div class="conv__item">
+    <div class="conv">
+      {conventions.map((c, i) => (
+        <div class="conv__item" data-reveal style={`--d:${Math.min(i, 3) * 0.06}s`}>
           <div class="conv__when">
             <span class="conv__yr">{c.year}</span>
             <span class="conv__city">{c.city}</span>
