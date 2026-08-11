@@ -2,7 +2,7 @@
 <!--
   IRFHP website — Plan (Inventura + Strategija) kao kompaktna checklista
   Izvor: docs/Rotary_web_inventura_i_strategija.xlsx
-  Zadnja izmjena: 2026-07-11 | Autor: AI agent + nbakic
+  Zadnja izmjena: 2026-08-11 | Autor: AI agent + nbakic
 -->
 <html lang="hr">
 <head>
@@ -128,11 +128,11 @@
     <div class="tbl-wrap"><table class="inv">
       <tr><td>Domena</td><td><code>rotaryhealthprofessionals.org</code> · registrar 123 Reg (Drago Paušek), ističe 9/2026, auto-renewal on</td></tr>
       <tr><td>Pravni subjekt</td><td>Međunarodna NGO — mreža Rotary zdravstvenih profesionalaca</td></tr>
-      <tr><td>Stari hosting</td><td>Bluehost (US) · WordPress — gasi se nakon preseljenja (glavni problem: sporo)</td></tr>
-      <tr><td>Mail / kontakt</td><td>Preko Gmail adrese (nema mail na domeni)</td></tr>
+      <tr><td>Stari hosting</td><td>Bluehost (US) · WordPress — website zamijenjen; ostaje samo za email dok se ne preseli (MX <code>mail.rotaryhealthprofessionals.org</code>)</td></tr>
+      <tr><td>Mail / kontakt</td><td>Kontakt forma šalje na Gmail; email domene još na Bluehostu (MX aktivan)</td></tr>
       <tr><td>Funkcionalnosti</td><td>Donacije, kontakt obrazac, poveznica na MemberMojo (članstvo)</td></tr>
       <tr><td>Osobni podaci</td><td>DA (donacije + obrazac) → GDPR: privacy policy + privola</td></tr>
-      <tr><td>Odabrano rješenje</td><td><strong>Astro + Markdoc + Pages CMS + GitHub Pages</strong>. Stari WordPress ostaje online do uspješnog DNS cutovera.</td></tr>
+      <tr><td>Odabrano rješenje</td><td><strong>Astro + Markdoc + Pages CMS + GitHub Pages</strong>. Cutover je gotov — domena je uživo na novom webu s HTTPS-om.</td></tr>
     </table></div>
   </section>
 
@@ -153,7 +153,7 @@
         </tr>
         <tr class="item" data-id="f1-2">
           <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">Popisati sadržaj „prenosi se / briše se"</span><span class="k">Kriterij: potvrđen popis</span><span class="n">Migrirano 23 stranice + 17 vijesti; formalni popis kasnije.</span></td>
+          <td><span class="t">Popisati sadržaj „prenosi se / briše se"</span><span class="k">Kriterij: potvrđen popis</span><span class="n">Migrirano 20+ stranica + 17 vijesti; formalni popis kasnije.</span></td>
           <td class="own">Roko + Karla</td><td class="st"><span class="pill p-todo">Kasnije</span></td>
         </tr>
         <tr class="item" data-id="f1-3">
@@ -175,35 +175,35 @@
         </tr>
         <tr class="item" data-id="f2-org">
           <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">GitHub organizacija + Drago i Karla kao vlasnici (Owner)</span><span class="k">Kriterij: web pripada udruzi; 3 vlasnika</span><span class="n">Org kreirana, Drago dodan; Karla čeka.</span></td>
+          <td><span class="t">GitHub organizacija + Drago i Karla kao vlasnici (Owner)</span><span class="k">Kriterij: web pripada udruzi; 3 vlasnika</span><span class="n">Org kreirana; Roko i Drago su Owneri; Karlu još treba dodati kao Owner.</span></td>
           <td class="own">Nenad</td><td class="st"><span class="pill p-wip">Djelomično</span></td>
         </tr>
         <tr class="item" data-id="f2-repo">
           <td class="cb"><input type="checkbox" checked></td>
-          <td><span class="t">Repozitorij weba unutar organizacije</span><span class="n"><code>rotary-healthcare-professionals/website</code>; ciljni hosting = GitHub Pages.</span></td>
+          <td><span class="t">Repozitorij weba unutar organizacije</span><span class="n"><code>rotary-healthcare-professionals/website</code>; hosting = GitHub Pages.</span></td>
           <td class="own">Nenad</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
         </tr>
         <tr class="item" data-id="f2-pages">
           <td class="cb"><input type="checkbox" checked></td>
-          <td><span class="t">Besplatni GitHub Pages</span><span class="k">Kriterij: javni repo na GitHub Free planu</span><span class="n">Repo je javan; nonprofit Team plan nije potreban.</span></td>
+          <td><span class="t">Besplatni GitHub Pages</span><span class="k">Kriterij: javni repo na GitHub Free planu</span><span class="n">Repo je javan; Pages aktivan. Odobren besplatni nonprofit Team plan (za budući privatni repo) — čeka se ručna primjena od GitHuba.</span></td>
           <td class="own">Nenad</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
         </tr>
 
         <tr class="phrow"><td colspan="4">Faza 3 — Izrada (Nenad)</td></tr>
         <tr class="item" data-id="f3-site">
           <td class="cb"><input type="checkbox" checked></td>
-          <td><span class="t">Statična stranica: sadržaj + slike + novi izgled (Rotary brending)</span><span class="k">Kriterij: uspješan lokalni produkcijski build</span><span class="n">Astro, 23 stranice, 17 vijesti, redizajn i hero slideshow; stari WordPress ostaje javno dostupan do cutovera.</span></td>
+          <td><span class="t">Statična stranica: sadržaj + slike + novi izgled (Rotary brending)</span><span class="k">Kriterij: uspješan lokalni produkcijski build</span><span class="n">Astro, 20+ stranica, 17 vijesti, redizajn i hero slideshow. Uživo na domeni.</span></td>
           <td class="own">Nenad</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
         </tr>
         <tr class="item" data-id="f3-cms">
           <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">CMS: dodavanje, uređivanje i brisanje vijesti + prijava za Dragu i Karlu</span><span class="k">Kriterij: svatko objavi, uredi i obriše probnu vijest bez pomoći</span><span class="n">Pages CMS konfiguriran; prijava je vlastitim GitHub računom i čeka GitHub App instalaciju te test Karle i Drage.</span></td>
+          <td><span class="t">CMS: dodavanje, uređivanje i brisanje vijesti + prijava za Dragu i Karlu</span><span class="k">Kriterij: svatko objavi, uredi i obriše probnu vijest bez pomoći</span><span class="n">Pages CMS konfiguriran, GitHub App instaliran i testiran (create/edit/delete rade); preostaje samo test Karle i Drage.</span></td>
           <td class="own">Nenad</td><td class="st"><span class="pill p-wip">U tijeku</span></td>
         </tr>
         <tr class="item" data-id="f3-form">
           <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">Kontakt obrazac preko vanjskog servisa (Formspree/Tally) + spam zaštita</span><span class="k">Kriterij: testna poruka stiže na Gmail</span></td>
-          <td class="own">Roko + Karla</td><td class="st"><span class="pill p-todo">Kasnije</span></td>
+          <td><span class="t">Kontakt obrazac preko vanjskog servisa (FormSubmit) + spam zaštita</span><span class="k">Kriterij: testna poruka stiže na Gmail</span><span class="n">Forma napravljena (FormSubmit, honeypot + captcha zaštita); preostaje jednokratna aktivacija (poslati probnu poruku i potvrditi link u mailu).</span></td>
+          <td class="own">Roko + Karla</td><td class="st"><span class="pill p-wip">Djelomično</span></td>
         </tr>
         <tr class="item" data-id="f3-donate">
           <td class="cb"><input type="checkbox"></td>
@@ -235,18 +235,18 @@
 
         <tr class="phrow"><td colspan="4">Faza 5 — Prelazak</td></tr>
         <tr class="item" data-id="f5-dns">
-          <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">DNS → GitHub Pages + HTTPS</span><span class="k">Kriterij: domena otvara novi web s HTTPS</span><span class="n">Zapisi i rollback dokumentirani; čeka zeleni Pages deploy. Autoritativni DNS trenutačno je na Bluehostu.</span></td>
-          <td class="own">Nenad</td><td class="st"><span class="pill p-todo">Odgođeno</span></td>
+          <td class="cb"><input type="checkbox" checked></td>
+          <td><span class="t">DNS → GitHub Pages + HTTPS</span><span class="k">Kriterij: domena otvara novi web s HTTPS</span><span class="n">Gotovo — domena je uživo na novom webu, HTTPS (Enforce HTTPS) uključen. DNS se vodi preko 123reg; A zapisi na GitHub Pages IP-ove, www CNAME na github.io.</span></td>
+          <td class="own">Nenad</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
         </tr>
         <tr class="item" data-id="f5-parallel">
-          <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">Paralelni rad: stari web ostaje dok novi ne proradi (1–2 tjedna)</span><span class="k">Kriterij: bez grešaka u probnom razdoblju</span><span class="n">Stari WP još živ (DNS nije prebačen).</span></td>
-          <td class="own">Svi</td><td class="st"><span class="pill p-wip">U tijeku</span></td>
+          <td class="cb"><input type="checkbox" checked></td>
+          <td><span class="t">Paralelni rad: stari web ostaje dok novi ne proradi (1–2 tjedna)</span><span class="k">Kriterij: bez grešaka u probnom razdoblju</span><span class="n">Cutover uspješan i stabilan; domena više ne pokazuje na stari WordPress.</span></td>
+          <td class="own">Svi</td><td class="st"><span class="pill p-ok">Gotovo</span></td>
         </tr>
         <tr class="item" data-id="f5-bluehost">
           <td class="cb"><input type="checkbox"></td>
-          <td><span class="t">Ugasiti Bluehost hosting + zadržati backup</span><span class="k">Kriterij: trošak ukinut, backup arhiviran</span></td>
+          <td><span class="t">Ugasiti Bluehost hosting + zadržati backup</span><span class="k">Kriterij: trošak ukinut, backup arhiviran</span><span class="n">Blokirano dok se ne preseli email (MX još na Bluehostu).</span></td>
           <td class="own">Drago</td><td class="st"><span class="pill p-todo">Za napraviti</span></td>
         </tr>
 
@@ -288,7 +288,7 @@
 
 <div class="foot">
   IRFHP Website — plan (inventura + strategija). Stanje kvačica pamti se lokalno u pregledniku.
-  <br><em>Zadnja izmjena: 2026-07-11 | Autor: AI agent + nbakic</em>
+  <br><em>Zadnja izmjena: 2026-08-11 | Autor: AI agent + nbakic</em>
 </div>
 
 <script>
