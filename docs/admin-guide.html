@@ -11,6 +11,16 @@
   header{background:linear-gradient(115deg,var(--navy),var(--blue));color:#fff;padding:40px 24px}
   header div,main{max-width:850px;margin:auto}
   header p{color:#d5e4f5;max-width:65ch}
+  .brand{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+  .brand__logo{width:54px;height:auto;display:block;flex:0 0 auto}
+  .brand__name{font-weight:800;font-size:.95rem;line-height:1.22;color:#fff}
+  .doc-kicker{color:var(--gold);font-weight:800;letter-spacing:.13em;text-transform:uppercase;font-size:.7rem;margin:0 0 3px}
+  header h1{margin:2px 0 8px}
+  .doc-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;font-size:.72rem}
+  .doc-meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#eaf2fb;padding:3px 11px;border-radius:999px}
+  .doc-foot{margin-top:30px;border-top:2px solid var(--line);padding-top:16px;color:var(--muted);font-size:.8rem}
+  .doc-foot__org{font-weight:800;color:var(--navy);font-size:.92rem;margin-bottom:2px}
+  .doc-foot__disc{font-style:italic;margin-top:8px;color:#7787a0}
   main{padding:28px 24px 60px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:18px}
   h1,h2{line-height:1.25}
@@ -40,8 +50,14 @@
 </head>
 <body>
 <header><div>
+  <div class="brand">
+    <img class="brand__logo" src="slike/logo.png" alt="Logo — International Rotary Fellowship of Healthcare Professionals">
+    <span class="brand__name">International Rotary Fellowship<br>of Healthcare Professionals</span>
+  </div>
+  <p class="doc-kicker">Priručnik za urednike web-stranice</p>
   <h1>Uređivanje sadržaja — vodič</h1>
   <p>Kratke, praktične upute za Karlu, Dragu i druge urednike. Kroz Pages CMS uređuje se <strong>sav sadržaj</strong>: vijesti, događaji (Upcoming Events), projekti i statistika (Impact brojke) — bez ikakvog programiranja. Koraci 1–6 prikazani su na vijestima, ali rade jednako za sve kolekcije; što je posebno u svakoj piše u koraku 7.</p>
+  <div class="doc-meta"><span>Verzija 1.0</span><span>Zadnja izmjena: 11.08.2026.</span><span>Za: Karla, Drago i urednici</span></div>
 </div></header>
 <main>
 
@@ -53,7 +69,7 @@
       <li><a href="#slika">3. Slika unutar teksta</a></li>
       <li><a href="#uredi">4. Uređivanje postojeće vijesti</a></li>
       <li><a href="#brisanje">5. Brisanje vijesti</a></li>
-      <li><a href="#objava">6. Objava (kako vijest dođe na sajt)</a></li>
+      <li><a href="#objava">6. Objava (kako vijest dođe na stranicu)</a></li>
       <li><a href="#ostalo">7. Ostale kolekcije (Događaji, Projekti, Impact)</a></li>
       <li><a href="#praksa">8. Dobra praksa</a></li>
     </ul>
@@ -63,7 +79,7 @@
     <span class="step">Korak 1</span>
     <h2>Prijava — ulazak u CMS</h2>
     <ol>
-      <li>Na adresu sajta dodaj <code>/admin</code> (npr. <code>rotaryhealthprofessionals.org/admin</code>).</li>
+      <li>Na adresu stranice dodaj <code>/admin</code> (npr. <code>rotaryhealthprofessionals.org/admin</code>).</li>
       <li>Prijavi se svojim <strong>GitHub računom</strong>.</li>
       <li>Odmah te ubaci u popis <strong>Vijesti</strong> — spreman za rad.</li>
     </ol>
@@ -145,8 +161,8 @@
 
   <section class="card" id="objava">
     <span class="step">Korak 6</span>
-    <h2>Objava — kako vijest dođe na sajt</h2>
-    <p>Kad klikneš <strong>Save</strong>, izmjena se sprema u repozitorij i sajt se <strong>sam ponovno izgradi za otprilike 1–2 minute</strong>. Nakon toga osvježi stranicu sajta i provjeri kako vijest izgleda.</p>
+    <h2>Objava — kako vijest dođe na stranicu</h2>
+    <p>Kad klikneš <strong>Save</strong>, izmjena se sprema u repozitorij i stranica se <strong>sama ponovno izgradi za otprilike 1–2 minute</strong>. Nakon toga osvježi web-stranicu i provjeri kako vijest izgleda.</p>
     <div class="tip">Ako se čini da promjena „ne dolazi", pričekaj minutu pa osvježi bez cachea: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>.</div>
   </section>
 
@@ -187,7 +203,7 @@
     </ul>
     <p>Stavke se dodaju ili brišu kao redovi u listi; promijeni <em>Broj</em> i <em>Opis</em> pa klikni <strong>Save</strong>.</p>
 
-    <div class="tip">Za sve kolekcije vrijedi isto kao za vijesti: nakon <strong>Save</strong> sajt se sam objavi za 1–2 minute.</div>
+    <div class="tip">Za sve kolekcije vrijedi isto kao za vijesti: nakon <strong>Save</strong> stranica se sama objavi za 1–2 minute.</div>
   </section>
 
   <section class="card" id="praksa">
@@ -197,12 +213,16 @@
       <li>Naslov neka bude kratak i jasan; sažetak jedna do dvije rečenice.</li>
       <li>Prije uploada smanji velike fotografije — preporučena širina do <strong>1600 px</strong>.</li>
       <li>Ne unosi lozinke, privatne podatke ni podatke o karticama.</li>
-      <li>Nakon objave otvori sajt i provjeri vijest.</li>
+      <li>Nakon objave otvori web-stranicu i provjeri vijest.</li>
       <li>Ako nešto ne radi, <strong>nemoj</strong> spremati mnogo puta zaredom — zabilježi naslov vijesti i poruku greške pa se javi administratoru.</li>
     </ul>
   </section>
 
-  <p><small>Zadnja izmjena: 2026-08-11</small></p>
+  <footer class="doc-foot">
+    <p class="doc-foot__org">International Rotary Fellowship of Healthcare Professionals</p>
+    <p>Interni dokument — priručnik za urednike · Verzija 1.0 · Zadnja izmjena: 11.08.2026.</p>
+    <p class="doc-foot__disc">This fellowship is not an agency of, or controlled by, Rotary International.</p>
+  </footer>
 </main>
 </body>
 </html>
