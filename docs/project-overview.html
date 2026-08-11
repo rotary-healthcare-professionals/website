@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- IRFHP Website — pregled projekta | Zadnja izmjena: 2026-07-11 | Autor: AI agent + nbakic -->
+<!-- IRFHP Website — pregled projekta | Zadnja izmjena: 2026-08-11 | Autor: AI agent + nbakic -->
 <html lang="hr">
 <head>
 <meta charset="UTF-8">
@@ -17,7 +17,7 @@
 <header><div class="wrap">
   <h1>IRFHP Website — pregled projekta</h1>
   <p>Aktualna tehnička i operativna slika websitea na GitHub Pagesu s Pages CMS uređivanjem sadržaja.</p>
-  <div class="meta"><span>Repo: rotary-healthcare-professionals/website</span><span>Produkcijska grana: main</span><span>Status: Pages aktivan, DNS cutover preostaje</span></div>
+  <div class="meta"><span>Repo: rotary-healthcare-professionals/website</span><span>Produkcijska grana: main</span><span>Status: uživo na domeni, HTTPS aktivan</span></div>
 </div></header>
 <div class="wrap"><main>
   <section class="card">
@@ -26,11 +26,11 @@
       <tr><th>Stavka</th><th>Aktualno stanje</th></tr>
       <tr><td>Frontend</td><td>Astro 7 + Markdoc 2, potpuno statički build</td></tr>
       <tr><td>CMS</td><td>Pages CMS, konfiguracija <code>.pages.yml</code></td></tr>
-      <tr><td>Ciljni hosting</td><td>GitHub Pages preko GitHub Actionsa</td></tr>
-      <tr><td>GitHub plan</td><td>GitHub Free; repo je javan i GitHub Pages je aktivan</td></tr>
-      <tr><td>Novi website</td><td><a href="https://rotary-healthcare-professionals.github.io/website/">rotary-healthcare-professionals.github.io/website/</a></td></tr>
-      <tr><td>Javna domena</td><td><code>rotaryhealthprofessionals.org</code>; DNS još pokazuje na stari Bluehost WordPress</td></tr>
-      <tr><td>Sadržaj</td><td>23 stranice i 17 vijesti, slike lokalno u repozitoriju</td></tr>
+      <tr><td>Hosting</td><td>GitHub Pages preko GitHub Actionsa</td></tr>
+      <tr><td>GitHub plan</td><td>GitHub Free; repo je javan i GitHub Pages je aktivan (prelazak na Team plan → privatni repo je u tijeku)</td></tr>
+      <tr><td>Javna domena</td><td><a href="https://rotaryhealthprofessionals.org">rotaryhealthprofessionals.org</a> — <strong>uživo, HTTPS aktivan</strong></td></tr>
+      <tr><td>Projektna adresa</td><td><code>…github.io/website/</code> preusmjerava na domenu</td></tr>
+      <tr><td>Sadržaj</td><td>20+ stranica i 17 vijesti, slike lokalno u repozitoriju</td></tr>
     </tbody></table>
   </section>
 
@@ -89,36 +89,42 @@ npm run preview   # pregled produkcijskog builda</code></pre>
       <tr><td>GitHub Pages workflow</td><td><span class="pill ok">aktivan</span></td></tr>
       <tr><td>Uredničke i deploy upute</td><td><span class="pill ok">gotovo</span></td></tr>
       <tr><td>Javni repo na GitHub Free planu</td><td><span class="pill ok">gotovo</span></td></tr>
-      <tr><td>Pages CMS GitHub App i test Karle/Drage</td><td><span class="pill todo">preostaje</span></td></tr>
       <tr><td>Aktivacija workflowa</td><td><span class="pill ok">gotovo</span></td></tr>
-      <tr><td>DNS cutover i HTTPS</td><td><span class="pill todo">nakon zelenog deploya</span></td></tr>
-      <tr><td>Gašenje starog Bluehost hostinga</td><td><span class="pill todo">48 h nakon cutovera</span></td></tr>
+      <tr><td>DNS cutover i HTTPS</td><td><span class="pill ok">gotovo — uživo</span></td></tr>
+      <tr><td>Pages CMS App instaliran i testiran</td><td><span class="pill ok">gotovo</span></td></tr>
+      <tr><td>Test urednika (Karla / Drago)</td><td><span class="pill todo">preostaje</span></td></tr>
+      <tr><td>Kontakt forma (aktivacija)</td><td><span class="pill todo">preostaje</span></td></tr>
+      <tr><td>Team plan → privatni repo</td><td><span class="pill wip">čeka GitHub (ručni upgrade)</span></td></tr>
+      <tr><td>Karla kao Owner/admin organizacije</td><td><span class="pill todo">preostaje</span></td></tr>
+      <tr><td>Migracija emaila pa gašenje Bluehosta</td><td><span class="pill todo">tek nakon selidbe emaila</span></td></tr>
     </tbody></table>
   </section>
 
   <section class="card">
-    <h2>7. Preostali vanjski koraci</h2>
+    <h2>7. Preostali koraci</h2>
+    <p>Website je uživo; preostalo su organizacijski i „polish" koraci:</p>
     <ol>
-      <li>Instalirati Pages CMS GitHub App samo na <code>website</code> repo.</li>
-      <li>Karla i Drago prijavljuju se svojim GitHub računima te svatko dodaje, uređuje i briše probnu vijest.</li>
-      <li>U GitHub Pages postavkama dodati custom domenu i uključiti workflow varijablu.</li>
-      <li>Prema <a href="deployment-guide.html">deployment vodiču</a> promijeniti DNS i uključiti HTTPS.</li>
+      <li><strong>Team plan → privatni repo:</strong> čeka se da GitHub ručno primijeni odobreni besplatni Team plan na organizaciju (do tjedan dana). Tek kad plan postane <code>team</code>, repo se prebacuje u privatni (na Free planu privatni repo bi ugasio GitHub Pages).</li>
+      <li><strong>Test urednika:</strong> Karla i Drago prijave se svojim GitHub računima i svatko doda, uredi i obriše probnu vijest.</li>
+      <li><strong>Kontakt forma:</strong> jednokratna aktivacija forme na <code>/contact</code> (poslati probnu poruku i potvrditi aktivacijski link u mailu).</li>
+      <li><strong>Pristupi:</strong> Karla postaje Owner/admin organizacije.</li>
+      <li><strong>Email pa Bluehost:</strong> preseliti email organizacije, pa tek onda ugasiti Bluehost.</li>
     </ol>
-    <div class="warn"><strong>Ne gasiti Bluehost prije uspješnog Pages deploya, CMS testa i najmanje 48 sati stabilnog rada domene.</strong></div>
+    <div class="warn"><strong>Ne gasiti Bluehost dok se email ne preseli</strong> — MX zapis još pokazuje na <code>mail.rotaryhealthprofessionals.org</code> (Bluehost).</div>
   </section>
 
   <section class="card">
     <h2>8. Ownership</h2>
     <ul>
       <li>GitHub organizacija i repo pripadaju IRFHP-u.</li>
-      <li>Karla i Drago trebaju biti Owneri organizacije s uključenim 2FA.</li>
+      <li>Roko je Owner organizacije; Karlu još treba dodati kao Owner/admin (2FA uključen).</li>
       <li>Developer dobiva samo potreban repo pristup.</li>
-      <li>DNS i domena ostaju na organizacijskom računu, uz dokumentiran recovery.</li>
+      <li>DNS i domena vode se preko 123reg registrar/DNS računa, uz dokumentiran recovery.</li>
       <li>Nema produkcijskih tajni u repozitoriju.</li>
     </ul>
   </section>
 </main>
-<div class="foot">Povezano: <a href="admin-guide.html">uputa za urednike</a> · <a href="deployment-guide.html">deploy i DNS</a> · <a href="internal/handoff.html">handoff</a> · <a href="changelog.html">changelog</a><br>Zadnja izmjena: 2026-07-11 · Autor: AI agent + nbakic</div>
+<div class="foot">Povezano: <a href="admin-guide.html">uputa za urednike</a> · <a href="deployment-guide.html">deploy i DNS</a> · <a href="internal/handoff.html">handoff</a> · <a href="changelog.html">changelog</a><br>Zadnja izmjena: 2026-08-11 · Autor: AI agent + nbakic</div>
 </div>
 </body>
 </html>
