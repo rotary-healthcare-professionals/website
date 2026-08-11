@@ -509,7 +509,7 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
 .contact-form input:focus,.contact-form textarea:focus{outline:none;background:var(--card);border-color:var(--azure);box-shadow:0 0 0 3px rgba(10,98,180,.13)}
 .contact-form textarea{resize:vertical;min-height:130px}
 .contact-form button{align-self:flex-start;margin-top:6px}
-.contact-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.contact-form .hp{display:none}
 .form-note{font-size:.82rem;color:var(--muted);margin-top:14px}
 .form-status{margin-top:14px;padding:12px 15px;border-radius:11px;font-size:.92rem;font-weight:600;display:none}
 .form-status.ok{display:block;background:#e7f6ec;color:#1a7a3f;border:1px solid #b7e2c5}
