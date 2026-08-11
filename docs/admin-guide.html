@@ -27,6 +27,14 @@
   .ph{border:2px dashed #b9c8dc;border-radius:10px;background:#fbfdff;color:var(--muted);padding:34px 18px;text-align:center;font-size:.9rem}
   figcaption{font-size:.82rem;color:var(--muted);margin-top:7px;text-align:center}
   .toc{font-size:.92rem}.toc a{text-decoration:none}.toc li{margin:4px 0}
+  @media print{
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+    body{background:#fff}
+    main{padding-top:10px}
+    header{padding:26px 24px}
+    .card,figure,section{break-inside:avoid;page-break-inside:avoid}
+    a{color:var(--azure)}
+  }
 </style>
 </head>
 <body>
