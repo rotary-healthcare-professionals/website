@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   IRFHP website — Changelog (dnevnik promjena)
-  Zadnja izmjena: 2026-07-11 | Autor: AI agent + nbakic
+  Zadnja izmjena: 2026-08-11 | Autor: AI agent + nbakic
 -->
 <html lang="hr">
 <head>
@@ -72,6 +72,24 @@
   </div>
 
   <section class="rel">
+    <h2><span class="d">2026-08-11</span> <span class="sub">Produkcija: domena uživo, HTTPS i obogaćen sadržaj</span></h2>
+    <ul class="log">
+      <li><span class="tag t-feat">Značajka</span><span class="txt"><strong>DNS cutover</strong> — domena <code>rotaryhealthprofessionals.org</code> prebačena na GitHub Pages; base path na korijen domene.</span><span class="hash">d883c7e</span></li>
+      <li><span class="tag t-feat">Značajka</span><span class="txt">Uključen <strong>HTTPS</strong> (Enforce HTTPS) na custom domeni; <code>…github.io/website/</code> preusmjerava na domenu.</span><span class="hash">—</span></li>
+      <li><span class="tag t-feat">Značajka</span><span class="txt">CMS proširen: kolekcije <strong>Događaji</strong> i <strong>Service projects</strong>, te <strong>Impact brojke</strong> iz <code>src/data/impact.json</code>.</span><span class="hash">8165022</span></li>
+      <li><span class="tag t-feat">Značajka</span><span class="txt">Navigacija i <code>/projects</code> kartice generiraju se iz projects kolekcije; migrirani projekti (Ukraine, KMC, Cervical Cancer, Tanzania, Education, Quality &amp; Safety).</span><span class="hash">e14d5ee</span></li>
+      <li><span class="tag t-feat">Značajka</span><span class="txt">Konvencije („Fellowship at RI Conventions"): obogaćen sadržaj po konvenciji + Taipei 2026 izvještaj; poredak najnovije→najstarije.</span><span class="hash">f8ea5c4</span></li>
+      <li><span class="tag t-feat">Značajka</span><span class="txt">Editorijalni redizajn News sekcije (listing + članak).</span><span class="hash">29dca04</span></li>
+      <li><span class="tag t-feat">Značajka</span><span class="txt">CMS: dopušten upload <strong>PDF-ova</strong> u media biblioteku i u sadržaj vijesti/projekata.</span><span class="hash">f1c7c84</span></li>
+      <li><span class="tag t-feat">Značajka</span><span class="txt">Kontakt forma preko <strong>FormSubmit</strong> (honeypot + captcha zaštita); čeka jednokratnu aktivaciju.</span><span class="hash">—</span></li>
+      <li><span class="tag t-fix">Ispravak</span><span class="txt">Membership: maknute liste pogodnosti s obje razine (Life + Associate) — kartice pojednostavljene.</span><span class="hash">f4ec71d</span></li>
+      <li><span class="tag t-fix">Ispravak</span><span class="txt">Konvencije: uklonjen prazni unos 2024 Singapore.</span><span class="hash">23bce0b</span></li>
+      <li><span class="tag t-fix">Ispravak</span><span class="txt">Impact brojke: zastarjeli iznos <code>£95k</code> → <code>£705k</code> (Helping Ukraine ukupno).</span><span class="hash">90f7c84</span></li>
+      <li><span class="tag t-doc">Dok.</span><span class="txt">Sva dokumentacija usklađena sa završenim cutoverom: README, admin-guide (+ nove kolekcije), deployment-guide (produkcijsko stanje), project-overview i plan/checklista.</span><span class="hash">a566c5b</span></li>
+    </ul>
+  </section>
+
+  <section class="rel">
     <h2><span class="d">2026-07-11</span> <span class="sub">Besplatni hosting i jednostavniji CMS</span></h2>
     <ul class="log">
       <li><span class="tag t-chore">Održav.</span><span class="txt">Uklonjeni Vercel projekt i njegova konfiguracija domene; javni DNS ostao je nepromijenjen na starom Bluehost WordPressu.</span><span class="hash">—</span></li>
@@ -115,7 +133,7 @@
 
 <div class="foot">
   IRFHP Website — changelog.
-  <br><em>Zadnja izmjena: 2026-07-11 | Autor: AI agent + nbakic</em>
+  <br><em>Zadnja izmjena: 2026-08-11 | Autor: AI agent + nbakic</em>
 </div>
 
 </body>
