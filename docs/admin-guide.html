@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IRFHP — Upute za uređivanje vijesti</title>
+<title>IRFHP — Upute za uređivanje sadržaja</title>
 <style>
   :root{--blue:#134a8e;--navy:#0a1e40;--azure:#0a62b4;--gold:#f4a81c;--ink:#12233e;--muted:#5a6b85;--bg:#f5f8fc;--line:#dce6f2;--card:#fff;--cloud:#e9f1fa}
   *{box-sizing:border-box}
@@ -15,6 +15,7 @@
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:18px}
   h1,h2{line-height:1.25}
   h2{color:var(--navy);font-size:1.25rem;margin:0 0 4px}
+  h3{color:var(--blue);font-size:1.05rem;margin:20px 0 2px}
   .step{color:var(--azure);font-weight:800;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
   ol,ul{margin:10px 0 0;padding-left:22px}li{margin:7px 0}
   code{background:var(--cloud);padding:2px 6px;border-radius:5px;font-size:.9em}
@@ -39,8 +40,8 @@
 </head>
 <body>
 <header><div>
-  <h1>Uređivanje vijesti — vodič</h1>
-  <p>Kratke, praktične upute za Karlu, Dragu i druge urednike: kako dodati, urediti i obrisati vijest te ubaciti slike. Cijeli sadržaj se uređuje kroz Pages CMS — nije potrebno nikakvo programiranje.</p>
+  <h1>Uređivanje sadržaja — vodič</h1>
+  <p>Kratke, praktične upute za Karlu, Dragu i druge urednike. Kroz Pages CMS uređuje se <strong>sav sadržaj</strong>: vijesti, događaji (Upcoming Events), projekti i statistika (Impact brojke) — bez ikakvog programiranja. Koraci 1–6 prikazani su na vijestima, ali rade jednako za sve kolekcije; što je posebno u svakoj piše u koraku 7.</p>
 </div></header>
 <main>
 
@@ -152,13 +153,41 @@
   <section class="card" id="ostalo">
     <span class="step">Korak 7</span>
     <h2>Ostale kolekcije — Događaji, Projekti, Impact</h2>
-    <p>Osim <strong>Vijesti</strong>, u istom CMS-u (gornji lijevi izbornik kolekcija) mogu se uređivati i:</p>
+    <p>Kolekcija se bira iz izbornika gore lijevo. Postupak je isti kao za vijesti (otvoriš, ispuniš polja, <strong>Save</strong>), a svako polje u CMS-u ima kratak opis ispod naziva. Evo što svaka sadrži:</p>
+
+    <h3>Događaji (Upcoming Events)</h3>
+    <p>Nadolazeći događaji koji se prikazuju na <strong>naslovnici</strong>. Polja:</p>
     <ul>
-      <li><strong>Događaji</strong> (Upcoming Events) — događaji koji se prikazuju na naslovnici. Ako datum nije poznat, ostavi ga prazno i upiši tekst poput „Uskoro — detalji slijede".</li>
-      <li><strong>Service projects</strong> — stranice projekata. <em>Slug</em> (URL) se ne mijenja nakon objave; <em>Redoslijed</em> određuje poredak u izborniku i popisu.</li>
-      <li><strong>Impact brojke</strong> — statistike koje se prikazuju na naslovnici i na stranici projekata (npr. <code>$2M</code>, <code>30+</code>).</li>
+      <li><strong>Naslov događaja</strong>.</li>
+      <li><strong>Datum</strong> — ako datum još nije poznat, <em>ostavi prazno</em>.</li>
+      <li><strong>Tekst umjesto datuma</strong> — npr. „Uskoro — detalji slijede"; prikazuje se kad je datum prazan.</li>
+      <li><strong>Vrijeme</strong> (opcionalno) — npr. „13:30–14:30".</li>
+      <li><strong>Lokacija</strong> (opcionalno) — npr. „Taipei, Taiwan".</li>
+      <li><strong>Detalji</strong> — tekst događaja.</li>
     </ul>
-    <div class="tip">Postupak je isti kao za vijesti: otvoriš kolekciju, urediš polja i klikneš <strong>Save</strong>. Svako polje ima kratak opis ispod naziva.</div>
+    <div class="tip">Kad događaj prođe, obriši ga (kroz <strong>⋮ → Delete</strong>) da naslovnica ostane svježa.</div>
+
+    <h3>Service projects (projekti)</h3>
+    <p>Stranice projekata; kartice na <strong>/projects</strong> i stavke u izborniku. Polja:</p>
+    <ul>
+      <li><strong>Slug</strong> — URL identifikator (npr. <code>ukraine</code>). <strong>Ne mijenjati nakon objave</strong> — mijenja adresu stranice i razbija poveznice.</li>
+      <li><strong>Naslov</strong> i <strong>Naziv u izborniku</strong> (ako je prazan, koristi se Naslov).</li>
+      <li><strong>Redoslijed</strong> — manji broj = ranije u popisu i izborniku.</li>
+      <li><strong>Kratki sažetak</strong> i <strong>Naslovna slika</strong> — za karticu na /projects.</li>
+      <li><strong>SEO opis</strong> — tekst za tab preglednika i tražilice.</li>
+      <li><strong>Vanjski link</strong> (opcionalno) — ako je ispunjen, kartica vodi na taj link, a projekt se <em>ne</em> prikazuje u izborniku.</li>
+      <li><strong>Sadržaj stranice</strong> — cijeli tekst; tablicu (npr. troškova) ubaci alatom za tablicu samo gdje treba.</li>
+    </ul>
+
+    <h3>Impact brojke (statistika)</h3>
+    <p>Istaknute brojke na <strong>naslovnici</strong> i na stranici <strong>projekata</strong> (npr. <code>$2M</code>, <code>30+</code>, <code>£705k</code>). Ovo nije popis unosa — otvoriš je jednom i uređuješ dvije liste:</p>
+    <ul>
+      <li><strong>Naslovnica — statistike</strong>: svaka stavka ima <em>Broj</em> (npr. <code>$2M</code>) i <em>Opis</em>.</li>
+      <li><strong>Service projects — statistike</strong>: isto, ali za stranicu projekata.</li>
+    </ul>
+    <p>Stavke se dodaju ili brišu kao redovi u listi; promijeni <em>Broj</em> i <em>Opis</em> pa klikni <strong>Save</strong>.</p>
+
+    <div class="tip">Za sve kolekcije vrijedi isto kao za vijesti: nakon <strong>Save</strong> sajt se sam objavi za 1–2 minute.</div>
   </section>
 
   <section class="card" id="praksa">
