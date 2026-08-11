@@ -5,41 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IRFHP — GitHub Pages deploy i DNS</title>
 <style>
-  :root{--blue:#134a8e;--navy:#0a1e40;--gold:#f4a81c;--ink:#12233e;--muted:#5a6b85;--bg:#f5f8fc;--line:#dce6f2;--card:#fff;--red:#a52a2a}
+  :root{--blue:#134a8e;--navy:#0a1e40;--gold:#f4a81c;--ink:#12233e;--muted:#5a6b85;--bg:#f5f8fc;--line:#dce6f2;--card:#fff;--red:#a52a2a;--green:#1a7a4a}
   *{box-sizing:border-box}body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
   header{background:linear-gradient(115deg,var(--navy),var(--blue));color:#fff;padding:40px 24px}header div,main{max-width:900px;margin:auto}header p{color:#d5e4f5;max-width:70ch}
-  main{padding:28px 24px 60px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:18px}h1,h2{line-height:1.25}h2{color:var(--navy);font-size:1.25rem}li{margin:7px 0}code{background:#e9f1fa;padding:2px 6px;border-radius:5px}.note{border-left:4px solid var(--gold);background:#fcecc9;padding:12px 16px;border-radius:0 8px 8px 0}.warn{border-left:4px solid var(--red);background:#fdecec;padding:12px 16px;border-radius:0 8px 8px 0}a{color:#0a62b4}table{border-collapse:collapse;width:100%}th,td{padding:9px;border-bottom:1px solid var(--line);text-align:left}
+  main{padding:28px 24px 60px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:18px}h1,h2{line-height:1.25}h2{color:var(--navy);font-size:1.25rem}li{margin:7px 0}code{background:#e9f1fa;padding:2px 6px;border-radius:5px}.note{border-left:4px solid var(--gold);background:#fcecc9;padding:12px 16px;border-radius:0 8px 8px 0}.warn{border-left:4px solid var(--red);background:#fdecec;padding:12px 16px;border-radius:0 8px 8px 0}.ok{border-left:4px solid var(--green);background:#e7f6ee;padding:12px 16px;border-radius:0 8px 8px 0}a{color:#0a62b4}table{border-collapse:collapse;width:100%}th,td{padding:9px;border-bottom:1px solid var(--line);text-align:left}
 </style>
 </head>
 <body>
 <header><div>
   <h1>GitHub Pages deploy i DNS</h1>
-  <p>Operativna uputa za aktivaciju, provjeru, DNS cutover i rollback IRFHP websitea.</p>
+  <p>Operativna uputa: kako se website objavljuje, koja je trenutačna konfiguracija domene i HTTPS-a, te kako po potrebi ručno re-deployati ili napraviti rollback.</p>
 </div></header>
 <main>
   <section class="card">
-    <h2>Preduvjeti</h2>
+    <h2>Trenutačno stanje — produkcija</h2>
+    <div class="ok"><strong>Cutover je gotov.</strong> Website je uživo na <a href="https://rotaryhealthprofessionals.org">https://rotaryhealthprofessionals.org</a> s uključenim HTTPS-om. Projektna adresa <code>…github.io/website/</code> preusmjerava na domenu.</div>
     <ul>
-      <li>Repo je javan na GitHub Free planu, a GitHub Pages i workflow već su aktivni.</li>
-      <li>Workflow <code>.github/workflows/deploy-pages.yml</code> mora biti na <code>main</code> grani.</li>
-      <li><code>npm run build</code> mora završiti bez greške.</li>
-      <li>Stari WordPress na Bluehostu ostaje javno dostupan do završne provjere i DNS cutovera.</li>
+      <li>Repo <code>rotary-healthcare-professionals/website</code> je javan (GitHub Free plan); GitHub Pages i workflow su aktivni.</li>
+      <li>Build i objava idu automatski preko GitHub Actions na svaki commit u <code>main</code>.</li>
+      <li>Email organizacije i dalje ide preko Bluehosta (MX zapis <code>mail.rotaryhealthprofessionals.org</code>) — <strong>ne dirati dok se email ne preseli</strong>.</li>
     </ul>
   </section>
+
   <section class="card">
-    <h2>Aktivno stanje i prelazak na custom domenu</h2>
-    <ol>
-      <li>Trenutačna nova verzija radi na <a href="https://rotary-healthcare-professionals.github.io/website/">rotary-healthcare-professionals.github.io/website/</a>.</li>
-      <li>U Pages postavkama dodaj custom domenu <code>rotaryhealthprofessionals.org</code>.</li>
-      <li>Repo → <strong>Settings → Secrets and variables → Actions → Variables</strong>.</li>
-      <li>Pri prelasku na custom domenu postavi <code>PAGES_BASE_PATH=/</code> i <code>PAGES_SITE_URL=https://rotaryhealthprofessionals.org</code>. <code>ENABLE_GITHUB_PAGES</code> ostaje <code>true</code>.</li>
-      <li>Actions → <strong>Deploy to GitHub Pages</strong> → <strong>Run workflow</strong>.</li>
-      <li>Provjeri da su build i deploy zeleni prije DNS izmjene.</li>
-    </ol>
+    <h2>Konfiguracija (kako je posloženo)</h2>
+    <ul>
+      <li><strong>Workflow:</strong> <code>.github/workflows/deploy-pages.yml</code> na <code>main</code> grani; gradi Astro i objavljuje na GitHub Pages.</li>
+      <li><strong>Repo varijable</strong> (Settings → Secrets and variables → Actions → Variables):
+        <table style="margin-top:8px"><tbody>
+          <tr><th>Varijabla</th><th>Vrijednost</th></tr>
+          <tr><td><code>ENABLE_GITHUB_PAGES</code></td><td><code>true</code></td></tr>
+          <tr><td><code>PAGES_SITE_URL</code></td><td><code>https://rotaryhealthprofessionals.org</code></td></tr>
+          <tr><td><code>PAGES_BASE_PATH</code></td><td><em>namjerno se ne postavlja</em> — prazno znači korijen domene (bez <code>/website/</code>)</td></tr>
+        </tbody></table>
+      </li>
+      <li><strong>Custom domena:</strong> u Settings → Pages postavljena je <code>rotaryhealthprofessionals.org</code> i uključen <strong>Enforce HTTPS</strong>.</li>
+      <li><strong>CNAME datoteka:</strong> <code>public/CNAME</code> sadrži <code>rotaryhealthprofessionals.org</code> (build je kopira u objavu).</li>
+    </ul>
+    <div class="note">Ako se ikad ponovno postavlja custom domena, <code>PAGES_BASE_PATH</code> mora ostati <strong>prazan / nepostavljen</strong>. Postavljanje na <code>/</code> ili <code>/website</code> bi razbilo putanje na korijenskoj domeni.</div>
   </section>
+
   <section class="card">
-    <h2>DNS zapisi za cutover</h2>
-    <div class="warn"><strong>Prije promjene snimi postojeće DNS zapise.</strong> Autoritativni nameserveri trenutačno su na Bluehostu. Ne mijenjaj DNS dok GitHub Pages workflow nije uspješan.</div>
+    <h2>Kako objaviti promjenu</h2>
+    <ol>
+      <li><strong>Automatski:</strong> svaki commit na <code>main</code> (uključujući izmjene iz Pages CMS-a) pokreće build i objavu — obično gotovo za 1–3 minute.</li>
+      <li><strong>Ručni re-deploy</strong> (ako treba iznova objaviti bez nove izmjene): Actions → <em>Deploy to GitHub Pages</em> → <em>Run workflow</em> → grana <code>main</code>. Ili iz terminala: <code>gh workflow run deploy-pages.yml --ref main</code>.</li>
+      <li>Provjeri da su build i deploy zeleni, pa osvježi stranicu bez cachea (<code>Ctrl</code>+<code>Shift</code>+<code>R</code>).</li>
+    </ol>
+    <div class="note">GitHub Pages objavljuje <strong>zadnji uspješno završen</strong> deploy. Ako više izmjena ide istovremeno pa live izgleda zastarjelo, pokreni ručni re-deploy kako bi se objavilo aktualno stanje <code>main</code>.</div>
+  </section>
+
+  <section class="card">
+    <h2>DNS zapisi (trenutačni)</h2>
+    <p>Domena je registrirana i DNS-om se upravlja preko 123reg (nameserveri <code>ns65/ns66.domaincontrol.com</code>). Aktualni zapisi:</p>
     <table><tbody>
       <tr><th>Host</th><th>Tip</th><th>Vrijednost</th></tr>
       <tr><td>@</td><td>A</td><td><code>185.199.108.153</code></td></tr>
@@ -47,26 +65,30 @@
       <tr><td>@</td><td>A</td><td><code>185.199.110.153</code></td></tr>
       <tr><td>@</td><td>A</td><td><code>185.199.111.153</code></td></tr>
       <tr><td>www</td><td>CNAME</td><td><code>rotary-healthcare-professionals.github.io</code></td></tr>
+      <tr><td>@ (MX)</td><td>MX</td><td><code>mail.rotaryhealthprofessionals.org</code> (email — Bluehost)</td></tr>
     </tbody></table>
-    <p>Ukloni stari apex A zapis <code>50.87.253.47</code> tek pri samom cutoveru. Nakon propagacije uključi <strong>Enforce HTTPS</strong> u GitHub Pages postavkama.</p>
+    <div class="warn">Četiri <code>A</code> zapisa (<code>185.199.108–111.153</code>) i <code>www</code> CNAME vode website na GitHub Pages. <strong>MX i pripadajući mail zapisi ostaju</strong> — bez njih prestaje raditi email. Ne uklanjati Bluehost dok se email ne preseli.</div>
     <p>Referenca: <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">GitHub — Managing a custom domain</a>.</p>
   </section>
+
   <section class="card">
-    <h2>Provjera nakon cutovera</h2>
+    <h2>Provjera (smoke test nakon promjena)</h2>
     <ul>
-      <li><code>https://rotaryhealthprofessionals.org</code> i <code>https://www.rotaryhealthprofessionals.org</code></li>
-      <li>HTTPS certifikat i automatski redirect</li>
+      <li><code>https://rotaryhealthprofessionals.org</code> i <code>https://www.rotaryhealthprofessionals.org</code> — oba otvaraju site preko HTTPS-a</li>
       <li>naslovnica, navigacija, slike, svih 17 vijesti i 404 stranica</li>
-      <li>PayPal, Jotform, MemberMojo i vanjske poveznice</li>
-      <li>probna CMS izmjena i novi automatski deploy</li>
+      <li>vanjske poveznice: MemberMojo (učlanjenje), PDF dokumenti, konvencije</li>
+      <li>probna CMS izmjena → novi automatski deploy → vidljivo na sajtu</li>
       <li><code>/admin</code> preusmjeravanje na Pages CMS</li>
     </ul>
   </section>
+
   <section class="card">
     <h2>Rollback</h2>
-    <p>Ako kritična funkcionalnost ne radi, vrati prethodne DNS zapise, uključujući apex <code>50.87.253.47</code>, i pričekaj propagaciju. Ne uklanjaj stari hosting najmanje 48 sati nakon uspješnog cutovera.</p>
+    <p>Website: ako neka izmjena razbije sajt, vrati prethodni commit na <code>main</code> (revert) — automatski se objavi ispravna verzija. GitHub čuva cijelu povijest.</p>
+    <p>DNS: krajnji rollback na stari hosting bio bi vraćanje apex <code>A</code> zapisa na <code>50.87.253.47</code> i micanje GitHub Pages zapisa. To više ne bi trebalo biti potrebno jer je cutover uspješan i stabilan; navedeno samo kao referenca.</p>
   </section>
-  <p><small>Zadnja izmjena: 2026-07-11 · Autor: AI agent + nbakic</small></p>
+
+  <p><small>Zadnja izmjena: 2026-08-11 · Autor: AI agent + nbakic</small></p>
 </main>
 </body>
 </html>
