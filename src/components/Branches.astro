@@ -2,21 +2,10 @@
 import data from '../data/branches.json';
 
 const branches = (data && data.branches) ? data.branches : [];
-
-// Odabir ikone iz CMS-a (polje "icon") -> SVG. Ako ključ ne postoji, koristi se globe.
-const ICONS = {
-  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/>',
-  pin: '<path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/>',
-  landmark: '<path d="M12 3l8 5H4l8-5Z"/><path d="M4 21h16M6 10v9M10 10v9M14 10v9M18 10v9"/>',
-  hospital: '<rect x="4" y="4" width="16" height="17" rx="2"/><path d="M12 8.5v7M8.5 12h7"/>',
-  flag: '<path d="M6 21V4"/><path d="M6 4h11l-2.2 4L17 12H6"/>',
-  heart: '<path d="M12 21s-7-4.5-9.4-9A5 5 0 0 1 12 6.2 5 5 0 0 1 21.4 12c-2.4 4.5-9.4 9-9.4 9Z"/>',
-};
 ---
 <div class="branches-ed">
   {branches.map((b) => (
     <div class="branch-row" data-reveal>
-      <span class="branch-row__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={ICONS[b.icon] || ICONS.globe} /></span>
       <p class="branch-row__label">{b.label}</p>
       <h3 class="branch-row__name">{b.name}</h3>
       {b.description && <p class="branch-row__desc">{b.description}</p>}
@@ -25,15 +14,14 @@ const ICONS = {
 </div>
 
 <style>
-  .branches-ed{max-width:680px;margin:0 auto}
-  .branch-row{text-align:center;padding:48px 18px;border-top:1px solid var(--line)}
-  .branch-row:first-child{border-top:0;padding-top:8px}
-  .branch-row__ico{display:inline-flex;color:var(--azure);opacity:.85;margin-bottom:18px}
-  .branch-row__label{font-size:.7rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--azure);margin:0 0 12px}
-  .branch-row__name{font-family:'Newsreader',Georgia,'Times New Roman',serif;font-weight:600;font-size:clamp(1.9rem,4.6vw,2.7rem);line-height:1.05;letter-spacing:-.008em;color:var(--blue-dark);margin:0}
-  .branch-row__desc{color:var(--muted);font-size:1.07rem;line-height:1.7;max-width:42ch;margin:16px auto 0}
+  .branches-ed{max-width:560px;margin:0 auto}
+  .branch-row{text-align:center;padding:26px 16px;border-top:1px solid var(--line)}
+  .branch-row:first-child{border-top:0;padding-top:2px}
+  .branch-row__label{font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+  .branch-row__name{font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:1.5rem;line-height:1.2;color:var(--blue-dark);margin:0}
+  .branch-row__desc{color:var(--muted);font-size:.96rem;line-height:1.6;max-width:44ch;margin:8px auto 0}
   @media(max-width:560px){
-    .branch-row{padding:36px 8px}
-    .branch-row__desc{font-size:1.02rem}
+    .branch-row{padding:24px 8px}
+    .branch-row__name{font-size:1.4rem}
   }
 </style>
