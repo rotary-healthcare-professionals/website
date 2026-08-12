@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import Branches from '../components/Branches.astro';
+---
+<Base
+  title={"Our branches — International Rotary Fellowship of Healthcare Professionals"}
+  description={"Where the Fellowship works around the world — our headquarters and active branches, from the United Kingdom to Egypt, Uganda and Morocco."}
+>
+<!-- ============ HERO ============ -->
+<header class="ed-hero" data-reveal>
+  <div class="ed-hero__media">
+    <div class="ed-hero__img" style="background-image:url('/images/2024/07/Homepage-main-photo.jpg')"></div>
+    <div class="ed-hero__tint"></div>
+    <div class="ed-hero__warm"></div>
+    <div class="ed-hero__shade"></div>
+    <div class="ed-hero__grain"></div>
+  </div>
+  <div class="container ed-hero__inner">
+    <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Our branches</p>
+    <h1 class="display ed-hero__title">Global thinking, <em>local action.</em></h1>
+  </div>
+</header>
+
+<!-- ============ BRANCHES ============ -->
+<section class="ed-section">
+  <div class="container">
+    <div class="ed-head" data-reveal>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Where we work</p>
+      <h2 class="ed-title">A worldwide Fellowship</h2>
+      <p class="ed-sub">We think globally and act locally — through our headquarters and a growing network of active branches around the world.</p>
+    </div>
+    <Branches />
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="ed-section" style="padding-top:0">
+  <div class="container">
+    <div class="join-cta" data-reveal>
+      <div class="join-cta__img" style="background-image:url('/images/2024/07/Homepage-main-photo.jpg')"></div>
+      <div class="join-cta__grade"></div>
+      <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Join us</p>
+      <h2>Start or grow a branch near you.</h2>
+      <p>Open to all health professionals — Rotarian and non-Rotarian. Get in touch and help us reach further.</p>
+      <div class="join-cta__actions">
+        <a class="btn btn-primary" href="/membership">Become a member</a>
+        <a class="btn btn-outline" href="/contact">Contact us</a>
+      </div>
+    </div>
+  </div>
+</section>
+</Base>

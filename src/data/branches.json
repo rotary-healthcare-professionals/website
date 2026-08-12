@@ -1,0 +1,28 @@
+{
+  "branches": [
+    {
+      "name": "United Kingdom",
+      "label": "Headquarters",
+      "icon": "landmark",
+      "description": "Our headquarters and the base of the Fellowship's governance and coordination."
+    },
+    {
+      "name": "Egypt",
+      "label": "Active branch",
+      "icon": "globe",
+      "description": "An active branch bringing together healthcare professionals across Egypt."
+    },
+    {
+      "name": "Uganda",
+      "label": "Active branch",
+      "icon": "globe",
+      "description": "An active branch supporting health programmes and fellowship across Uganda."
+    },
+    {
+      "name": "Morocco",
+      "label": "Active branch",
+      "icon": "globe",
+      "description": "Our newest branch, connecting healthcare professionals across Morocco."
+    }
+  ]
+}

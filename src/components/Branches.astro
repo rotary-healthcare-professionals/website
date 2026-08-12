@@ -1,0 +1,25 @@
+---
+import data from '../data/branches.json';
+
+const branches = (data && data.branches) ? data.branches : [];
+
+// Odabir ikone iz CMS-a (polje "icon") -> SVG. Ako ključ ne postoji, koristi se globe.
+const ICONS = {
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/>',
+  pin: '<path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/>',
+  landmark: '<path d="M12 3l8 5H4l8-5Z"/><path d="M4 21h16M6 10v9M10 10v9M14 10v9M18 10v9"/>',
+  hospital: '<rect x="4" y="4" width="16" height="17" rx="2"/><path d="M12 8.5v7M8.5 12h7"/>',
+  flag: '<path d="M6 21V4"/><path d="M6 4h11l-2.2 4L17 12H6"/>',
+  heart: '<path d="M12 21s-7-4.5-9.4-9A5 5 0 0 1 12 6.2 5 5 0 0 1 21.4 12c-2.4 4.5-9.4 9-9.4 9Z"/>',
+};
+---
+<div class="cards-3">
+  {branches.map((b, i) => (
+    <div class="info-card center branch-card" data-reveal style={`--d:${(i % 3) * 0.06}s`}>
+      <span class="branch-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={ICONS[b.icon] || ICONS.globe} /></span>
+      <span class="branch-label">{b.label}</span>
+      <h3>{b.name}</h3>
+      {b.description && <p>{b.description}</p>}
+    </div>
+  ))}
+</div>

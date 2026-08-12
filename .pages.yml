@@ -195,3 +195,35 @@ content:
           - name: label
             label: Opis
             type: string
+
+  - name: branches
+    label: Branches (Our branches)
+    type: file
+    path: src/data/branches.json
+    format: json
+    fields:
+      - name: branches
+        label: Grane
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Naziv (država)
+            type: string
+            required: true
+          - name: label
+            label: Tip
+            type: select
+            default: Active branch
+            options:
+              values: [Headquarters, Active branch]
+          - name: icon
+            label: Ikona
+            type: select
+            default: globe
+            description: "globe = globus, pin = lokacija, landmark = zgrada/spomenik, hospital = bolnica, flag = zastava, heart = srce."
+            options:
+              values: [globe, pin, landmark, hospital, flag, heart]
+          - name: description
+            label: Kratki opis (rečenica-dvije)
+            type: text
