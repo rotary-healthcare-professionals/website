@@ -56,7 +56,13 @@ const conventions = await Promise.all(
               <>
                 <h3>{c.title}</h3>
                 <Body />
-                {c.linkHref && (<p class="conv__link"><a href={c.linkHref} target="_blank" rel="noopener">{c.linkLabel || 'Read more'}</a></p>)}
+                {c.linkHref && (
+                  <a class="doc-card" href={c.linkHref} target="_blank" rel="noopener">
+                    <span class="doc-ico doc-pdf">PDF</span>
+                    <span class="doc-meta"><span class="doc-name">{c.linkLabel || 'Read the report'}</span><span class="doc-sub">PDF · Download</span></span>
+                    <span class="doc-open">↓</span>
+                  </a>
+                )}
               </>
             ) : (
               <p class="conv__soon">Details to be confirmed — check back closer to the convention.</p>
@@ -79,8 +85,7 @@ const conventions = await Promise.all(
   .conv__body p{color:var(--ink-2);line-height:1.6;margin:0 0 10px}
   .conv__body p:last-child{margin-bottom:0}
   .conv__body img{display:block;width:100%;max-width:360px;border-radius:12px;margin:6px 0 14px;border:1px solid var(--line);box-shadow:var(--shadow)}
-  .conv__link a{font-weight:700;color:var(--azure);text-decoration:none}
-  .conv__link a:hover{text-decoration:underline}
+  .conv__body .doc-card{margin-top:12px}
   .conv__soon{color:var(--muted);font-style:italic}
   @media(max-width:560px){
     .conv__item{grid-template-columns:1fr;gap:14px}

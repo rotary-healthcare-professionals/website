@@ -106,12 +106,9 @@ const projectNav = (await getCollection('projects'))
 
 <script is:inline>document.getElementById('god').textContent = new Date().getFullYear();</script>
 <script is:inline>
-/* Dokumenti u sadržaju:
-   - PDF unutar vijesti (/news/...) -> ugrađeni prikaz (iframe desktop / kartica mobitel)
-   - svi ostali dokumenti (PDF na stranicama, Word, Excel, PowerPoint) -> uredna "dokument-kartica" za preuzimanje
+/* Dokumenti u sadržaju (PDF, Word, Excel, PowerPoint) -> uredna "dokument-kartica" za preuzimanje.
    Zatim: vanjski linkovi u sadržaju dobiju malu strelicu ↗. */
 (function () {
-  var isNews = /\/news\//.test(location.pathname);
   var TYPES = {
     pdf:  { css: 'doc-pdf',   ico: 'PDF', label: 'PDF document' },
     doc:  { css: 'doc-word',  ico: 'DOC', label: 'Word document' },
@@ -144,30 +141,7 @@ const projectNav = (await getCollection('projects'))
     }
     var container = a.closest('li') || a.closest('p') || a;
 
-    /* PDF u vijesti -> ugrađeni prikaz */
-    if (ext === 'pdf' && isNews) {
-      var fig = document.createElement('figure');
-      fig.className = 'pdf-doc';
-      var frame = document.createElement('iframe');
-      frame.className = 'pdf-frame'; frame.src = href; frame.title = label; frame.loading = 'lazy';
-      var mc = document.createElement('a');
-      mc.className = 'pdf-card'; mc.href = href; mc.target = '_blank'; mc.rel = 'noopener';
-      var mi = document.createElement('span'); mi.className = 'pdf-ico'; mi.textContent = 'PDF';
-      var mm = document.createElement('span'); mm.className = 'pdf-meta';
-      var mn = document.createElement('span'); mn.className = 'pdf-name'; mn.textContent = label;
-      var ms = document.createElement('span'); ms.className = 'pdf-sub'; ms.textContent = 'Open document';
-      mm.appendChild(mn); mm.appendChild(ms);
-      var ma = document.createElement('span'); ma.className = 'pdf-open'; ma.textContent = '›';
-      mc.appendChild(mi); mc.appendChild(mm); mc.appendChild(ma);
-      var open = document.createElement('a');
-      open.className = 'pdf-openfull'; open.href = href; open.target = '_blank'; open.rel = 'noopener';
-      open.textContent = 'Open full screen / download';
-      fig.appendChild(frame); fig.appendChild(mc); fig.appendChild(open);
-      container.parentNode.replaceChild(fig, container);
-      return;
-    }
-
-    /* Sve ostalo -> dokument-kartica za preuzimanje */
+    /* Svi dokumenti -> dokument-kartica za preuzimanje */
     var card = document.createElement('a');
     card.className = 'doc-card'; card.href = href; card.target = '_blank'; card.rel = 'noopener';
     var ico = document.createElement('span'); ico.className = 'doc-ico ' + t.css; ico.textContent = t.ico;
