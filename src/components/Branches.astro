@@ -3,17 +3,26 @@ import data from '../data/branches.json';
 
 const branches = (data && data.branches) ? data.branches : [];
 ---
-<div class="branches-grid">
-  {branches.map((b, i) => (
-    <div class="info-card" data-reveal style={`--d:${(i % 4) * 0.06}s`}>
-      <span class="tier__badge">{b.label}</span>
-      <h3 style="margin-top:14px">{b.name}</h3>
-      {b.description && <p class="branch-desc">{b.description}</p>}
+<div class="branches-list">
+  {branches.map((b) => (
+    <div class="branch-item" data-reveal>
+      <div class="branch-item__head">
+        <p class="branch-item__label">{b.label}</p>
+        <h3 class="branch-item__name">{b.name}</h3>
+      </div>
+      {b.description && <p class="branch-item__desc">{b.description}</p>}
     </div>
   ))}
 </div>
 
 <style>
-  .branches-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:8px}
-  .branches-grid .branch-desc{color:var(--muted);font-size:.95rem;line-height:1.6;margin-top:10px}
+  .branches-list{max-width:860px;margin:0 auto}
+  .branch-item{display:grid;grid-template-columns:0.85fr 1.4fr;gap:34px;padding:28px 0;border-top:1px solid var(--line);align-items:baseline}
+  .branch-item:first-child{border-top:0;padding-top:6px}
+  .branch-item__label{font-size:.68rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--azure);margin:0 0 6px}
+  .branch-item__name{font-size:1.3rem;font-weight:800;color:var(--blue-dark);margin:0;line-height:1.2}
+  .branch-item__desc{color:var(--muted);font-size:1rem;line-height:1.65;margin:0}
+  @media(max-width:640px){
+    .branch-item{grid-template-columns:1fr;gap:8px;padding:22px 0}
+  }
 </style>
