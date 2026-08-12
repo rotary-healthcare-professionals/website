@@ -1,26 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import board from '../data/board.json';
 
-// Board of Directors 2025-26 — 17 Directors from 10 countries.
-const directors = [
-  { name: 'Herbert Ederer', country: 'Austria', role: 'Chair' },
-  { name: 'Amal El Sisi', country: 'Egypt', role: 'Vice Chair' },
-  { name: 'Ann Evans', country: 'USA', role: 'Vice Chair · Preventable Blindness' },
-  { name: 'Rainer Moosdorf', country: 'Germany', role: 'Secretary' },
-  { name: 'John Philip', country: 'UK', role: 'Treasurer · Signatory · Trustee' },
-  { name: 'Gillian Pearce', country: 'UK', role: 'Signatory · Trustee' },
-  { name: 'Demetress Harrell', country: 'USA', role: 'Medical Equipment' },
-  { name: 'Richard Kalungi', country: 'Uganda', role: 'Uganda' },
-  { name: 'Drago Pausek', country: 'Croatia', role: 'Webmaster · Signatory · Trustee' },
-  { name: 'Pat Merryweather-Arges', country: 'USA', role: 'Quality & Patient Safety' },
-  { name: 'Douglas Donald McMillan', country: 'Canada', role: 'Newborn Care' },
-  { name: 'Francisco Rosiello', country: 'Italy', role: 'Disaster Medicine · Medical Intelligence' },
-  { name: 'K V Ravishankar', country: 'India', role: 'Preventable Blindness' },
-  { name: 'Surinder Pal Singh Grover', country: 'India', role: 'IRFHP Branches' },
-  { name: 'Saroj Bajracharya', country: 'Nepal', role: 'IRFHP Branches' },
-  { name: 'Maimuna Alex-Adeomi', country: 'USA', role: 'Patient Safety' },
-  { name: 'Bagathsingh Karuppanan', country: 'India', role: 'IRFHP Branches' },
-];
+const directors = board.directors;
 const isOfficer = (role) => /Chair|Secretary|Treasurer/.test(role);
 
 const chairCreds = [
@@ -32,17 +14,8 @@ const chairCreds = [
   'Endowment Major Gift Advisor (EMGA) Zone 21A 2020–23',
 ];
 
-const reports = [
-  { name: 'Message from our incoming Chair (2023)', href: '/images/2023/07/New-Board-and-Herberts-words.pdf' },
-  { name: '‘Thank you’ from our outgoing Chair (2023)', href: '/images/2023/07/Thank-you-from-outgoing-chair.pdf' },
-  { name: 'Chairman’s Report 2023 — a year of achievement & our support to Ukraine', href: '/images/2023/07/CHAIRMANS-REPORT-2023.pdf' },
-];
-const accounts = [
-  { name: 'Annual accounts 2021–22', href: '/images/2023/07/Draft-accounts-IRFHP-Trust-2022.pdf' },
-  { name: 'Annual accounts 2022–23', href: '/images/2024/07/Final-accounts-IRFHP-Trust-2023-2.pdf' },
-  { name: 'Annual accounts 2023–24', href: '/images/2024/07/Final-accounts-IRFHP-Trust-2023-3.pdf' },
-  { name: 'Annual accounts 2024–25', href: '/images/2025/02/2024-Final-accounts-IRFHP-signed.pdf' },
-];
+const reports = board.reports;
+const accounts = board.accounts;
 ---
 <Base
   title={"Our Board and Accounts — International Rotary Fellowship of Healthcare Professionals"}

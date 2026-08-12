@@ -227,3 +227,48 @@ content:
           - name: description
             label: Kratki opis (rečenica-dvije)
             type: text
+
+  - name: board
+    label: Board (Our board & accounts)
+    type: file
+    path: src/data/board.json
+    format: json
+    fields:
+      - name: directors
+        label: Direktori (tablica)
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Ime
+            type: string
+            required: true
+          - name: role
+            label: Uloga
+            type: string
+            description: "Ako sadrži Chair, Secretary ili Treasurer, red se posebno istakne (zlatna oznaka)."
+          - name: country
+            label: Država
+            type: string
+      - name: reports
+        label: Reports & messages (dokumenti)
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Naziv
+            type: string
+          - name: href
+            label: Putanja do PDF-a (npr. /images/2023/07/report.pdf)
+            type: string
+      - name: accounts
+        label: Annual accounts (dokumenti)
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Naziv
+            type: string
+          - name: href
+            label: Putanja do PDF-a
+            type: string
