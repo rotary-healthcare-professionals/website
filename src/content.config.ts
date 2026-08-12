@@ -36,4 +36,15 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { news, events, projects };
+const conventions = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/conventions' }),
+  schema: z.object({
+    year: z.coerce.string(),
+    city: z.string(),
+    title: z.string().optional().default(''),
+    linkLabel: z.string().optional(),
+    linkHref: z.string().optional(),
+  }),
+});
+
+export const collections = { news, events, projects, conventions };

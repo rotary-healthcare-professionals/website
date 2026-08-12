@@ -1,45 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
 
-const conventions = [
-  {
-    year: '2026',
-    city: 'Taipei',
-    title: 'IRFHP at the Convention in Taipei',
-    body: [
-      'We attended the five-day Rotary International Convention from 13–18 June, among some 37,000 Rotarians from around the world — our 17th, and as inspiring as ever.',
-      'Our booth in the House of Friendship was colourful and well visited. Most new visitors had never heard of the Fellowship, so it was a wonderful chance to share our multidisciplinary, evidence-based approach, our openness to non-Rotarians, and our branches in Egypt, Uganda and Ukraine.',
-      'At our one-hour Fellowship meeting we heard four member presentations — mobile healthcare in Uganda (Mauri Okamoto-Kearney), tuberculosis prevention in Nepal (Leckman), affordable hernia repair through Hernia Aid (Andrew Kingsnorth), and lessons from Kangaroo Mother Care in Ukraine (John Philip) — followed by Ann Evans on preventable blindness.',
-      'Our supply of Kangaroo Mother Care carriers to neonatal units in Ukraine drew particular interest: a low-cost, high-impact project we are now preparing to strengthen and expand through a workshop in Moldova, with support already from clubs in RGBI, Canada and Austria.',
-      'Eight new members joined the Fellowship at the Convention.',
-    ],
-    images: [],
-    link: { label: 'Read our Taipei report', href: '/images/2026/06/IRFHP-Taipei-Convention-Report-2026.pdf' },
-  },
-  {
-    year: '2025',
-    city: 'Calgary',
-    title: 'The Fellowship’s Annual Dinner',
-    body: [
-      'Join us for our Annual Dinner on Tuesday 24 June, 6 for 6:30pm at The Westin Calgary Downtown — 320 4 Ave SW, Calgary, AB T2P 2S6.',
-      'Canadian $120 per person, including a welcome drink. Scan the QR code on the flyer to book and pay; you will receive an email receipt and ticket.',
-    ],
-    images: [{ src: '/images/2025/04/image-1.png', alt: 'The Fellowship’s Annual Dinner in Calgary — flyer' }],
-    link: { label: 'View more', href: '/images/2025/03/Annual-Dinner-in-Calgary2.pdf' },
-  },
-  {
-    year: '2023',
-    city: 'Melbourne',
-    title: 'In the House of Friendship',
-    body: [
-      'Our booth in the House of Friendship was one of the most colourful and perhaps the busiest. We met many old friends and made many new ones.',
-      'We heard so many amazing stories about Rotary’s impact on healthcare in different parts of the world. It never ceases to surprise me that there are hundreds of health programmes initiated by Rotarians, many changing lives. Rotarians invest countless voluntary hours setting up health camps, offering free treatment, transporting medications, and donating medical equipment.',
-      'Each programme makes a difference to people’s lives — but how do we measure and quantify our impact, and how do we acknowledge the heroes who provide such service?',
-    ],
-    images: [],
-    link: { label: 'Read our Melbourne report', href: '/images/2023/07/Melbourne-Report-3.pdf' },
-  },
-];
+const entries = (await getCollection('conventions'))
+  .sort((a, b) => Number(b.data.year) - Number(a.data.year));
+const conventions = await Promise.all(
+  entries.map(async (c) => ({ ...c.data, Body: (await render(c)).Content }))
+);
 ---
 <Base title={"Fellowship at RI Conventions — International Rotary Fellowship of Healthcare Professionals"} description={"The International Rotary Fellowship of Healthcare Professionals at Rotary International Conventions — Melbourne 2023, Calgary 2025 and Taipei 2026. Come and find us in the House of Friendship."}>
 <!-- ============ HERO ============ -->
@@ -76,7 +43,9 @@ const conventions = [
       <h2 class="ed-title">Where you’ll find us</h2>
     </div>
     <div class="conv">
-      {conventions.map((c, i) => (
+      {conventions.map((c, i) => {
+        const Body = c.Body;
+        return (
         <div class="conv__item" data-reveal style={`--d:${Math.min(i, 3) * 0.06}s`}>
           <div class="conv__when">
             <span class="conv__yr">{c.year}</span>
@@ -86,16 +55,16 @@ const conventions = [
             {c.title ? (
               <>
                 <h3>{c.title}</h3>
-                {c.body.map((p) => (<p>{p}</p>))}
-                {c.images.map((img) => (<img class="conv__img" src={img.src} alt={img.alt} loading="lazy" />))}
-                {c.link && (<p class="conv__link"><a href={c.link.href} target="_blank" rel="noopener">{c.link.label}</a></p>)}
+                <Body />
+                {c.linkHref && (<p class="conv__link"><a href={c.linkHref} target="_blank" rel="noopener">{c.linkLabel || 'Read more'}</a></p>)}
               </>
             ) : (
               <p class="conv__soon">Details to be confirmed — check back closer to the convention.</p>
             )}
           </div>
         </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>
@@ -109,7 +78,7 @@ const conventions = [
   .conv__body h3{font-weight:800;color:var(--blue-dark);font-size:1.15rem;line-height:1.3;margin:0 0 10px}
   .conv__body p{color:var(--ink-2);line-height:1.6;margin:0 0 10px}
   .conv__body p:last-child{margin-bottom:0}
-  .conv__img{display:block;width:100%;max-width:360px;border-radius:12px;margin:6px 0 14px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .conv__body img{display:block;width:100%;max-width:360px;border-radius:12px;margin:6px 0 14px;border:1px solid var(--line);box-shadow:var(--shadow)}
   .conv__link a{font-weight:700;color:var(--azure);text-decoration:none}
   .conv__link a:hover{text-decoration:underline}
   .conv__soon{color:var(--muted);font-style:italic}

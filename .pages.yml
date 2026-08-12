@@ -272,3 +272,46 @@ content:
           - name: href
             label: Putanja do PDF-a
             type: string
+
+  - name: conventions
+    label: Fellowship at RI Conventions
+    type: collection
+    path: src/content/conventions
+    format: yaml-frontmatter
+    filename: "{fields.city}-{fields.year}.md"
+    view:
+      fields: [year, city, title]
+      primary: title
+      sort: [year, city]
+      default:
+        sort: year
+        order: desc
+    fields:
+      - name: year
+        label: Godina
+        type: string
+        required: true
+      - name: city
+        label: Grad
+        type: string
+        required: true
+      - name: title
+        label: Naslov
+        type: string
+        description: "Ostavi prazno ako detalji još nisu poznati (prikaže se 'Details to be confirmed')."
+      - name: linkLabel
+        label: Tekst linka na izvještaj (opcionalno)
+        type: string
+      - name: linkHref
+        label: Putanja do PDF izvještaja (opcionalno)
+        type: string
+      - name: body
+        label: Tekst
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+          path: public/images/conventions
+          categories: [image, document]
+          extensions: [jpg, jpeg, png, webp, gif, pdf]
+          rename: safe
