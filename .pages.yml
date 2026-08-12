@@ -217,13 +217,6 @@ content:
             default: Active branch
             options:
               values: [Headquarters, Active branch]
-          - name: icon
-            label: Ikona
-            type: select
-            default: globe
-            description: "globe = globus, pin = lokacija, landmark = zgrada/spomenik, hospital = bolnica, flag = zastava, heart = srce."
-            options:
-              values: [globe, pin, landmark, hospital, flag, heart]
           - name: description
             label: Kratki opis (rečenica-dvije)
             type: text
