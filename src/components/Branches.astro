@@ -1,9 +1,10 @@
 ---
 import data from '../data/branches.json';
 
+const { align = 'left' } = Astro.props;
 const branches = (data && data.branches) ? data.branches : [];
 ---
-<div class="branches-list">
+<div class:list={['branches-list', align === 'center' ? 'bl-center' : 'bl-left']}>
   {branches.map((b, i) => (
     <div class="branch-item" data-reveal style={`--d:${i * 0.07}s`}>
       <div class="branch-item__head">
@@ -16,16 +17,27 @@ const branches = (data && data.branches) ? data.branches : [];
 </div>
 
 <style>
-  /* Lijevo poravnato (bez margin:auto) -> lijevi rub se poklapa s naslovom sekcije */
-  .branches-list{max-width:900px;margin-top:8px}
-  .branch-item{display:grid;grid-template-columns:minmax(170px,230px) 1fr;gap:46px;align-items:center;padding:30px 0;border-top:1px solid var(--line)}
-  .branch-item:first-child{border-top:0;padding-top:18px}
-  .branch-item__name{font-size:1.5rem;font-weight:800;color:var(--blue-dark);margin:11px 0 0;line-height:1.12;letter-spacing:-.015em}
-  .branch-item__desc{color:var(--muted);font-size:1.05rem;line-height:1.7;margin:0;max-width:48ch}
+  .branch-item__name{font-size:1.5rem;font-weight:800;color:var(--blue-dark);margin:11px 0 0;line-height:1.15;letter-spacing:-.015em}
+  .branch-item__desc{color:var(--muted);font-size:1.05rem;line-height:1.7;margin:0}
+
+  /* CENTER: jednostupčano, sve centrirano (za /branches) */
+  .bl-center{max-width:600px;margin:0 auto;text-align:center}
+  .bl-center .branch-item{padding:30px 0;border-top:1px solid var(--line)}
+  .bl-center .branch-item:first-child{border-top:0;padding-top:6px}
+  .bl-center .ed-eyebrow{justify-content:center}
+  .bl-center .branch-item__desc{margin:10px auto 0;max-width:46ch}
+
+  /* LEFT: dvostupčano, lijevo poravnato (za /about) */
+  .bl-left{max-width:900px}
+  .bl-left .branch-item{display:grid;grid-template-columns:minmax(170px,230px) 1fr;gap:46px;align-items:center;padding:30px 0;border-top:1px solid var(--line)}
+  .bl-left .branch-item:first-child{border-top:0;padding-top:18px}
+  .bl-left .branch-item__desc{max-width:48ch}
+
   @media(max-width:640px){
-    .branch-item{grid-template-columns:1fr;gap:8px;align-items:start;padding:24px 0}
-    .branch-item:first-child{padding-top:6px}
     .branch-item__name{font-size:1.32rem}
-    .branch-item__desc{margin-top:7px}
+    .bl-center .branch-item{padding:24px 0}
+    .bl-left .branch-item{grid-template-columns:1fr;gap:8px;align-items:start;padding:24px 0}
+    .bl-left .branch-item:first-child{padding-top:6px}
+    .bl-left .branch-item__desc{margin-top:7px}
   }
 </style>

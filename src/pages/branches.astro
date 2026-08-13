@@ -24,12 +24,12 @@ import Branches from '../components/Branches.astro';
 <!-- ============ BRANCHES ============ -->
 <section class="ed-section">
   <div class="container">
-    <div class="ed-head" data-reveal>
+    <div class="ed-head branches-head" data-reveal>
       <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Where we work</p>
       <h2 class="ed-title">A worldwide Fellowship</h2>
       <p class="ed-sub">We think globally and act locally — through our headquarters and a growing network of active branches around the world.</p>
     </div>
-    <Branches />
+    <Branches align="center" />
   </div>
 </section>
 
@@ -49,4 +49,10 @@ import Branches from '../components/Branches.astro';
     </div>
   </div>
 </section>
+
+<style>
+  .branches-head{text-align:center}
+  .branches-head .ed-eyebrow{justify-content:center}
+  .branches-head .ed-sub{margin-left:auto;margin-right:auto}
+</style>
 </Base>
