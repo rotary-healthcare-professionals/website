@@ -146,12 +146,12 @@ const explore = [
 <!-- ============ BRANCHES ============ -->
 <section class="ed-section" style="padding-top:0">
   <div class="container">
-    <div class="ed-head" data-reveal>
+    <div class="ed-head branches-head" data-reveal>
       <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>Global thinking, local action</p>
       <h2 class="ed-title">Where we work</h2>
       <p class="ed-sub">We think globally and act locally.</p>
     </div>
-    <Branches />
+    <Branches align="center" />
     <div class="center" style="margin-top:30px" data-reveal>
       <a class="btn btn-ghost" href="/branches">See all our branches</a>
     </div>
@@ -193,4 +193,10 @@ const explore = [
     </div>
   </div>
 </section>
+
+<style>
+  .branches-head{text-align:center}
+  .branches-head .ed-eyebrow{justify-content:center}
+  .branches-head .ed-sub{margin-left:auto;margin-right:auto}
+</style>
 </Base>
