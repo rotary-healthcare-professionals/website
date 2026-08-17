@@ -4,11 +4,11 @@ import data from '../data/branches.json';
 const { align = 'left' } = Astro.props;
 const branches = (data && data.branches) ? data.branches : [];
 ---
-<div class:list={['branches-list', align === 'center' ? 'bl-center' : 'bl-left']}>
+<div class:list={['branches', align === 'center' ? 'branches--center' : 'branches--left']}>
   {branches.map((b, i) => (
     <div class="branch-item" data-reveal style={`--d:${i * 0.07}s`}>
       <div class="branch-item__head">
-        <p class="ed-eyebrow"><span class="ed-eyebrow__line"></span>{b.label}</p>
+        <p class="branch-item__label">{b.label}</p>
         <h3 class="branch-item__name">{b.name}</h3>
       </div>
       {b.description && <p class="branch-item__desc">{b.description}</p>}
@@ -17,27 +17,31 @@ const branches = (data && data.branches) ? data.branches : [];
 </div>
 
 <style>
-  .branch-item__name{font-size:1.5rem;font-weight:800;color:var(--blue-dark);margin:11px 0 0;line-height:1.15;letter-spacing:-.015em}
-  .branch-item__desc{color:var(--muted);font-size:1.05rem;line-height:1.7;margin:0}
+  .branch-item__name{font-weight:800;color:var(--blue-dark);letter-spacing:-.01em}
+  .branch-item__label{font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+  .branch-item__desc{color:var(--muted)}
 
-  /* CENTER: jednostupčano, sve centrirano (za /branches) */
-  .bl-center{max-width:600px;margin:0 auto;text-align:center}
-  .bl-center .branch-item{padding:30px 0;border-top:1px solid var(--line)}
-  .bl-center .branch-item:first-child{border-top:0;padding-top:6px}
-  .bl-center .ed-eyebrow{justify-content:center}
-  .bl-center .branch-item__desc{margin:10px auto 0;max-width:46ch}
+  /* CENTER (za /branches): centrirani popis; prigušene labele + linije-razdjelnici odvajaju od naslova */
+  .branches--center{max-width:620px;margin:40px auto 0}
+  .branches--center .branch-item{text-align:center;padding:28px 0;border-top:1px solid var(--line)}
+  .branches--center .branch-item__label{font-size:.66rem;color:var(--muted);margin:0 0 9px}
+  .branches--center .branch-item__name{font-size:1.3rem;line-height:1.2;margin:0}
+  .branches--center .branch-item__desc{font-size:.97rem;line-height:1.62;margin:9px auto 0;max-width:42ch}
 
-  /* LEFT: dvostupčano, lijevo poravnato (za /about) */
-  .bl-left{max-width:900px}
-  .bl-left .branch-item{display:grid;grid-template-columns:minmax(170px,230px) 1fr;gap:46px;align-items:center;padding:30px 0;border-top:1px solid var(--line)}
-  .bl-left .branch-item:first-child{border-top:0;padding-top:18px}
-  .bl-left .branch-item__desc{max-width:48ch}
+  /* LEFT (za /about): dvostupčani popis, lijevo poravnat */
+  .branches--left{max-width:900px}
+  .branches--left .branch-item{display:grid;grid-template-columns:minmax(170px,230px) 1fr;gap:46px;align-items:center;padding:30px 0;border-top:1px solid var(--line)}
+  .branches--left .branch-item:first-child{border-top:0;padding-top:18px}
+  .branches--left .branch-item__label{font-size:.72rem;color:var(--azure);margin:0}
+  .branches--left .branch-item__name{font-size:1.5rem;line-height:1.12;margin:11px 0 0}
+  .branches--left .branch-item__desc{font-size:1.05rem;line-height:1.7;margin:0;max-width:48ch}
 
   @media(max-width:640px){
-    .branch-item__name{font-size:1.32rem}
-    .bl-center .branch-item{padding:24px 0}
-    .bl-left .branch-item{grid-template-columns:1fr;gap:8px;align-items:start;padding:24px 0}
-    .bl-left .branch-item:first-child{padding-top:6px}
-    .bl-left .branch-item__desc{margin-top:7px}
+    .branches--center{margin-top:30px}
+    .branches--center .branch-item{padding:24px 0}
+    .branches--left .branch-item{grid-template-columns:1fr;gap:8px;align-items:start;padding:24px 0}
+    .branches--left .branch-item:first-child{padding-top:6px}
+    .branches--left .branch-item__name{font-size:1.32rem}
+    .branches--left .branch-item__desc{margin-top:7px}
   }
 </style>
