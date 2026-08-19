@@ -44,8 +44,9 @@ const branches = [
         <h2>Send us a message</h2>
         <form id="contactForm" class="contact-form" action={`https://formsubmit.co/${email}`} method="POST">
           <input type="hidden" name="_subject" value="New enquiry from the IRFHP website">
-          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_captcha" value="true">
           <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://rotaryhealthprofessionals.org/contact/?sent=1">
           <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
           <label>Your name
             <input type="text" name="name" required autocomplete="name">
@@ -59,7 +60,7 @@ const branches = [
           <button type="submit" class="btn btn-primary">Send message</button>
         </form>
         <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
-        <p class="form-note">Your message is sent straight to our inbox — we usually reply within a few working days.</p>
+        <p class="form-note">After a quick “I’m not a robot” check, your message goes straight to our inbox — we usually reply within a few working days.</p>
       </div>
 
       <!-- Reach us -->
@@ -131,35 +132,15 @@ const branches = [
 
 <script is:inline>
 (function () {
-  /* Kontakt-forma preko FormSubmit AJAX-a — poruka ide ravno u inbox, ostaje na stranici */
+  /* Standardni FormSubmit tijek s reCAPTCHA: nakon slanja i provjere, FormSubmit vrati
+     korisnika na ?sent=1 -> prikažemo zahvalu i sakrijemo formu. Honeypot i captcha
+     odrađuju anti-spam na FormSubmit strani. */
   var form = document.getElementById('contactForm');
   var status = document.getElementById('formStatus');
-  if (form && status) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var hp = form.querySelector('.hp'); if (hp && hp.value) return; // spam trap
-      var btn = form.querySelector('button[type=submit]');
-      var orig = btn.textContent;
-      btn.disabled = true; btn.textContent = 'Sending…';
-      status.className = 'form-status';
-      fetch(form.getAttribute('action').replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
-        method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
-      }).then(function (r) { return r.json(); }).then(function (res) {
-        if (res.success === 'true' || res.success === true) {
-          form.style.display = 'none';
-          status.className = 'form-status ok';
-          status.textContent = 'Thank you — your message has been sent. We will get back to you soon.';
-        } else {
-          btn.disabled = false; btn.textContent = orig;
-          status.className = 'form-status err';
-          status.textContent = res.message || 'Message could not be sent right now. Please try again, or e-mail us directly at rotaryhealthprofessionals@gmail.com.';
-        }
-      }).catch(function () {
-        btn.disabled = false; btn.textContent = orig;
-        status.className = 'form-status err';
-        status.innerHTML = 'Sorry, something went wrong. Please e-mail us directly at <a href="mailto:rotaryhealthprofessionals@gmail.com">rotaryhealthprofessionals@gmail.com</a>.';
-      });
-    });
+  if (status && /[?&]sent=1/.test(location.search)) {
+    if (form) form.style.display = 'none';
+    status.className = 'form-status ok';
+    status.textContent = 'Thank you — your message has been sent. We will get back to you soon.';
   }
 
   /* Klikni za kopiranje (e-mail / telefon) */
