@@ -32,7 +32,7 @@ const [featured, ...rest] = items;
     {featured && (
       <a class="news-feature" href={`/news/${featured.id}`} data-reveal>
         {featured.data.coverImage
-          ? <div class="news-feature__img" style={`background-image:url('${featured.data.coverImage}')`}></div>
+         ? <div class="news-feature__img" style={`background-image:url('${featured.data.coverImage}');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#d9dde1`}></div>
           : <div class="news-feature__img news-ph"><svg class="pulse" viewBox="0 0 140 24" fill="none" aria-hidden="true"><path d="M0 12h44l5-9 6 18 5-13 4 9h71" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>}
         <div class="news-feature__body">
           <p class="news-eyebrow">Latest &middot; {fmt(featured.data.date)}</p>
