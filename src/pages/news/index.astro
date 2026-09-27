@@ -71,7 +71,7 @@ const [featured, ...rest] = items;
   /* Featured */
   .news-feature{display:grid;grid-template-columns:1.05fr .95fr;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);text-decoration:none;margin-bottom:44px;transition:transform .2s,box-shadow .2s}
   .news-feature:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-  .news-feature__img{min-height:320px;background-size:cover;background-position:center}
+  .news-feature__img{min-height:320px;background-size:cover;background-position:center 25%}
   .news-feature__body{padding:clamp(28px,3.6vw,52px);display:flex;flex-direction:column;justify-content:center}
   .news-feature__body h2{font-family:var(--serif);font-weight:800;font-size:clamp(1.5rem,3vw,2.25rem);line-height:1.15;letter-spacing:-.01em;color:var(--blue-dark);margin:14px 0 0}
   .news-feature__sum{color:var(--muted);margin-top:15px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
