@@ -20,7 +20,7 @@ const { Content } = await render(item);
         <h1>{item.data.title}</h1>
       </header>
 
-      {item.data.coverImage && !item.data.hideCover && (
+      {item.data.coverImage && !item.id.includes('our-new-leader-patricia') && (
         <img class="news-article__cover" src={item.data.coverImage} alt={item.data.title} data-reveal />
       )}
 
