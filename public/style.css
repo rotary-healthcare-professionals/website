@@ -189,6 +189,8 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
 .news-item:active{transform:translateY(-2px) scale(.988);transition-duration:.09s}
 .news-item .thumb{width:calc(100% + 56px);max-width:none;height:196px;object-fit:cover;display:block;margin:-28px -28px 20px;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .news-item:hover .thumb{transform:scale(1.06)}
+/* portretne fotografije (npr. Pat) prikaži cijele, bez rezanja glave */
+.news-item .thumb[src*="pat-merryweather"]{object-fit:contain;background:#f7f7f5}
 .news-item .date{font-size:.76rem;color:var(--azure);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
 .news-item h3{font-size:1.18rem;font-weight:800;margin:8px 0 10px;line-height:1.28}
 .news-item h3 a{text-decoration:none;color:var(--blue-dark)}
