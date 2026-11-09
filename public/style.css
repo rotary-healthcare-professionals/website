@@ -75,7 +75,7 @@ h1,h2,h3,h4{line-height:1.12;letter-spacing:-.018em;text-wrap:balance}
 .donate-item{margin-left:8px}
 
 /* ---------- Hero (naslovnica) ---------- */
-.hero{position:relative;color:#fff;overflow:hidden;background:var(--navy)}
+.hero{position:relative;color:#fff;overflow:hidden;background:var(--navy);padding:0}
 .hero-slides{position:absolute;inset:0;z-index:0}
 .hero-slide{position:absolute;inset:0;background-position:center 32%;background-size:cover;background-repeat:no-repeat;opacity:0;animation:heroFade 15s infinite;will-change:opacity}
 .hero-slide:first-child{opacity:1}
@@ -86,11 +86,11 @@ h1,h2,h3,h4{line-height:1.12;letter-spacing:-.018em;text-wrap:balance}
 .hero-slide:nth-child(5){animation-delay:12s}
 @keyframes heroFade{0%{opacity:0}4%{opacity:1}18%{opacity:1}24%{opacity:0}100%{opacity:0}}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(10,30,64,.92) 0%,rgba(13,46,94,.8) 42%,rgba(10,98,180,.42) 100%)}
-.hero .container{position:relative;z-index:2;padding-top:118px;padding-bottom:124px}
+.hero .container{position:relative;z-index:2;padding-top:64px;padding-bottom:68px}
 .hero .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.76rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
 .hero .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold)}
 .hero h1{font-size:clamp(2.4rem,5.6vw,4.1rem);font-weight:800;line-height:1.05;max-width:15ch}
-.hero .sub{font-size:clamp(1.05rem,2vw,1.3rem);margin-top:18px;max-width:44ch;color:#dbe7f6;font-weight:500}
+.hero .sub{min-height:0;display:block;border-radius:0;overflow:visible;box-shadow:none;font-size:clamp(1.05rem,2vw,1.3rem);margin-top:18px;max-width:44ch;color:#dbe7f6;font-weight:500}
 .hero-actions{margin-top:36px;display:flex;gap:15px;flex-wrap:wrap}
 
 /* ---------- Sections ---------- */
@@ -273,7 +273,7 @@ h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;line-heigh
   .impact .item{border-left:0;border-top:2px solid rgba(255,255,255,.16);padding-left:0;padding-top:16px}
   .gallery{grid-template-columns:1fr 1fr}
   section{padding:58px 0}
-  .hero .container{padding-top:88px;padding-bottom:92px}
+  .hero .container{padding-top:44px;padding-bottom:48px}
   /* footer: zbliži linkove i sekcije na mobitelu */
   .site-footer .top{gap:22px}
   .site-footer .links a{padding:2px 0;line-height:1.45}
